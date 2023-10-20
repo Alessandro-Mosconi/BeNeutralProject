@@ -1,2 +1,2 @@
 # BeNeutral
-BeNeutral - videogame and design porgramming
+BeNeutral - videogame and design programming
