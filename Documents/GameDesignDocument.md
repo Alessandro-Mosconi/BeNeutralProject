@@ -4,23 +4,33 @@ Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about St
 
 # Overview and vision statement
 
+
 # Gameplay
+
 
 # Characters
 
+
 # Story
 
+
 # World
---
+
+
 ## Level 1
---
+
+
 ## Level 2
---
+
+
 ## Level 3
---
+
+
 # Media list
 
+
 # Technical specification
+
 
 
 
