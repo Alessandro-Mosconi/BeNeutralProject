@@ -35,6 +35,10 @@ Hi! I'm your first Markdown file in **StackEdit**. If you want to learn about St
 
 
 # Team
-
+1. Chen Rui (Art)
+2. Mahadi Salah (Developer)
+3. Melchiorre Matteo (Developer) 
+4. Mosconi Alessandro (Developer)
+5. Sassi Alessandro (Developer)
 
 # Deadlines
