@@ -7,27 +7,28 @@ An immersive game that throws you into the heart of NeutralVille, a world with p
 
 # Characters (Alessandro M.)
 
-## Andy
-- **Description**: Andy is a young boy characterized by his positive electrical charge, represented by the color red.
-- **Abilities**:
-  - *Projectile Attacks*: Andy can shoot positively charged projectiles, colored in red, to eliminate enemies with a negative electrical charge.
-  - *Positive Force Field*: Andy has the ability to create a positive force field that can repel objects with a negative electrical charge in the environment. However, using this ability consumes his energy.
-  - *Weapon Preference*: Andy excels in using heavy and powerful weapons, such as hammers and rocket launchers.
-
-## Caty
-- **Description**: Caty is a young girl characterized by her negative electrical charge, represented by the color blue.
-- **Abilities**:
-  - *Projectile Attacks*: Caty can shoot negatively charged projectiles, colored in blue, to defeat enemies with a positive electrical charge.
-  - *Negative Force Field*: Caty possesses the ability to create a negative force field that can push away objects with a positive electrical charge in the environment. Using this ability drains her energy.
-  - *Weapon Preference*: Caty is proficient in using small and fast weapons, including swords and rapid-fire firearms.
-
-**Relationship and Gameplay Mechanics**:
+## Relationship and Characters Mechanics:
 - Andy and Caty are the game's two main characters, each having a distinct electrical charge (positive and negative) represented by their respective colors (red and blue).
 - The attraction between their opposite electrical charges allows them to stay anchored to the ground, preventing them from floating away.
 - Both characters have a life bar, denoted by the amount of electrical charge they possess. This charge can be stolen by enemies with the opposite electrical charge.
 - To maintain their connection, Andy and Caty need to stay within one screen's distance of each other. If they move too far apart, the force anchoring them to the ground weakens, leading to a game over.
 - The two characters are typically positioned on opposite sides of the screen, but they can swap positions using a special in-game item.
 - Their primary means of offense are their charge-based projectiles, making it crucial for them to cooperate in battling enemies and solving puzzles in the game world.
+
+### Andy
+- **Description**: Andy is a young boy characterized by his positive electrical charge, represented by the color red.
+- **Abilities**:
+  - *Projectile Attacks*: Andy can shoot positively charged projectiles, colored in red, to eliminate enemies with a negative electrical charge.
+  - *Positive Force Field*: Andy has the ability to create a positive force field that can repel objects with a negative electrical charge in the environment. However, using this ability consumes his energy.
+  - *Weapon Preference*: Andy excels in using heavy and powerful weapons, such as hammers and rocket launchers.
+
+### Caty
+- **Description**: Caty is a young girl characterized by her negative electrical charge, represented by the color blue.
+- **Abilities**:
+  - *Projectile Attacks*: Caty can shoot negatively charged projectiles, colored in blue, to defeat enemies with a positive electrical charge.
+  - *Negative Force Field*: Caty possesses the ability to create a negative force field that can push away objects with a positive electrical charge in the environment. Using this ability drains her energy.
+  - *Weapon Preference*: Caty is proficient in using small and fast weapons, including swords and rapid-fire firearms.
+
 
 
 # Story (Salah)
