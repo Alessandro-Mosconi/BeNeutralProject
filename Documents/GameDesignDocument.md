@@ -206,3 +206,18 @@ With their mission accomplished, Andy and Cathy stand side by side, their magnet
 5. Sassi Alessandro (Developer)
 
 # Deadlines
+
+### Week 1 (November 6 deadline) 
+- First meeting and brainstorming on figma platform
+- Github repository (Alessandro Mosconi)
+- First art prototype (Rui Chen)
+- GameDesignDocument draft - Gameplay (Alessandro Sassi)
+- GameDesignDocument draft - Characters (Alessandro Mosconi)
+- GameDesignDocument draft - Story (Salah Mahadi)
+- GameDesignDocument draft - World (Rui Chen)
+- GameDesignDocument draft - Technical specification (Matteo Melchiorre)
+
+### Team meeting (November 5) 
+- Github repository created and shared
+- Game design document draft completed
+- First art prototype finished
