@@ -111,13 +111,23 @@ In his last attempt to save everyone, the young scientist decided to contain the
 
 
 ## Level 1
+In the serene surroundings of Harmony Heights, Andy and Cathy find themselves standing on opposite sides of a series of simple platforms. The level begins with easy steps, encouraging players to coordinate their movements and magnetic charges. As they progress, they encounter the first challenge: a magnetic barrier blocking their path. To deactivate it, they must work together, standing on two connected pressure plates simultaneously. By doing so, they gain access to a treasure chest, revealing the Magmallet for Andy and the Fluxblade for Cathy.
 
+With their new weapons in hand, they continue their journey, facing Magneblocks – small, cubic robots attempting to steal their magnetic charge. Andy and Cathy collaborate, using their unique abilities and newfound weapons to defeat these enemies. They collect coins and charge containers along the way, strengthening their magnetic charges for future challenges.
 
 ## Level 2
+In Magnetic Mayhem, the landscape becomes more complex. Moving platforms and dynamic obstacles present a challenge as Andy and Cathy navigate through this level. They encounter Gaussguards, slow-moving golems with magnetic shields, requiring strategic coordination to defeat. The level also introduces rotating spikes, forcing the players to make precise jumps and find alternative paths.
 
+As they delve deeper, they come across an EMP Wall, activated as they enter a specific section of the level. The Wall chases them, gradually gaining speed, urging them to complete the section swiftly. Andy and Cathy's magnetic synergy becomes crucial as they work together to outmaneuver the chasing wall, ensuring their survival.
 
 ## Level 3
+At Equilibrium's End, the final showdown awaits. The level is split into two chambers, each housing a half of the Boss Enemy. Andy and Cathy must confront the synchronized halves simultaneously, requiring impeccable teamwork and coordination.
 
+The Boss Enemy, a formidable foe, utilizes powerful magnetic attacks, challenging the duo's ability to balance their magnetic charges and work together effectively. To defeat the Boss, they must exploit its weaknesses, timing their attacks and movements carefully. Throughout the battle, the Boss releases Magnemortars and Fluxbombers, adding to the intensity of the fight.
+
+As the battle reaches its climax, the players must combine their strengths, synchronizing their movements to overcome the Boss's final onslaught. Victory comes to those who maintain their balance and harmony, restoring NeutralVille to its former equilibrium.
+
+With their mission accomplished, Andy and Cathy stand side by side, their magnetic charges perfectly balanced once more, symbolizing the restoration of harmony and unity in NeutralVille.
 
 # Media list
 
