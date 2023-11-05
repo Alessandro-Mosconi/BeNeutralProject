@@ -95,7 +95,16 @@ Enemies are controlled by an internal game "AI", which takes into account the ai
 
 
 
-# Story (Salah)
+# Story
+NeutralVille wasn’t always a place full of harmony and equilibrium. After decades of struggles and conflicts, the townspeople finally managed to isolate themselves from the rest of the world. With the help of a brilliant scientist, they built a forcefield around the town to protect it from outside danger and allow the citizens of NeutralVille to live in this utopia. However, this forcefield required a lot to maintain, and the scientists had to continuously enforce it using advanced technologies to prevent it from weakening.
+
+After years of peacefulness, the grandson of the genius scientist who helped erect the barrier was born. He was smart, and hardworking, but also mischievous at times. He aspired to be a great scientist, just like his grandfather. So, he joined the scientists who worked in the energy laboratory, and he was on the cusp of making a grand discovery that would help the force shield last forever without the need for constant reinforcement. However, this discovery would require the collective power of every person in town.
+
+At first, the other scientists were skeptical about this, as it would drain every ounce of power from the town and make it vulnerable if something went wrong. But eventually, everyone became excited about the prospect, wholeheartedly believing in this young scientist just as the older generation believed in  his grandfather. All the scientists came together and decided to help the young scientist achieve this goal. They invested all their resources, efforts, and time into it.
+
+When it came time to test his invention, he realized he had made an error, but it was too late to fix it as the experiment had already begun. Not knowing what to do, he told everyone to evacuate and stayed in the lab, hoping that he could somehow stop the experiment or at least limit the catastrophe that would happen. Everyone else ran out of the lab, horrified, as it looked like the lab was about to explode.
+
+In his last attempt to save everyone, the young scientist decided to contain the explosion in another dimension using a device he had built a while ago but had never been able to test it as he never knew what the consequences would be. In this desperate moment, he activated the device, and just as the device started to work, the explosion happened. In the aftermath of this horrific accident, the scientist found himself severed from another part of himself, and his mind and soul were split into two. And thus, the journey of our protagonist begins.
 
 
 # World (Rui)
