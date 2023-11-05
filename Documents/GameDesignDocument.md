@@ -2,10 +2,74 @@
 # Overview and vision statement
 An immersive game that throws you into the heart of NeutralVille, a world with perfect balance and neutrality. But the equilibrium once defined has been destroyed by a scientific accident. As a player you will deal with enemies and obstacles, the concept of balance isn't just a theme, but a gameplay mechanic. As you traverse through NeutralVille's levels you will have to solve intricate puzzles and face formidable challenges, you'll need to make choices that will also influence your teammate game.
 
-# Gameplay (Alessandro S.)
+# Gameplay
+### Core Gameplay Aspects
+BeNeutral at its core is developed as a 2D side-scrolling platformer divided into 3 main levels, where the two main playable characters, Andy and Cathy, find themselves separated on the opposite sides of the screen. The main goal of the game is to progress through each level, gaining access to unique abilities and powerful weapons essential to defeat the many enemies and final bosses obstructing the way to the end.
 
+The game revolves around the idea of "reconciling the opposites" with a focus on magnetism. The two characters progress through the levels on the two opposite sides of the platform and level terrain (i.e. one character is above, the other one below), with such levels developing on both sides of the screen even in different ways, which sometimes oblige the two players to collaborate towards the final goal.
 
-# Characters (Alessandro M.)
+As the two characters want to be reconciled, they are sensible to being separated too much. Thus, if their relative distance exceeds a certain threshold for too much time (for example, 3 seconds), the two playable characters will start losing their magnetic charge. The amount by which their charge depletes increases dynamically (i.e. the more they stay too far apart, the higher the charge delta), leading to a game over if their charge reaches zero.
+
+Each character owns unique abilities and weapon preferences, making them fit for two different playstyles. Andy, the boy, is able to handle high-damage heavy weapons, but moves slower when he has them equipped, while Cathy, the girl, uses lighter weapons which make it more suitable for fast-paced combat. At the beginning of the game, players will start without any weapons equipped, and will have to use the unique abilities of each character to defeat enemies and progress, and weapons are acquired afterwards.
+
+Each level (described in detail in the [World section](#world-rui)) is themed around a specific area of the world, and has a checkpoint in the middle to let the players restart from there instead of the beginning of the world in case of game over.
+
+### Units and Traps
+Each level also contains multiple enemies and environmental traps, among which we have:
+- **Enemies**:
+  - **Magneblocks**: small, cubic, walking robots with a cute but dangerous appearance, trying to get as close as possible to steal charge from the player. These are the most common and weakest enemy class
+  - **Gaussguards**: Giant, slow-moving golems, with a rarer, higher-level variant equipped with a magnetic shield. When destroyed, they release a burst of magnetic energy that damages the player if too close
+  - **Fluxbombers**: Enemies equipped with magnetic bombs that can be thrown at the player. When hitting the player, they deal a high amount of damage, while if they hit the ground they create a temporary spherical field that, if touched by the player, stuns them and deals a low amount of damage
+  - **Magnemortars**: stationary turrets shooting projectiles in the direction of the player
+  - **Boss Enemy**: it has to be faced in a "chamber" (i.e. an environment which gives no way to escape) and is present in the two parts of the screen (to allow both players to fight against it at the same time). The two "halves" of the boss are synchronized and represent the same enemy, so that the health is unified between the two.
+- **Environmental Traps**:
+  - **Magnetized Spikes**: spikes that become magnetized intermittently, so players must time their movements to avoid getting pulled into the spikes or pushed into dangerous areas.
+  - **Rotating Spikes** placed in areas of levels to encourage players to make longer jumps, find alternative paths or just make it more difficult to progress
+  - **EMP Wall**: when the player enters a specific section of a level, this trap is activated and starts chasing after players. The two players will need to reach the end of this section before the timer expires. The Wall speeds up gradually over time, getting closer and closer to players, so they have to complete the section fast enough to avoid game over.
+  - **Magnetic Vortex**: A tile on the ground that creates a powerful magnetic pull that attracts or repels players
+
+### Gameplay Elements
+Levels contain some small environmental puzzles to encourage collaboration between players. To progress in levels, some parts are locked behind **magnetic barriers**: by default, only one of the two players (depending on the polarity) is allowed to pass through. To deactivate it and allow the other player to pass, the two players may have to be at the same time on two connected **pressure plates** or defeat an enemy (the player that could pass through the barrier is the one to fight). Pressure plates can also be used to reveal hidden treasures: when a player steps on them, the game pauses for a bit to focus on the appearance of a treasure chest and immediately resumes afterwards.
+
+During their progression, players will find **treasure chests** containing items or power-ups, including the main weapons of each character. These can be visible from the get-go, or hidden and spawned only by defeating an enemy or stepping on a pressure plate.
+
+**Life tokens** (used to resume from the latest checkpoint) can be found in each level, as they are strategically hidden in places that are accessible to players, or after players manage to collectively obtain a set amount of **coins** (200 coins total, summing both players' coins). Coins can be obtained by collecting the ones spread across levels or by defeating enemies, and the total number of earned coins is always shared between players.
+
+Players can also gain magnetic charge, by getting **charge containers** spread throughout each level or in treasure chests.
+
+Characters can also find **weapons** to deal more damage. There are different types of weapons, each specific to a character:
+- **Magmallet**: exclusive to [Andy](#andy), stops the user from moving during operation, is slow but deals a very high amount of close-range damage
+- **Magnetmissiles**: exclusive to [Andy](#andy), shoots one high-damage RPG in the direction it is pointed to. The user is free to point the launcher in whatever direction they choose, and can be used while moving (but with reduced speed). It stops the player for some instants during the launch of the missile
+- **Fluxblade**: exclusive to [Cathy](#caty), is a longsword that deals moderate damage but has a high damage-per-second rate and enables full mobility while equipped
+- **FluxPistol**: exclusive to [Cathy](#caty), is a light pistol that shoots low-damage magnetic bullets at a high rate, without hampering mobility.
+Additional abilities specific to each character are described in the [Characters section](#characters).
+
+### Game Physics and Stats
+#### Player Stats
+Characters also have two main statistics: **magnetic charge** and **stamina**.
+
+The **magnetic charge** level acts as the characters' health. Players can lose their charge in multiple ways, for example by being hit by enemy attacks or due to it being stolen by oppositely-charged enemies (which, as a result, increase their health), and need to keep it above zero in order to avoid game over.
+When the game starts, a set number of **life tokens** are given to players, and whenever one of the two characters dies a life token is consumed and the game is restarted (for both players) from the latest checkpoint, but if no tokens are available the players will need to restart from the beginning of the first level.
+
+The **stamina** level is used to let players strategically take advantage of some of their abilities without using them too much repetitively. Each ability use will cost some predefined amount of stamina, and if its level is not enough the ability cannot be activated. Stamina is then regained gradually over time using a linear time-dependent law, in the form of `∂Stamina = K * ∂T` with `K` being the stamina points per second to be awarded and `∂T` the delta time (in seconds).
+
+#### Physics
+Players are subject to gravity which has different directions depending on the side of the screen the player is located (downward gravity for the player at top, upward for the one at the bottom). Movement is horizontal with some acceleration/deceleration being present when starting/stopping to walk or run, but players can also jump to reach higher platforms.
+
+#### Combat
+Combat is both close-range and at a distance using ranged weapons or ranged abilities.
+When using ranged attacks, each attack has a maximum range of effect, after which it decays, the bullet disappears and the attack has no effect.
+With close-range attacks, since characters are humanoids, they punch enemies to deal damage.
+Abilities can be used by players to deal additional damage or defend from specific attacks, but consume stamina, so they cannot be used continuously.
+
+### Enemy AI
+Enemies are controlled by an internal game "AI", which takes into account the aim of the enemy and tries to reach such goal.
+- *Magneblocks*, which aim at stealing the player's charge, attempt to move towards the player using their (limited) moveset, which in this case is restricted only to horizontal movement. Their "intelligence" may be parametrized as the frequency at which they update their movement target.
+- *Gaussguards* will have a more "patrol"-style behavior: when idle they move back and forth slowly, but if they spot the player they try to get closer to them and start attacking if at close range.
+- *Fluxbombers* behave similarly to *Gaussguards* but when the player is spotted they start throwing bombs towards the player at regular time intervals:
+- *Magnemortars* are stationary turrets with a limited-range laser radar used to identify enemies. When they spot the player, they start tracking it and shoot projectiles in their direction. Here "intelligence" can be parametrized as the delay/damp of the bullet direction with respect to the actual player direction, as well as the "error rate" in such direction.
+
+# Characters
 
 ## Relationship and Characters Mechanics:
 - Andy and Caty are the game's two main characters, each having a distinct electrical charge (positive and negative) represented by their respective colors (red and blue).
