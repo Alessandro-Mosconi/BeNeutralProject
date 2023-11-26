@@ -13,6 +13,7 @@ public abstract class EnemyPolicy : MonoBehaviour
     private float _cumulatedTimeInterval = 0;
     private bool _policyEnabled = true;
     private bool _policyActiveInRunLoop = true;
+    private bool _isInitialPolicyUpdate = true;
 
     // Start is called before the first frame update
     protected void Start()
@@ -35,9 +36,10 @@ public abstract class EnemyPolicy : MonoBehaviour
         }
 
         _cumulatedTimeInterval += Time.deltaTime;
-        if (_cumulatedTimeInterval >= updateInterval) {
+        if (_cumulatedTimeInterval >= updateInterval || _isInitialPolicyUpdate) {
             _policyActiveInRunLoop = PolicyShouldDecide();
             _cumulatedTimeInterval -= updateInterval;
+            _isInitialPolicyUpdate = false;
         }
 
         if (_policyActiveInRunLoop)
