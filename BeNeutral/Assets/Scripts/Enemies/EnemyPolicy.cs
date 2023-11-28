@@ -48,6 +48,12 @@ public abstract class EnemyPolicy : MonoBehaviour
         }
     }
 
+    protected void ResetPolicyExecution()
+    {
+        _cumulatedTimeInterval = 0;
+        _policyActiveInRunLoop = false;
+    }
+
     abstract protected void OnPolicyStart();
     abstract protected bool PolicyShouldDecide();
     abstract protected void ExecutePolicy();
