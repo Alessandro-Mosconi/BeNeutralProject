@@ -12,11 +12,15 @@ public class HammeringEnemy : EnemyPolicy
     
     private EnemyFollowPlayerPolicy _followPlayerPolicy;
     private bool _canMove;
+    private int _groundLayer;
+    private float _groundRaycastDistance;
     
     protected override void OnPolicyStart()
     {
         _followPlayerPolicy = GetComponent<EnemyFollowPlayerPolicy>();
         _canMove = _followPlayerPolicy != null;
+        _groundLayer = LayerMask.GetMask("Terrain");
+        _groundRaycastDistance = GetComponent<Collider2D>().bounds.extents.y + 0.2f;
         hammer.enabled = false;
         hammer.OnHammeringStart = () =>
         {
@@ -39,11 +43,29 @@ public class HammeringEnemy : EnemyPolicy
     protected override bool PolicyShouldDecide()
     {
         float distanceToPlayer = Vector3.Distance(target.transform.position, transform.position);
-        return distanceToPlayer <= maxHammeringDistance && Random.Range(0, 1) <= hammerActionProbability;
+        bool hammeringAllowed =
+            distanceToPlayer <= maxHammeringDistance && Random.Range(0, 1) <= hammerActionProbability;
+        //Avoid hammering when we are about to fall
+        if (hammeringAllowed)
+        {
+            hammeringAllowed = IsGrounded();
+        }
+        return hammeringAllowed;
     }
 
     protected override void ExecutePolicy()
     {
         hammer.enabled = true;
+    }
+    
+    private bool IsGrounded() {
+        Vector2 position = transform.position;
+        Vector2 direction = Vector2.down;
+        
+        //Debug.DrawRay(position, direction * distance, Color.green);
+        RaycastHit2D hit = Physics2D.Raycast(position, direction, _groundRaycastDistance, _groundLayer);
+        Debug.DrawRay(position, direction * _groundRaycastDistance, Color.green, 0.5f);
+        print(hit.collider);
+        return hit.collider != null;
     }
 }
