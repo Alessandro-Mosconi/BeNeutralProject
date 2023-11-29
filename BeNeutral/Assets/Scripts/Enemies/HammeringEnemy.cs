@@ -9,11 +9,14 @@ public class HammeringEnemy : EnemyPolicy
     public float maxHammeringDistance = 10;
     public float hammerActionProbability = 0.6f;
     public HammerComponent hammer;
+    public GameObject shieldObject;
     
     private EnemyFollowPlayerPolicy _followPlayerPolicy;
     private bool _canMove;
     private int _groundLayer;
     private float _groundRaycastDistance;
+    private bool _shields;
+    private GameObject _hammerObject;
     
     protected override void OnPolicyStart()
     {
@@ -21,13 +24,21 @@ public class HammeringEnemy : EnemyPolicy
         _canMove = _followPlayerPolicy != null;
         _groundLayer = LayerMask.GetMask("Terrain");
         _groundRaycastDistance = GetComponent<Collider2D>().bounds.extents.y + 0.2f;
+        _shields = shieldObject != null;
+        _hammerObject = hammer.gameObject;
         hammer.enabled = false;
+        if (_shields)
+        {
+            _hammerObject.SetActive(false);
+            shieldObject.SetActive(true);
+        }
         hammer.OnHammeringStart = () =>
         {
             if (_canMove)
             {
                 _followPlayerPolicy.enabled = false;
             }
+            SwitchHammerShield(true);
         };
         hammer.OnHammeringEnd = () =>
         {
@@ -37,6 +48,7 @@ public class HammeringEnemy : EnemyPolicy
                 //Reset hammer timer
                 ResetPolicyExecution();
             }
+            SwitchHammerShield(false);
         };
     }
 
@@ -55,6 +67,10 @@ public class HammeringEnemy : EnemyPolicy
 
     protected override void ExecutePolicy()
     {
+        if (!_hammerObject.activeSelf)
+        {
+            SwitchHammerShield(true);
+        }
         hammer.enabled = true;
     }
     
@@ -65,7 +81,15 @@ public class HammeringEnemy : EnemyPolicy
         //Debug.DrawRay(position, direction * distance, Color.green);
         RaycastHit2D hit = Physics2D.Raycast(position, direction, _groundRaycastDistance, _groundLayer);
         Debug.DrawRay(position, direction * _groundRaycastDistance, Color.green, 0.5f);
-        print(hit.collider);
         return hit.collider != null;
+    }
+
+    private void SwitchHammerShield(bool hammerActive)
+    {
+        if (_shields)
+        {
+            _hammerObject.SetActive(hammerActive);
+            shieldObject.SetActive(!hammerActive);
+        }
     }
 }
