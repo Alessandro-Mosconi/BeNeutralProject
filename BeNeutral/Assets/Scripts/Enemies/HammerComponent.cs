@@ -22,7 +22,8 @@ public class HammerComponent : MonoBehaviour
     
     private void Start()
     {
-        _startingAngle = transform.eulerAngles.z;
+        _startingAngle = transform.localRotation.eulerAngles.z;
+        enabled = false; //Disable at the beginning!
     }
 
     private void Update()
@@ -35,14 +36,15 @@ public class HammerComponent : MonoBehaviour
                 _currentSpeed = speedDown;
                 OnHammeringStart();
             }
-            transform.RotateAround(transform.TransformPoint(rotationPivot), new Vector3(0, 0, 1), _currentSpeed * Mathf.Rad2Deg * Time.deltaTime);
-            if (transform.eulerAngles.z >= 90)
+            transform.RotateAround(transform.TransformPoint(rotationPivot), new Vector3(0, 0, 1), -Mathf.Sign(transform.lossyScale.x) * _currentSpeed * Mathf.Rad2Deg * Time.deltaTime);
+            if (transform.localRotation.eulerAngles.z <= 270)
             {
-                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 90);
+                transform.localRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, 271);
                 _isWaiting = true;
-            } else if (transform.eulerAngles.z <= _startingAngle)
+            } else if (transform.localRotation.eulerAngles.z >= _startingAngle)
             {
                 enabled = false; //Disable animation!
+                transform.localRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, transform.localRotation.eulerAngles.y, _startingAngle);
                 _isPlaying = false;
                 OnHammeringEnd();
             }

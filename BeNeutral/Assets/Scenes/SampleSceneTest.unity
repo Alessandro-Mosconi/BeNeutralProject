@@ -277,7 +277,7 @@ Transform:
   m_GameObject: {fileID: 334084577}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.29, y: 0.53, z: 0}
+  m_LocalPosition: {x: -0.46, y: 3.54, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -6060,25 +6060,53 @@ PrefabInstance:
       propertyPath: m_Name
       value: HammeringEnemyWithShield
       objectReference: {fileID: 0}
+    - target: {fileID: 4258114250755450498, guid: b831d12527ad44297868710c3b777f0d, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1002601142}
+    - target: {fileID: 4258114250755450498, guid: b831d12527ad44297868710c3b777f0d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258114250755450498, guid: b831d12527ad44297868710c3b777f0d, type: 3}
+      propertyPath: updateInterval
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4258114250755450498, guid: b831d12527ad44297868710c3b777f0d, type: 3}
+      propertyPath: maxCoveredDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5758205175933577887, guid: b831d12527ad44297868710c3b777f0d, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 1002601142}
+    - target: {fileID: 5758205175933577887, guid: b831d12527ad44297868710c3b777f0d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6202094401736245641, guid: b831d12527ad44297868710c3b777f0d, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 1002601142}
+    - target: {fileID: 6202094401736245641, guid: b831d12527ad44297868710c3b777f0d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6202094401736245641, guid: b831d12527ad44297868710c3b777f0d, type: 3}
       propertyPath: maxTargetDistance
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8496501070019739887, guid: b831d12527ad44297868710c3b777f0d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8496501070019739887, guid: b831d12527ad44297868710c3b777f0d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.44
+      value: -6.12
       objectReference: {fileID: 0}
     - target: {fileID: 8496501070019739887, guid: b831d12527ad44297868710c3b777f0d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.52
+      value: 0.51
       objectReference: {fileID: 0}
     - target: {fileID: 8496501070019739887, guid: b831d12527ad44297868710c3b777f0d, type: 3}
       propertyPath: m_LocalPosition.z

@@ -39,6 +39,10 @@ public class EnemyFollowPlayerPolicy : EnemyPolicy
     {
         //Move enemy towards player horizontally, with constant speed
         Vector3 dirVector = Vector3.Normalize(target.transform.position - transform.position);
+        if (dirVector.x * transform.localScale.x < 0)
+        {
+            transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        }
         float scaledMovementSpeed = movementSpeed * Time.deltaTime;
         transform.Translate(dirVector.x * scaledMovementSpeed, 0, 0);
     }

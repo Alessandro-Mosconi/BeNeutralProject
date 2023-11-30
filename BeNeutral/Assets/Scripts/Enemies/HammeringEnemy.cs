@@ -27,11 +27,7 @@ public class HammeringEnemy : EnemyPolicy
         _shields = shieldObject != null;
         _hammerObject = hammer.gameObject;
         hammer.enabled = false;
-        if (_shields)
-        {
-            _hammerObject.SetActive(false);
-            shieldObject.SetActive(true);
-        }
+        SwitchHammerShield(false);
         hammer.OnHammeringStart = () =>
         {
             if (_canMove)
