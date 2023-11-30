@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class BulletPlayer : MonoBehaviour
 {
-    public float speed = 1;
+    public float speed = 10;
     
     // Start is called before the first frame update
     void Start()
@@ -22,8 +22,10 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.layer == 6) //Layer 6 = Player
+        print("333");
+        if (other.gameObject.layer == 8) //Layer 8 = Terrain
         {
+            print("eccomi");
             Destroy(gameObject);
         }
     }
