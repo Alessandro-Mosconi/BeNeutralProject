@@ -2019,6 +2019,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   animator: {fileID: 0}
   yPositivity: 1
+  playerNumber: 1
 --- !u!114 &1002601148
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6236,9 +6237,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: f71ffde6a581ab24980e4b53607b7b0a, type: 3}
-        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
-        m_MethodName: 
+      - m_Target: {fileID: 1190598523}
+        m_TargetAssemblyTypeName: SwitchPlayer, Assembly-CSharp
+        m_MethodName: switchPlayer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6440,14 +6441,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492408736}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.9999944, y: -0, z: -0, w: -0.0033572805}
+  m_LocalRotation: {x: -1, y: 0, z: 0, w: 0}
   m_LocalPosition: {x: -3.48, y: -2.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1812997960}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -180.385, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -180, y: 0, z: 0}
 --- !u!114 &1492408742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6463,6 +6464,7 @@ MonoBehaviour:
   rb: {fileID: 0}
   animator: {fileID: 0}
   yPositivity: -1
+  playerNumber: 2
 --- !u!95 &1492408743
 Animator:
   serializedVersion: 5
