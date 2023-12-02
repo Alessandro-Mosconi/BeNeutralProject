@@ -13,8 +13,6 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private Transform firingTransform;
     
     private PlayerMovement playerMovementScript;
-
-    private int playerNumber = 1;
     
     private void Awake()
     {
@@ -28,7 +26,7 @@ public class PlayerShooting : MonoBehaviour
     void Update()
     {
         // fire
-        if (playerMovementScript.playerNumber!=null && Input.GetButtonDown("FirePlayer" + playerMovementScript.playerNumber))
+        if (Input.GetButtonDown("FirePlayer" + playerMovementScript.playerNumber))
         {
             Fire();
         }

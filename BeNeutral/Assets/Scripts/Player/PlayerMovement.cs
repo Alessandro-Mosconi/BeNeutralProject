@@ -25,67 +25,51 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        print(rb.velocity.y + "->y");
+        HandleGravity();
         bool isJumping = false;
 
-        if (playerNumber == 1)
+        dirX = Input.GetAxis("HorizontalPlayer" + playerNumber);
+        isJumping = Input.GetButton("JumpPlayer" + playerNumber);
+        
+        if (dirX != 0)
         {
-            if (Input.GetAxis("HorizontalPlayer1") != 0)
-            {
-                movementDirection =  new Vector2(Input.GetAxis("HorizontalPlayer1"), Input.GetAxis("JumpPlayer1")).normalized;
-            }
-
-            dirX = Input.GetAxis("HorizontalPlayer1");
-            isJumping = Input.GetButtonDown("JumpPlayer1");
-        } else if (playerNumber == 2)
-        {
-            if (Input.GetAxis("HorizontalPlayer2") != 0)
-            {
-                movementDirection = new Vector2(Input.GetAxis("HorizontalPlayer2"), Input.GetAxis("JumpPlayer2"))
-                    .normalized;
-            }
-
-            dirX = Input.GetAxis("HorizontalPlayer2");
-            isJumping = Input.GetButtonDown("JumpPlayer2");
+            movementDirection =  new Vector2(Input.GetAxis("HorizontalPlayer1"), Input.GetAxis("JumpPlayer1")).normalized;
         }
-        
-        
-        if (yPositivity > 0)
-        {
-            rb.gravityScale = Math.Abs(rb.gravityScale);
             
-            Quaternion rotation = transform.rotation;
-            rotation.x = 0;
-            transform.rotation = rotation;
-        } else 
-        {
-            rb.gravityScale = Math.Abs(rb.gravityScale)*-1;
-            Quaternion rotation = transform.rotation;
-            rotation.x = -180;
-            transform.rotation = rotation;
-        }
         
         rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
 
-        if (isJumping)
+        if (isJumping && Math.Round(rb.velocity.y,3)  == 0f)
         {
-            rb.velocity = new Vector2(rb.velocity.x, yPositivity * 7f);
+            print(playerNumber + " is jumping");
+            rb.velocity = new Vector2(rb.velocity.x, yPositivity * 8f);
         }
         
         UpdateAnimationUpdate();
     }
 
-    private void UpdateAnimationUpdate()
+    private void HandleGravity()
     {
-        string varRunning = "running";
-
-        if (playerNumber == 1)
+        if (yPositivity > 0)
         {
-            varRunning = "running";
+            rb.gravityScale = Math.Abs(rb.gravityScale);
+            Quaternion rotation = transform.rotation;
+            rotation.x = 0;
+            transform.rotation = rotation;
         }
         else
         {
-            varRunning = "running_2";
+            rb.gravityScale = Math.Abs(rb.gravityScale) * -1;
+            Quaternion rotation = transform.rotation;
+            rotation.x = -180;
+            transform.rotation = rotation;
         }
+    }
+
+    private void UpdateAnimationUpdate()
+    {
+        string varRunning = "runningPlayer" + playerNumber;
         
         if (dirX > 0)
         {
