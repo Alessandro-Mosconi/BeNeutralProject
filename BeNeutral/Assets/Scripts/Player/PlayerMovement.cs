@@ -25,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        print(rb.velocity.y + "->y");
         HandleGravity();
         bool isJumping = false;
 
@@ -42,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
 
         if (isJumping && Math.Round(rb.velocity.y,3)  == 0f)
         {
-            print(playerNumber + " is jumping");
             rb.velocity = new Vector2(rb.velocity.x, yPositivity * 8f);
         }
         
