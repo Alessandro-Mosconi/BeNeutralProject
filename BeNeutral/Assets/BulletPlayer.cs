@@ -22,7 +22,6 @@ public class BulletPlayer : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        print("333");
         if (other.gameObject.layer == 8) //Layer 8 = Terrain
         {
             print("eccomi");

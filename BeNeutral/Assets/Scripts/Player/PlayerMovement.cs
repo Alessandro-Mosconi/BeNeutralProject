@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -12,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private float dirX = 0f;
 
     private SpriteRenderer spriteRenderer;
+    public Vector2 movementDirection { get; private set; }
     // Start is called before the first frame update
     void Start()
     {
@@ -28,10 +30,23 @@ public class PlayerMovement : MonoBehaviour
         
         if (yPositivity > 0)
         {
+            // Calcola la direzione normalizzata
+            if (Input.GetAxis("HorizontalPlayer1") != 0)
+            {
+                movementDirection =  new Vector2(Input.GetAxis("HorizontalPlayer1"), Input.GetAxis("JumpPlayer1")).normalized;
+            }
+
             dirX = Input.GetAxis("HorizontalPlayer1");
             isJumping = Input.GetButtonDown("JumpPlayer1");
         } else 
         {
+            // Calcola la direzione normalizzata
+            if (Input.GetAxis("HorizontalPlayer2") != 0)
+            {
+                movementDirection = new Vector2(Input.GetAxis("HorizontalPlayer2"), Input.GetAxis("JumpPlayer2"))
+                    .normalized;
+            }
+
             dirX = Input.GetAxis("HorizontalPlayer2");
             isJumping = Input.GetButtonDown("JumpPlayer2");
         }
