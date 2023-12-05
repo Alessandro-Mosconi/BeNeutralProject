@@ -296,6 +296,7 @@ GameObject:
   - component: {fileID: 366612193}
   - component: {fileID: 366612192}
   - component: {fileID: 366612195}
+  - component: {fileID: 366612196}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -366,8 +367,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 366612195}
-        m_TargetAssemblyTypeName: StartGame, Assembly-CSharp
+      - m_Target: {fileID: 366612196}
+        m_TargetAssemblyTypeName: UI.StartGame, Assembly-CSharp
         m_MethodName: StartNewGame
         m_Mode: 1
         m_Arguments:
@@ -428,8 +429,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99295b039313b764cab633756d9b3d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &366612196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366612190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a0fa0422e027e41a16d0496d2ac4c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   LevelName: 
-  gameManager: {fileID: 1536310789}
 --- !u!1 &704699557
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,7 +454,7 @@ GameObject:
   - component: {fileID: 704699561}
   - component: {fileID: 704699560}
   - component: {fileID: 704699559}
-  - component: {fileID: 704699558}
+  - component: {fileID: 704699563}
   m_Layer: 5
   m_Name: ScoreManager
   m_TagString: Untagged
@@ -450,19 +462,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &704699558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 704699557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74e2db4d9d09f0243988c6fa76fbeba9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifeDisplay: {fileID: 999536237}
 --- !u!114 &704699559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -546,6 +545,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &704699563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704699557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2bd8e7cf7f74c94cbfba53b1e17a1cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeDisplay: {fileID: 999536237}
 --- !u!1 &963321816
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,7 +567,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 963321818}
-  - component: {fileID: 963321817}
+  - component: {fileID: 963321819}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -563,18 +575,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &963321817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963321816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 812dd1b1da8c81345b01f3a596b79c2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &963321818
 Transform:
   m_ObjectHideFlags: 0
@@ -590,6 +590,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &963321819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963321816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81798b4ed0cee3f43b2bc5ac31cd7c2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundMusicAudioSource: {fileID: 0}
+  playerAudioSource: {fileID: 0}
+  enemieAudioSource: {fileID: 0}
+  fireAudioClipPlayer: {fileID: 0}
+  walkingAudioClipPlayer: {fileID: 0}
+  dieAudioClipPlayer: {fileID: 0}
+  fireAudioClipEnemie: {fileID: 0}
+  walkingAudioClipEnemie: {fileID: 0}
+  dieAudioClipEnemie: {fileID: 0}
+  quietBeatAudioClip: {fileID: 0}
+  quietBeatInterval: 1
+  dramaticBeatAudioClip: {fileID: 0}
+  dramaticBeatInterval: 0.5
+  mixer: {fileID: 0}
 --- !u!1 &967834900
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,7 +879,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1536310791}
-  - component: {fileID: 1536310792}
+  - component: {fileID: 1536310793}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -876,7 +902,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1536310792
+--- !u!114 &1536310793
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -885,12 +911,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1536310789}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb02201ec1091054f9182ff2f23721a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 6aa15c8ce3fccbe4d9884d3ac0ea275b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreDisplay: {fileID: 704699558}
-  audioManager: {fileID: 963321817}
-  startGame: {fileID: 366612195}
+  scoreDisplay: {fileID: 704699563}
+  audioManager: {fileID: 963321819}
+  startGame: {fileID: 366612196}
 --- !u!1 &1682946954
 GameObject:
   m_ObjectHideFlags: 0
