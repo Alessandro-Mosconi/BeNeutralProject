@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace UI.Managers
+namespace UI
 {
     public class StartGame : MonoBehaviour
     {
@@ -9,7 +9,7 @@ namespace UI.Managers
 
         public void Awake()
         {
-          ScoreManager.instance.Close();
+          //ScoreManager.instance.Close();
         }
         
         public void LoadLevel()

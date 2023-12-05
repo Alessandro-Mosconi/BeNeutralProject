@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace UI.Managers
+namespace UI
 {
     public class ScoreManager : Singleton<ScoreManager>
     {

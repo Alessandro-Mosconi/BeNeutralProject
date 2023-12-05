@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace UI.Managers
+namespace UI 
 {   
     
     public class GameManager: Singleton<GameManager>
