@@ -1,14 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StartGame : MonoBehaviour
+namespace UI.Managers
 {
-    public string LevelName;
-
-    public void loadLevel()
+    public class StartGame : MonoBehaviour
     {
-        SceneManager.LoadScene(LevelName);
+        public string LevelName;
+
+        public void Awake()
+        {
+          ScoreManager.instance.Close();
+        }
+        
+        public void LoadLevel()
+        {
+            SceneManager.LoadScene(LevelName);
+        }
+
+        public void StartNewGame()
+        {
+            GameManager.instance.start();
+        }
     }
 }
