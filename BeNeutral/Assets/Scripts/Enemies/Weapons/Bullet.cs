@@ -26,7 +26,7 @@ namespace Enemies.Weapons
         {
             if (other.gameObject.layer == 6) //Layer 6 = Player
             {
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }
