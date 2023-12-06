@@ -28,32 +28,14 @@ namespace Enemies.Behaviors
             {
                 _behaviorToIndexMap.TryAdd(type, -1);
             }
-            
-            //Initialize the machine
-            int patrolIndex = _behaviorToIndexMap[(int)EnemyBehaviorType.Patrol];
-            if (patrolIndex != -1)
+
+            foreach (EnemyBehaviorType behaviorType in Enum.GetValues(typeof(EnemyBehaviorType)))
             {
-                _currentStates.Add(patrolIndex);
-            }
-            else
-            {
-                int followIndex = _behaviorToIndexMap[(int)EnemyBehaviorType.Chase];
-                if (followIndex != -1)
+                int index = _behaviorToIndexMap[(int)behaviorType];
+                if (index != -1)
                 {
-                    _currentStates.Add(followIndex);
-                }
-                else
-                {
-                    //The enemy neither follows nor patrol. Choose one of the actions (hammer, shoot etc)
-                    int hammerIndex = _behaviorToIndexMap[(int)EnemyBehaviorType.Hammer];
-                    int shootIndex = _behaviorToIndexMap[(int)EnemyBehaviorType.Shoot];
-                    if (shootIndex != -1)
-                    {
-                        _currentStates.Add(shootIndex);
-                    } else if (hammerIndex != -1)
-                    {
-                        _currentStates.Add(hammerIndex);
-                    }
+                    _currentStates.Add(index);
+                    break;
                 }
             }
 
@@ -93,6 +75,10 @@ namespace Enemies.Behaviors
                                 AddActiveStateIfPresent(EnemyBehaviorType.Shoot);
                             }
                             break;
+                        case EnemyBehaviorType.Radar:
+                            //Move to Shoot
+                            MoveToState(i, EnemyBehaviorType.Shoot, ref sank);
+                            break;
                         case EnemyBehaviorType.Chase:
                             //Move to Patrol OR Hammer (then Chase) dep. on signal code
                             if (signalCode == 0)
@@ -123,8 +109,13 @@ namespace Enemies.Behaviors
                             MoveToState(i, EnemyBehaviorType.Hammer, ref sank);
                             break;
                         case EnemyBehaviorType.Shoot:
-                            //Move to Patrol
-                            MoveToState(i, EnemyBehaviorType.Patrol, ref sank);
+                            //Move to Radar
+                            bool movedToRadar = MoveToState(i, EnemyBehaviorType.Radar, ref sank);
+                            if (!movedToRadar)
+                            {
+                                //Attempt to move to Patrol
+                                AddActiveStateIfPresent(EnemyBehaviorType.Patrol);
+                            }
                             break;
                     }
                 }

@@ -4,6 +4,6 @@ namespace Enemies.Behaviors
 {
     public enum EnemyBehaviorType
     {
-        Patrol, Chase, Shoot, Hammer, Shield
+        Patrol, Radar, Chase, Shoot, Hammer, Shield
     }
 }
