@@ -2147,8 +2147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb02201ec1091054f9182ff2f23721a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreDisplay: {fileID: 0}
-  startGame: {fileID: 0}
 --- !u!4 &303941398
 Transform:
   m_ObjectHideFlags: 0
@@ -5475,11 +5473,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1543344366002827243, guid: 36085286ee6e641f48a35aa1a69db002, type: 3}
       propertyPath: m_SortingOrder
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 1549410344326970275, guid: 36085286ee6e641f48a35aa1a69db002, type: 3}
       propertyPath: m_SortingOrder
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 4036757327980477483, guid: 36085286ee6e641f48a35aa1a69db002, type: 3}
       propertyPath: m_LocalPosition.x
@@ -20876,6 +20874,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5892804809863521409, guid: b831d12527ad44297868710c3b777f0d, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1002601142}
     - target: {fileID: 6202094401736245641, guid: b831d12527ad44297868710c3b777f0d, type: 3}
       propertyPath: target
       value: 

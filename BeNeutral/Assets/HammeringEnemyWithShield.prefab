@@ -140,11 +140,13 @@ GameObject:
   m_Component:
   - component: {fileID: 8496501070019739887}
   - component: {fileID: 2002587354276304326}
-  - component: {fileID: 4258114250755450498}
-  - component: {fileID: 5758205175933577887}
-  - component: {fileID: 6202094401736245641}
   - component: {fileID: 2562335282963376997}
   - component: {fileID: 5532522957138646741}
+  - component: {fileID: 5892804809863521409}
+  - component: {fileID: 3913126130799117371}
+  - component: {fileID: 5886117830497321635}
+  - component: {fileID: 6904259209718278582}
+  - component: {fileID: 7853839227027935692}
   m_Layer: 7
   m_Name: HammeringEnemyWithShield
   m_TagString: Untagged
@@ -162,7 +164,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: -3, y: 3, z: 3}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 896046081699959678}
@@ -221,59 +223,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &4258114250755450498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 861106887215471587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f695ea10eac4265b78012fdd039226b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  updateInterval: 0.5
-  maxCoveredDistance: 2
-  patrolSpeed: 0.8
-  playerVisibleDistance: 3
-  cooldownAfterPlayerDisappears: 1
---- !u!114 &5758205175933577887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 861106887215471587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaf9ecacd3194418a28be92b035ac41d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  updateInterval: 1
-  maxHammeringDistance: 10
-  hammerActionProbability: 0.6
-  hammer: {fileID: 9164398171334417650}
-  shieldObject: {fileID: 330900017778750419}
---- !u!114 &6202094401736245641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 861106887215471587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b62e1d954c4ab4c698ba85337bf26a98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  updateInterval: 1
-  minTargetDistance: 0
-  maxTargetDistance: 1
-  movementSpeed: 1
 --- !u!50 &2562335282963376997
 Rigidbody2D:
   serializedVersion: 4
@@ -346,6 +295,92 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.34, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &5892804809863521409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861106887215471587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d9668a05e734b49a93d20eb709aa567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+--- !u!114 &3913126130799117371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861106887215471587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf30614da464d7187cd6918f32f2972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 0
+  UpdateInterval: 0.2
+  switchSignalCode: 0
+  maxCoveredDistance: 10
+  patrolSpeed: 1
+  visibilityRange: 10
+--- !u!114 &5886117830497321635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861106887215471587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b81f2349714108881736a0e27b3183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 1
+  UpdateInterval: 0.2
+  switchSignalCode: 0
+  minTargetDistance: 1
+  maxTargetDistance: 10
+  movementSpeed: 1
+  cooldown: 2
+  attacks: 1
+  attackDecisionTimer: 1
+  attackProbability: 0.5
+  maxAttackDistance: 2
+--- !u!114 &6904259209718278582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861106887215471587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4894fa3fa1144f29ac8540b1daf805e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 3
+  UpdateInterval: 1
+  switchSignalCode: 0
+  hammer: {fileID: 9164398171334417650}
+--- !u!114 &7853839227027935692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861106887215471587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84988e7ef59646cb960fb2094ead0217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Type: 4
+  UpdateInterval: 1
+  switchSignalCode: 0
+  shieldObject: {fileID: 330900017778750419}
 --- !u!1 &4443769518694693835
 GameObject:
   m_ObjectHideFlags: 0
