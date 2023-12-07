@@ -16,8 +16,7 @@ public class PlayerShooting : MonoBehaviour
     
     private void Awake()
     {
-        // create 50 lasers objects if it needs more it
-        ObjectPoolingManager.Instance.CreatePool (bulletPrefab, 50, 100);
+        ObjectPoolingManager.Instance.CreatePool (bulletPrefab, 100, 200
         
         GetComponents();
     }

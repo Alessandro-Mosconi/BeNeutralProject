@@ -22,10 +22,12 @@ public class BulletPlayer : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.layer == 8) //Layer 8 = Terrain
+        print(other.gameObject.layer);
+        
+        if (other.gameObject.layer == LayerMask.NameToLayer("Terrain"))
         {
             print("eccomi");
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 }
