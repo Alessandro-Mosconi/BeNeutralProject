@@ -14,8 +14,11 @@ namespace UI
         [SerializeField] private AudioManager audioManager;
         [SerializeField] private StartGame startGame;   
         // [SerializeField] private GameOverScreen gameOverScreen;
-   
-
+        
+        //My changes
+        [SerializeField] private  SpwanPoint playerSpawnPoint; 
+        //
+        
         private int lifes = 3;
         private int level = 0;
         
@@ -26,6 +29,10 @@ namespace UI
             StartGame();
             // start background music
             // start animations on the load screen
+            
+            //mychanges
+            Debug.Log("game manager");
+            SetupScene();
         }
 
         public void StartGame()
@@ -139,6 +146,20 @@ namespace UI
         void Update()
         {
                 
+        }
+        
+        //myChanges
+        public void SpawnPlayer()
+        {
+            if (playerSpawnPoint != null)
+            {
+                GameObject player = playerSpawnPoint.SpawnObject();
+            }
+        }
+
+        public void SetupScene()
+        {
+            SpawnPlayer();
         }
     
     }
