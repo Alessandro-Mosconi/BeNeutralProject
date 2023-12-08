@@ -21,6 +21,8 @@ namespace UI
         
         private int lifes = 3;
         private int level = 0;
+
+        private bool initialScreenOpen = true;
         
         public void start()
         {
@@ -54,7 +56,7 @@ namespace UI
             // AudioManager.Instance.StartBackgroundMusic();
         
             ClearUI();
-        
+            initialScreenOpen = false;
             yield return new WaitForSeconds(1f);
 
             scoreDisplay.Open();
@@ -65,6 +67,7 @@ namespace UI
         private void ClearUI()
         {
             scoreDisplay.Close();
+            initialScreenOpen = true;
         }
 
         public void LoseLife()
@@ -145,7 +148,10 @@ namespace UI
 
         void Update()
         {
-                
+            if (initialScreenOpen)
+            {
+                scoreDisplay.Close();
+            }
         }
         
         //myChanges

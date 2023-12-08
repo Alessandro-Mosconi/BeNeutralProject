@@ -296,7 +296,6 @@ GameObject:
   - component: {fileID: 366612193}
   - component: {fileID: 366612192}
   - component: {fileID: 366612195}
-  - component: {fileID: 366612196}
   m_Layer: 5
   m_Name: Start
   m_TagString: Untagged
@@ -367,8 +366,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 366612196}
-        m_TargetAssemblyTypeName: UI.StartGame, Assembly-CSharp
+      - m_Target: {fileID: 366612195}
+        m_TargetAssemblyTypeName: UI.StartGame, UI
         m_MethodName: StartNewGame
         m_Mode: 1
         m_Arguments:
@@ -426,22 +425,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 366612190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99295b039313b764cab633756d9b3d0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &366612196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 366612190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17a0fa0422e027e41a16d0496d2ac4c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelName: 
+  LevelName: Level1
 --- !u!1 &704699557
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,7 +903,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreDisplay: {fileID: 704699563}
   audioManager: {fileID: 963321819}
-  startGame: {fileID: 366612196}
+  startGame: {fileID: 366612195}
+  playerSpawnPoint: {fileID: 0}
 --- !u!1 &1682946954
 GameObject:
   m_ObjectHideFlags: 0

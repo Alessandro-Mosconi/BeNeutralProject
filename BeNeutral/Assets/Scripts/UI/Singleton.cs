@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Singleton class for creating managers
 public abstract class Singleton<T> : MonoBehaviour where T : Component
 {
 	

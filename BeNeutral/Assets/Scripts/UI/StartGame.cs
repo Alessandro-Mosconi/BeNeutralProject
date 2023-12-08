@@ -6,11 +6,6 @@ namespace UI
     public class StartGame : MonoBehaviour
     {
         public string LevelName;
-
-        public void Awake()
-        {
-          //ScoreManager.instance.Close();
-        }
         
         public void LoadLevel()
         {
