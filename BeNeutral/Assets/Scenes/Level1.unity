@@ -19504,11 +19504,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5796648554279269370, guid: dc9d76f49faea2946a503196d384a774, type: 3}
       propertyPath: maxForceDistance
-      value: 3
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5796648554279269370, guid: dc9d76f49faea2946a503196d384a774, type: 3}
       propertyPath: magneticAttraction
-      value: -1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8370481660930125990, guid: dc9d76f49faea2946a503196d384a774, type: 3}
       propertyPath: m_LocalPosition.x
