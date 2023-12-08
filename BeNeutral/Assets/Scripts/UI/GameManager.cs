@@ -31,8 +31,10 @@ namespace UI
             scoreDisplay.Close();
             
             // start background music
+            AudioManager.instance.StartBackgroundMusic();
             
-            // start animations on the load screen
+            //TODO
+            //start animations on the load screen
             
             //mychanges
             Debug.Log("game manager");
@@ -53,8 +55,8 @@ namespace UI
         IEnumerator StartGameCoroutine()
         {
             // TODO
-            // start background music
-            // AudioManager.Instance.StartBackgroundMusic();
+            // start background music for the game
+            AudioManager.Instance.StartBackgroundGamingMusic();
         
             ClearUI();
             yield return new WaitForSeconds(1f);

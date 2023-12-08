@@ -8,6 +8,7 @@ public class AudioManager : Singleton<AudioManager>
         [Space(20)]
         [Header("Audio Sources")]
         [SerializeField] private AudioSource backgroundMusicAudioSource;
+        [SerializeField] private AudioSource backgroundMusicGamingAudioSource;
 
         [SerializeField] private AudioSource playerAudioSource;
         
@@ -33,6 +34,8 @@ public class AudioManager : Singleton<AudioManager>
         [SerializeField] private float quietBeatInterval = 1.0f;
         [SerializeField] private AudioClip dramaticBeatAudioClip;
         [SerializeField] private float dramaticBeatInterval = 0.5f;
+        
+        [SerializeField] private AudioClip gamingAudioClip;
 
         [Space(20)]
         [Header("Audio Mixer")]
@@ -41,6 +44,7 @@ public class AudioManager : Singleton<AudioManager>
         private AudioClip beatAudioClip;
         private float beatInterval = 0f;
         private Coroutine backgroundMusicCoroutine;
+        private Coroutine backgroundMusicGameCoroutine;
         private bool dramaticBackgroundMusic = false;
         
         public void PlayFirePlayer()
@@ -78,11 +82,25 @@ public class AudioManager : Singleton<AudioManager>
 
 
         }
+        
+        public void StartBackgroundGamingMusic()
+        {
+            if (backgroundMusicGameCoroutine != null)
+                return;
+            backgroundMusicGameCoroutine = StartCoroutine("PlayBackgroundMusicGameRoutine");
+
+
+        }
 
         public void StopBackgroundMusic()
         {
             if (backgroundMusicCoroutine != null)
                 StopCoroutine(backgroundMusicCoroutine);
+        }
+        public void StopBackgroundGameMusic()
+        {
+            if (backgroundMusicGameCoroutine != null)
+                StopCoroutine(backgroundMusicGameCoroutine);
         }
         
         public void ShiftToDramaticBackgroundMusic()
@@ -113,6 +131,18 @@ public class AudioManager : Singleton<AudioManager>
                     beatInterval = dramaticBeatInterval;
                     
                 } 
+                
+            }
+        }
+        
+        private IEnumerator PlayBackgroundMusicGameRoutine()
+        {
+            ResetBackgroundMusic();
+            
+            while (true)
+            {
+                backgroundMusicGamingAudioSource.PlayOneShot(gamingAudioClip);
+                yield return new WaitForSeconds(beatInterval);
                 
             }
         }
