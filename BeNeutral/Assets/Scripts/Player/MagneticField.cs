@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using UnityEngine;
 
 public class MagneticField : MonoBehaviour
@@ -20,7 +21,7 @@ public class MagneticField : MonoBehaviour
     private void Start()
     {
         // Istanzia il campo magnetico come un oggetto disattivato
-        magneticFieldInstance = Instantiate(magneticFieldPrefab, transform);
+        magneticFieldInstance = GetChildGameObject(gameObject, "MagneticField");
         magneticFieldInstance.transform.localScale = new Vector3(0.0f, 0.0f, 1.0f);
         magneticFieldInstance.SetActive(bollaAttiva);
 
@@ -71,6 +72,13 @@ public class MagneticField : MonoBehaviour
             bollaAttiva = false;
             magneticFieldInstance.SetActive(false);
         }
+    }
+    public GameObject GetChildGameObject(GameObject fromGameObject, string withName)
+    {
+        var allKids = fromGameObject.GetComponentsInChildren<Transform>();
+        var kid = allKids.FirstOrDefault(k => k.gameObject.name == withName);
+        if (kid == null) return null;
+        return kid.gameObject;
     }
     
 }

@@ -17,6 +17,10 @@ public class BulletPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameObject.transform.parent.position.x - gameObject.transform.position.x > 20)
+        {
+            gameObject.SetActive(false);
+        }
         transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
     }
 

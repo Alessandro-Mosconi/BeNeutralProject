@@ -16,7 +16,7 @@ public class PlayerShooting : MonoBehaviour
     
     private void Awake()
     {
-        ObjectPoolingManager.Instance.CreatePool (bulletPrefab, 100, 200
+        ObjectPoolingManager.Instance.CreatePool (bulletPrefab, 1000, 2000);
         
         GetComponents();
     }
@@ -34,6 +34,7 @@ public class PlayerShooting : MonoBehaviour
     private void Fire()
     {
         GameObject go = ObjectPoolingManager.Instance.GetObject (bulletPrefab.name);
+        go.transform.SetParent(firingTransform);
         go.transform.position = firingTransform.position;
         
         Vector3 shootingDirection = Vector3.up;

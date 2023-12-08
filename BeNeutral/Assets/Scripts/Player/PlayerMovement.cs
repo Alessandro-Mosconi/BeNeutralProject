@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, yPositivity * 8f);
         }
-        
+
         UpdateAnimationUpdate();
     }
 

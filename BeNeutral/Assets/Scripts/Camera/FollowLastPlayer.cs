@@ -23,6 +23,8 @@ public class FollowLastPlayer : MonoBehaviour
     {
         Vector3 p1Pos = player1.position;
         Vector3 p2Pos = player2.position;
-        transform.position = new Vector3(Mathf.Max(p1Pos.x, p2Pos.x), ((p1Pos.y + p2Pos.y) * 0.5f) + verticalOffset, transform.position.z);
+        float middleX = (p1Pos.x + p2Pos.x) * 0.5f;
+        //Mathf.Max(p1Pos.x, p2Pos.x)
+        transform.position = new Vector3(middleX, ((p1Pos.y + p2Pos.y) * 0.5f) + verticalOffset, transform.position.z);
     }
 }

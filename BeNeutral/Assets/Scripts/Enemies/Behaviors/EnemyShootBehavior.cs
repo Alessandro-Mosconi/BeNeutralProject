@@ -17,7 +17,7 @@ namespace Enemies.Behaviors
         public override void ResetBehavior(Transform self)
         {
             _cumulatedShootingDelay = 0;
-            ObjectPoolingManager.Instance.CreatePool(bulletPrefab, 50, 100);
+            ObjectPoolingManager.Instance.CreatePool(bulletPrefab, 500, 1000);
 
             base.ResetBehavior(self);
         }

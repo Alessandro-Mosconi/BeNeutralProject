@@ -19,6 +19,12 @@ namespace Enemies.Weapons
         // Update is called once per frame
         void Update()
         {
+            float deltaX = gameObject.transform.parent.position.x - gameObject.transform.position.x;
+            float deltaY = gameObject.transform.parent.position.y - gameObject.transform.position.y;
+            if ( deltaX*deltaX + deltaY * deltaY> 20*20)
+            {
+                gameObject.SetActive(false);
+            }
             transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
         }
 
