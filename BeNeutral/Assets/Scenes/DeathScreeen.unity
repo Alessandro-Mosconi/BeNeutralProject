@@ -180,7 +180,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d913545fd9353c74aa4da739f2bf6270, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 705c1d50a6a1a0d4595b8b81710af0e7, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 923892648}
   - component: {fileID: 923892651}
   m_Layer: 5
-  m_Name: Go
+  m_Name: TryAgain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -405,8 +405,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -16, y: -100}
-  m_SizeDelta: {x: 930, y: 140}
+  m_AnchoredPosition: {x: -19.9, y: -97.1}
+  m_SizeDelta: {x: 1015, y: 205}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &923892648
 MonoBehaviour:
@@ -453,8 +453,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 923892651}
-        m_TargetAssemblyTypeName: UI.NextLevel, UI
-        m_MethodName: GoNextLevel
+        m_TargetAssemblyTypeName: UI.TryAgain, UI
+        m_MethodName: goBackToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -484,7 +484,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d889e1fe98b951e4bbb9c530a6d5f84e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 83f60b9d059f83040987463c52ca646b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -511,7 +511,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 923892646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84bc4d84dcac41d438ca7df42938c8b0, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c4ab67015a59354787b8b3a830b7d8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1416242010

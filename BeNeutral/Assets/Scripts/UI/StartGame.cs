@@ -14,7 +14,7 @@ namespace UI
 
         public void StartNewGame()
         {
-            GameManager.instance.start();
+            GameManager.instance.StartGame();
         }
     }
 }

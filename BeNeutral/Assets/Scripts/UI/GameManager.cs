@@ -21,30 +21,31 @@ namespace UI
         
         private int lifes = 3;
         private int level = 0;
-
-        private bool initialScreenOpen = true;
         
-        public void start()
+        
+        public void Start()
         {
             //TODO
             startGame.LevelName = "Level1";
-            StartGame();
+           
+            scoreDisplay.Close();
+            
             // start background music
+            
             // start animations on the load screen
             
             //mychanges
             Debug.Log("game manager");
-            SetupScene();
+            
         }
 
         public void StartGame()
         {
+            SetupScene();
             // get starting level
+            startGame.LevelName = ChooseLevel(level);
             startGame.LoadLevel();
             
-        
-            // TODO
-            // - Who manages the level progression? 
         
             StartCoroutine(StartGameCoroutine());
         }
@@ -56,7 +57,6 @@ namespace UI
             // AudioManager.Instance.StartBackgroundMusic();
         
             ClearUI();
-            initialScreenOpen = false;
             yield return new WaitForSeconds(1f);
 
             scoreDisplay.Open();
@@ -67,7 +67,6 @@ namespace UI
         private void ClearUI()
         {
             scoreDisplay.Close();
-            initialScreenOpen = true;
         }
 
         public void LoseLife()
@@ -109,6 +108,7 @@ namespace UI
             ClearUI();
             // - activate the start screen
             SceneManager.LoadScene("InitialScreen");
+            level = 0;
         }
 
         public string ChooseLevel(int n)
@@ -138,6 +138,12 @@ namespace UI
             scoreDisplay.UpdateLifes(lifes);
         }
 
+        public void RestartThisLevel()
+        {
+            startGame.LevelName = ChooseLevel(level);
+            StartGame(); 
+        }
+
         public void NextLevel()
         {
             // - Progress to the next level
@@ -148,10 +154,7 @@ namespace UI
 
         void Update()
         {
-            if (initialScreenOpen)
-            {
-                scoreDisplay.Close();
-            }
+            
         }
         
         //myChanges
