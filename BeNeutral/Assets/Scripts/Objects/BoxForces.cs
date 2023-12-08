@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class BoxForces : MonoBehaviour
 {
+    [SerializeField] public int positivty = 1;
     [SerializeField] public float maxForceDistance = 3;
     [SerializeField] public int magneticAttraction = 1;
     private Rigidbody2D boxRb;
@@ -17,6 +18,18 @@ public class BoxForces : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+
+        var fieldRender = gameObject.transform.GetChild(0).gameObject.GetComponent<Renderer>();
+        if (positivty > 0)
+        {
+            fieldRender.material.SetColor("_Color", Color.red);
+        }
+        else
+        {
+            fieldRender.material.SetColor("_Color", Color.blue);
+        }
+
         GetComponents();
     }
 
@@ -25,12 +38,12 @@ public class BoxForces : MonoBehaviour
     {
         if (magneticField1 != null && magneticField1.activeSelf)
         {
-            ApplyForce(magneticField1, 1);
+            ApplyForce(magneticField1, positivty);
         }
         
         if (magneticField2 != null && magneticField2.activeSelf)
         {
-            ApplyForce(magneticField2, -1);
+            ApplyForce(magneticField2, -positivty);
         }
         
     }
@@ -51,7 +64,7 @@ private void ApplyForce(GameObject magneticField, int playerPositivity)
 
         float forceY = GetForceFromDistance(distanceY, 1.3f);
 
-        if (distanceX < maxForceDistance)
+        if (distanceX * distanceX +  distanceY * distanceY < maxForceDistance * maxForceDistance)
         {
             if (playerPositivity * magneticAttraction > 0)
             {
