@@ -1,13 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioManager : Singleton<AudioManager>
+namespace UI
 {
+    public class AudioManager : Singleton<AudioManager>
+    {
         [Space(20)]
         [Header("Audio Sources")]
         [SerializeField] private AudioSource backgroundMusicAudioSource;
+        [SerializeField] private AudioSource backgroundMusicGamingAudioSource;
 
         [SerializeField] private AudioSource playerAudioSource;
         
@@ -33,6 +35,8 @@ public class AudioManager : Singleton<AudioManager>
         [SerializeField] private float quietBeatInterval = 1.0f;
         [SerializeField] private AudioClip dramaticBeatAudioClip;
         [SerializeField] private float dramaticBeatInterval = 0.5f;
+        
+        [SerializeField] private AudioClip gamingAudioClip;
 
         [Space(20)]
         [Header("Audio Mixer")]
@@ -41,6 +45,7 @@ public class AudioManager : Singleton<AudioManager>
         private AudioClip beatAudioClip;
         private float beatInterval = 0f;
         private Coroutine backgroundMusicCoroutine;
+        private Coroutine backgroundMusicGameCoroutine;
         private bool dramaticBackgroundMusic = false;
         
         public void PlayFirePlayer()
@@ -78,11 +83,25 @@ public class AudioManager : Singleton<AudioManager>
 
 
         }
+        
+        public void StartBackgroundGamingMusic()
+        {
+            if (backgroundMusicGameCoroutine != null)
+                return;
+            backgroundMusicGameCoroutine = StartCoroutine("PlayBackgroundMusicGameRoutine");
+
+
+        }
 
         public void StopBackgroundMusic()
         {
             if (backgroundMusicCoroutine != null)
                 StopCoroutine(backgroundMusicCoroutine);
+        }
+        public void StopBackgroundGameMusic()
+        {
+            if (backgroundMusicGameCoroutine != null)
+                StopCoroutine(backgroundMusicGameCoroutine);
         }
         
         public void ShiftToDramaticBackgroundMusic()
@@ -117,11 +136,23 @@ public class AudioManager : Singleton<AudioManager>
             }
         }
         
+        private IEnumerator PlayBackgroundMusicGameRoutine()
+        {
+            ResetBackgroundMusic();
+            
+            while (true)
+            {
+                backgroundMusicGamingAudioSource.PlayOneShot(gamingAudioClip);
+                yield return new WaitForSeconds(beatInterval);
+                
+            }
+        }
+        
         // these functions are needed if the game has a menu that can modify the master volume
         public void SetMixerMasterVolume(float volume)
         {
-                float mixerVolume = AudioManager.SliderToDB(volume);
-                mixer.SetFloat ("MasterVolume", mixerVolume);
+            float mixerVolume = AudioManager.SliderToDB(volume);
+            mixer.SetFloat ("MasterVolume", mixerVolume);
         }
     
         public static float SliderToDB(float volume, float maxDB=-10, float minDB=-80)
@@ -129,4 +160,5 @@ public class AudioManager : Singleton<AudioManager>
             float dbRange = maxDB - minDB;
             return minDB + volume * dbRange;
         }
+    }
 }

@@ -1,10 +1,10 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
-namespace UI 
-{   
-    
+namespace UI
+{
     public class GameManager: Singleton<GameManager>
     {
         
@@ -12,107 +12,99 @@ namespace UI
         [Header("UI")]
         [SerializeField] private ScoreManager scoreDisplay;
         [SerializeField] private AudioManager audioManager;
-        [SerializeField] private StartGame startGame;   
-        // [SerializeField] private GameOverScreen gameOverScreen;
         
         //My changes
+        [Header("PLAYER")]
         [SerializeField] private  SpwanPoint playerSpawnPoint; 
+        [SerializeField] private  int startingLifes;
         //
+        [Header("SCORES")]
+        [SerializeField] private int levelPassedPoints;
+        [SerializeField] private int multiplierPoints;
+        [SerializeField] private int damageLostPoints;
+        [SerializeField] private int dieLostPoints;
         
-        private int lifes = 3;
         private int level = 0;
-
-        private bool initialScreenOpen = true;
+        public string LevelName;
         
-        public void start()
+        
+        public void Start()
         {
-            //TODO
-            startGame.LevelName = "Level1";
-            StartGame();
+            ResetGame();
+            
             // start background music
-            // start animations on the load screen
+            AudioManager.instance.StartBackgroundMusic();
+            
+            //TODO
+            //start animations on the load screen
             
             //mychanges
-            SetupScene();
+            Debug.Log("game manager");
+            
+        }
+        public void LoadLevel()
+        {
+            SceneManager.LoadScene(LevelName);
         }
 
         public void StartGame()
         {
+            SetupScene();
             // get starting level
-            startGame.LoadLevel();
-            
-        
-            // TODO
-            // - Who manages the level progression? 
-        
+            LoadLevel();
+
             StartCoroutine(StartGameCoroutine());
         }
 
         IEnumerator StartGameCoroutine()
         {
             // TODO
-            // start background music
-            // AudioManager.Instance.StartBackgroundMusic();
+            // start background music for the game
+            //AudioManager.Instance.StartBackgroundGamingMusic();
         
             ClearUI();
-            initialScreenOpen = false;
-            yield return new WaitForSeconds(1f);
-
+            yield return new WaitForSeconds(0.5f);
             scoreDisplay.Open();
-            // update the ui
-            scoreDisplay.UpdateLifes(lifes);
         }
-
+        public void ResetGame()
+        {
+            ClearUI();
+            LevelName = "Level1";
+            scoreDisplay.SetLifes(startingLifes);
+            scoreDisplay.ResetScore();
+        }
         private void ClearUI()
         {
             scoreDisplay.Close();
-            initialScreenOpen = true;
         }
 
-        public void LoseLife()
+        public void StartGameOver()
         {
-            // TODO
-            // - play death sound
-            // - deactivate both players
-            // - update the display
-            // - decrease the number of lifes
-            // - if they have no more lifes then game over
-            //   else start respawning both players from the last checkpoint
+            // If we want to start from the beginning of the game
+            ResetGame();
+            StartCoroutine(StartGameOverCoroutine());
         }
 
-        IEnumerator GameOverCoroutine()
+        IEnumerator StartGameOverCoroutine()
         {
-            // TODO
-            // - wait a little bit
-            yield return new WaitForSeconds(1f);
-            // - disable the HUD
-            scoreDisplay.Close();
             // - show the game over screen
-                //SceneManager.LoadScene("GameOverScreen");
+            SceneManager.LoadScene("DeathScreen");
             yield return null;
         }
-    
-        IEnumerator Respawn()
-        {
-            // TODO 
-            // reset the camera position
-            // - reset players position and stats
-            // - activate the two players
-
-            yield return null;
-        }
-
+        
         public void ShowStartScreen()
         {
-            // - clear all the UI
-            ClearUI();
+            // - Reset game from the beginning
+            ResetGame();
             // - activate the start screen
             SceneManager.LoadScene("InitialScreen");
+            
         }
 
         public string ChooseLevel(int n)
         {
             string levelName;
+            // Select the level name corresponding to the level number
             switch (n)
             {
                 case 0:
@@ -130,29 +122,34 @@ namespace UI
             }
             return levelName;
         }
-
-        public void ShowNextLevel()
-        {
-            SceneManager.LoadScene("NextLevelScreen");
-            scoreDisplay.UpdateLifes(lifes);
-        }
-
         public void NextLevel()
         {
             // - Progress to the next level
             level = level + 1;
-            startGame.LevelName = ChooseLevel(level);
+            LevelName = ChooseLevel(level);
             StartGame();
         }
-
-        void Update()
+        public void ShowNextLevel()
         {
-            if (initialScreenOpen)
-            {
-                // disabled this for now
-                // scoreDisplay.Close();
-            }
+            // Show next level scene with button to proceed in the next game level
+            SceneManager.LoadScene("NextLevelScreen");
+            scoreDisplay.AddToScore(levelPassedPoints);
+            // checkpoint for the score
+            scoreDisplay.SaveLastScore();
         }
+        
+        public void RestartThisLevel()
+        {
+            // Restart after die from the same level
+            LevelName = ChooseLevel(level);
+            StartGame(); 
+        }
+        
+        public void SetupScene()
+        {
+            SpawnPlayer();
+        }
+        
         
         //myChanges
         public void SpawnPlayer()
@@ -163,11 +160,38 @@ namespace UI
             }
         }
 
-        public void SetupScene()
+        public void TakeDamage()
         {
-            SpawnPlayer();
+            //TODO
+            //death sound of player
+            //audioManager.PlayDiePlayer();
+            scoreDisplay.SubToScore(damageLostPoints);
         }
-    
+        public void KillEnemie(int points)
+        {
+            //TODO
+            //death sound of enemie
+            //audioManager.PlayDieEnemie();
+            scoreDisplay.AddToScore(points);
+        }
+        public void KillPlayer()
+        {
+            // Check if has more life
+            if (scoreDisplay.LoseOneLife())
+            {
+                // If yes
+                scoreDisplay.RestoreScore();
+                scoreDisplay.SubToScore(dieLostPoints);
+                scoreDisplay.SaveLastScore();
+                RestartThisLevel(); 
+            }else{
+                // If not
+                scoreDisplay.ResetScore();
+                StartGameOver();
+            }
+        }
+
     }
 }
+
 

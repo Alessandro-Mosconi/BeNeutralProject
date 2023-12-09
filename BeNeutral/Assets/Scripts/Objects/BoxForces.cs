@@ -55,23 +55,36 @@ private void ApplyForce(GameObject magneticField, int playerPositivity)
         float distanceX = GetDistanceXFrom(magneticField);
 
         float directionX = GetDirectionXFrom(magneticField);
-
-        float forceX = GetForceFromDistance(distanceX, 1.3f);
+        float forceX;
+        if (distanceX > 1f)
+        {
+            forceX = GetForceFromDistance(distanceX, 1.3f);
+        }
+        else
+        {
+            forceX = boxRb.velocity.x;
+        }
         
         float distanceY = GetDistanceYFrom(magneticField);
 
         float directionY = GetDirectionYFrom(magneticField);
-
-        float forceY = GetForceFromDistance(distanceY, 1.3f);
+        
+        float forceY;
+        
+        if (distanceY > 1.2f)
+        {
+            forceY = GetForceFromDistance(distanceY, 1.3f);
+        }
+        else
+        {
+            forceY = boxRb.velocity.y;
+        }
 
         if (distanceX * distanceX +  distanceY * distanceY < maxForceDistance * maxForceDistance)
         {
             if (playerPositivity * magneticAttraction > 0)
             {
-                if (distanceX > 1)
-                {
-                    attractBox(directionX, forceX, directionY, forceY);
-                }
+                attractBox(directionX, forceX, directionY, forceY);
             }
             else
             {
@@ -82,12 +95,20 @@ private void ApplyForce(GameObject magneticField, int playerPositivity)
 
     private void repelBox(float directionX, float forceX, float directionY, float forceY)
     {
+        float oldXPosition = boxRb.position.x;
         //repelli
         boxRb.velocity = new Vector2(directionX * forceX, directionY * forceY);
+
+        print("repello");
+        if (forceX > 0 && Math.Round(oldXPosition, 2) == Math.Round(boxRb.position.x, 2))
+        {
+            print("autorepello");
+        }
     }
 
     private void attractBox(float directionX, float forceX, float directionY, float forceY)
     {
+        print("attiro");
         //attrai fino a essere vicini 
         boxRb.velocity = new Vector2(-directionX * forceX, -directionY * forceY);
     }
