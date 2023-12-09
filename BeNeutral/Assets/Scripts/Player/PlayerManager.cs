@@ -39,7 +39,7 @@ public class PlayerManager : MonoBehaviour
      private void OnTriggerEnter2D(Collider2D other)
      {
          
-         if (other.CompareTag("FallDetector"))
+         if (other.CompareTag("FallDetector") || other.CompareTag("Hazards"))
          {
              DamagePlayer();
          }

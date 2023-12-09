@@ -29,7 +29,7 @@ public class Player0neExit : MonoBehaviour
         if (playerOneExited && p2e.PlayerTwoExited)
         {
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(currentSceneIndex - 1);
+            SceneManager.LoadScene(currentSceneIndex + 1);
         }
     }
     

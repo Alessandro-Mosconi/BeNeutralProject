@@ -26,7 +26,7 @@ public class PlayerTwoExit : MonoBehaviour
         if (playerTwoExited && p1e.PlayerOneExited)
         {
             int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(currentSceneIndex - 1);
+            SceneManager.LoadScene(currentSceneIndex + 1);
         }
     }
     
