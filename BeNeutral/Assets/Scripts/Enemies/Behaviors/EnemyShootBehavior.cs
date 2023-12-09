@@ -10,6 +10,7 @@ namespace Enemies.Behaviors
         public float maxTargetDistance = 10;
         public float shootingSpeed = 2;
         public GameObject bulletPrefab;
+        public float bulletDamage = 5;
 
         private float _cumulatedShootingDelay = 0;
         private Vector2 _shootingBaseDirection;
@@ -82,6 +83,7 @@ namespace Enemies.Behaviors
                         Quaternion.AngleAxis(
                             Mathf.Rad2Deg * Mathf.Atan2(rotatedBulletDirection.y, rotatedBulletDirection.x),
                             Vector3.forward);
+                    bullet.GetComponent<Bullet>().damage = bulletDamage;
                     _cumulatedShootingDelay -= 1 / shootingSpeed;
                 }
             }

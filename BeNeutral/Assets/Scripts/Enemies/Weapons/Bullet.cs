@@ -9,6 +9,7 @@ namespace Enemies.Weapons
     public class Bullet : MonoBehaviour
     {
         public float speed = 1;
+        public float damage;
 
         // Start is called before the first frame update
         void Start()
@@ -33,6 +34,7 @@ namespace Enemies.Weapons
             if (other.gameObject.layer == 6) //Layer 6 = Player
             {
                 gameObject.SetActive(false);
+                other.gameObject.GetComponent<PlayerManager>().DamagePlayer(damage);
             }
         }
     }

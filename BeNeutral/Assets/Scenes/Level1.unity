@@ -704,6 +704,7 @@ MonoBehaviour:
   maxTargetDistance: 10
   shootingSpeed: 2
   bulletPrefab: {fileID: 128505314186681869, guid: a7f132655597d4134a43f7a88c67e40d, type: 3}
+  bulletDamage: 5
 --- !u!114 &72056960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7323,7 +7324,7 @@ MonoBehaviour:
   maxHitPoints: 10
   startingHitPoints: 10
   healthBarPrefab: {fileID: 3903108039550141002, guid: 6566ce529312745c7a5a5cde9e33e7c2, type: 3}
-  fallDetector: {fileID: 0}
+  fallDetector: {fileID: 931952391}
 --- !u!114 &1002601151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7373,6 +7374,7 @@ MonoBehaviour:
   player2: {fileID: 1492408741}
   verticalOffset: 0
   maxPlayerDistance: 6
+  cinemachineBrain: {fileID: 519420035}
 --- !u!4 &1004942391
 Transform:
   m_ObjectHideFlags: 0

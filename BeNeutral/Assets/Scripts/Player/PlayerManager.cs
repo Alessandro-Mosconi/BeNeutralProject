@@ -51,8 +51,8 @@ public class PlayerManager : MonoBehaviour
          string damageType = other.tag;
          if (other.CompareTag("FallDetector") || other.CompareTag("Hazards"))
          {
-             DamagePlayer(damageType);
-         }else if (other.CompareTag("checkpoint"))
+             DamagePlayer(damageType == "FallDetector" ? fallDamageValue : hazardDamageValue);
+         } else if (other.CompareTag("checkpoint"))
          {
              isCheckpoint = true;
          }
@@ -71,25 +71,13 @@ public class PlayerManager : MonoBehaviour
          hitPoints.HitPointValue = startingHitPoints;
          healthBar = Instantiate(healthBarPrefab);
          healthBar.player = this;
-
-         
      }
 
-     private void DamagePlayer(string damageType)
+     public void DamagePlayer(float damage)
      {
          GameManager.instance.TakeDamage();
-         if (damageType == "FallDetector")
-         {
-             hitPoints.HitPointValue = hitPoints.HitPointValue - fallDamageValue;
-             // gameObject.SetActive(false);
-             fell = true;
-         }else if (damageType == "Hazards")
-         {
-             hitPoints.HitPointValue = hitPoints.HitPointValue - hazardDamageValue;
-             // gameObject.SetActive(false);
-             fell = true;
-         }
-        
+         hitPoints.HitPointValue -= damage;
+         
          if (hitPoints.HitPointValue <= float.Epsilon)
          {
              KillPlayer();
@@ -98,12 +86,7 @@ public class PlayerManager : MonoBehaviour
              // Game manager lives -1
              // Game manager restart current level
              GameManager.instance.KillPlayer();
-             
-             
          }
-         
-
-
      }
 
      

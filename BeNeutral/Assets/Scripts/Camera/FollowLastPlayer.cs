@@ -12,17 +12,15 @@ public class FollowLastPlayer : MonoBehaviour
     [SerializeField] [NotNull] public Transform player2;
     [SerializeField] public float verticalOffset = 0;
     [SerializeField] public float maxPlayerDistance = 6f;
-    private CinemachineVirtualCamera vcam;
+    public CinemachineBrain cinemachineBrain;
+    private CinemachineVirtualCamera _vcam;
     
     // Start is called before the first frame update
     void Start()
     {
         transform.position = new Vector3(Mathf.Max(player1.position.x, player2.position.x),
             ((player1.position.y + player2.position.y) * 0.5f) + verticalOffset, transform.position.z);
-        
-        var camera = Camera.main;
-        var brain = (camera == null) ? null : camera.GetComponent<CinemachineBrain>();
-        vcam = (brain == null) ? null : brain.ActiveVirtualCamera as CinemachineVirtualCamera;
+        _vcam = (cinemachineBrain == null) ? null : cinemachineBrain.ActiveVirtualCamera as CinemachineVirtualCamera;
     }
 
     // Update is called once per frame
@@ -37,12 +35,26 @@ public class FollowLastPlayer : MonoBehaviour
         if (Math.Abs(p1Pos.y - p2Pos.y) > maxPlayerDistance)
         {
             //vcam.m_Lens.OrthographicSize = p1Pos.y - p2Pos.y;
-            vcam.m_Lens.OrthographicSize = Math.Min( p1Pos.y - p2Pos.y, 9f);
+            if (_vcam == null)
+            {
+                _vcam = cinemachineBrain.ActiveVirtualCamera as CinemachineVirtualCamera;
+            }
+            else
+            {
+                _vcam.m_Lens.OrthographicSize = Math.Min( p1Pos.y - p2Pos.y, 9f);
+            }
         }
         
         else
         {
-            vcam.m_Lens.OrthographicSize = 6f;
+            if (_vcam == null)
+            {
+                _vcam = cinemachineBrain.ActiveVirtualCamera as CinemachineVirtualCamera;
+            }
+            else
+            {
+                _vcam.m_Lens.OrthographicSize = 6f;
+            }
         }
     }
 }
