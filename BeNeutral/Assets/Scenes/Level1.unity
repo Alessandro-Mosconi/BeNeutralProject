@@ -3576,7 +3576,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.2842135
+  orthographic size: 5.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6072,6 +6072,10 @@ PrefabInstance:
       propertyPath: positivty
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 5796648554279269370, guid: dc9d76f49faea2946a503196d384a774, type: 3}
+      propertyPath: maxForceDistance
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8370481660930125990, guid: dc9d76f49faea2946a503196d384a774, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.7459767
@@ -7368,6 +7372,7 @@ MonoBehaviour:
   player1: {fileID: 1002601145}
   player2: {fileID: 1492408741}
   verticalOffset: 0
+  maxPlayerDistance: 6
 --- !u!4 &1004942391
 Transform:
   m_ObjectHideFlags: 0
@@ -16955,7 +16960,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1004942391}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 5.2842135
+    OrthographicSize: 5.5
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0

@@ -95,12 +95,20 @@ private void ApplyForce(GameObject magneticField, int playerPositivity)
 
     private void repelBox(float directionX, float forceX, float directionY, float forceY)
     {
+        float oldXPosition = boxRb.position.x;
         //repelli
         boxRb.velocity = new Vector2(directionX * forceX, directionY * forceY);
+
+        print("repello");
+        if (forceX > 0 && Math.Round(oldXPosition, 2) == Math.Round(boxRb.position.x, 2))
+        {
+            print("autorepello");
+        }
     }
 
     private void attractBox(float directionX, float forceX, float directionY, float forceY)
     {
+        print("attiro");
         //attrai fino a essere vicini 
         boxRb.velocity = new Vector2(-directionX * forceX, -directionY * forceY);
     }
