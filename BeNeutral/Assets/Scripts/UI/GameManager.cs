@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 namespace UI
 {
@@ -12,7 +13,6 @@ namespace UI
         [SerializeField] private ScoreManager scoreDisplay;
         [SerializeField] private AudioManager audioManager;
         [SerializeField] private StartGame startGame;   
-        // [SerializeField] private GameOverScreen gameOverScreen;
         
         //My changes
         [Header("PLAYER")]
@@ -21,7 +21,6 @@ namespace UI
         //
         [Header("SCORES")]
         [SerializeField] private int levelPassedPoints;
-        [SerializeField] private int enemieDestroyedPoints;
         [SerializeField] private int multiplierPoints;
         [SerializeField] private int damageLostPoints;
         [SerializeField] private int dieLostPoints;
@@ -31,11 +30,9 @@ namespace UI
         
         public void Start()
         {
-            //TODO
+            ClearUI();
             startGame.LevelName = "Level1";
             scoreDisplay.SetLifes(startingLifes);
-           
-            scoreDisplay.Close();
             
             // start background music
             AudioManager.instance.StartBackgroundMusic();
@@ -55,8 +52,7 @@ namespace UI
             startGame.LevelName = ChooseLevel(level);
             scoreDisplay.ResetScore();
             startGame.LoadLevel();
-            
-        
+
             StartCoroutine(StartGameCoroutine());
         }
 
@@ -64,13 +60,11 @@ namespace UI
         {
             // TODO
             // start background music for the game
-            AudioManager.Instance.StartBackgroundGamingMusic();
+            //AudioManager.Instance.StartBackgroundGamingMusic();
         
             ClearUI();
-            yield return new WaitForSeconds(1f);
-            
+            yield return new WaitForSeconds(0.5f);
             scoreDisplay.Open();
-            // update the ui
         }
 
         private void ClearUI()
@@ -89,14 +83,8 @@ namespace UI
 
         IEnumerator StartGameOverCoroutine()
         {
-            // - wait a little bit
-            yield return new WaitForSeconds(1f);
-            // - disable the HUD
-            scoreDisplay.Close();
             // - show the game over screen
-            SceneManager.LoadScene("DeathScreeen");
-            yield return new WaitForSeconds(10f);
-            ShowStartScreen();
+            SceneManager.LoadScene("DeathScreen");
             yield return null;
         }
         
@@ -167,10 +155,23 @@ namespace UI
                 GameObject player = playerSpawnPoint.SpawnObject();
             }
         }
-        
+
+        public void TakeDamage()
+        {
+            //TODO
+            //death sound of player
+            //audioManager.PlayDiePlayer();
+            scoreDisplay.SubToScore(damageLostPoints);
+        }
+        public void KillEnemie(int points)
+        {
+            //TODO
+            //death sound of enemie
+            //audioManager.PlayDieEnemie();
+            scoreDisplay.AddToScore(points);
+        }
         public void KillPlayer()
         {
-            audioManager.PlayDiePlayer();
             // Check if has more life
             if (scoreDisplay.LoseOneLife())
             {

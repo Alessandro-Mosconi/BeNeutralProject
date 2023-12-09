@@ -74,6 +74,7 @@ public class PlayerManager : MonoBehaviour
 
      private void DamagePlayer(string damageType)
      {
+         GameManager.instance.TakeDamage();
          if (damageType == "FallDetector")
          {
              hitPoints.HitPointValue = hitPoints.HitPointValue - fallDamageValue;

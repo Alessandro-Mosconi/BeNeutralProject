@@ -1,16 +1,19 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Pool;
+using UnityEngine.UI;
 
 
-    public class ScoreManager : Singleton<ScoreManager>
+public class ScoreManager : Singleton<ScoreManager>
     {
         [SerializeField] private TextMeshProUGUI pointsDisplay;
         [SerializeField] private TextMeshProUGUI lifesDisplay;
         private int points = 0;
         private int lifes;
         private int checkpointScore = 0;
-
+            
+       
         
 
         public void UpdateScore(int n)
@@ -22,7 +25,7 @@ using UnityEngine;
         public void SetLifes(int n)
         {
             lifes = n;
-            lifesDisplay.text = string.Format("{0:D6}", lifes);
+            lifesDisplay.text = string.Format("{0:D1}", lifes);
         }
 
         public int GetLifes()
@@ -34,7 +37,7 @@ using UnityEngine;
         public bool LoseOneLife()
         {
             lifes--;
-            lifesDisplay.text = string.Format("{0:D6}", lifes);
+            lifesDisplay.text = string.Format("{0:D1}", lifes);
             return lifes != 0;
         }
 
