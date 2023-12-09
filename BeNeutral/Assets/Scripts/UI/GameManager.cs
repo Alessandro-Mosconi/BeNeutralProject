@@ -33,7 +33,6 @@ namespace UI
             // start animations on the load screen
             
             //mychanges
-            Debug.Log("game manager");
             SetupScene();
         }
 

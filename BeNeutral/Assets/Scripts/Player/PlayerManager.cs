@@ -12,8 +12,12 @@ public class PlayerManager : MonoBehaviour
      public HealthBar healthBarPrefab;
      private HealthBar healthBar;
      
+     //Damage value
+     private float fallDamageValue = 3f;
+     private float hazardDamageValue = 1f;
+     
      //fall detection
-     private Vector3 respawnPoint;
+     // private Vector3 respawnPoint;
      [SerializeField] private GameObject fallDetector;
 
      private void Start()
@@ -22,7 +26,10 @@ public class PlayerManager : MonoBehaviour
          healthBar = Instantiate(healthBarPrefab);
          healthBar.player = this;
          //
-         respawnPoint = transform.position;
+         // respawnPoint = transform.position;
+         
+         //
+         Debug.Log("OBJECT TYPE: "+gameObject.GetType());
      }
 
      public float MaxHitPoints
@@ -33,32 +40,57 @@ public class PlayerManager : MonoBehaviour
      private void Update()
      {
          fallDetector.transform.position = new Vector2(transform.position.x, fallDetector.transform.position.y);
-         
      }
 
      private void OnTriggerEnter2D(Collider2D other)
      {
-         
+         string damageType = other.tag;
          if (other.CompareTag("FallDetector") || other.CompareTag("Hazards"))
          {
-             DamagePlayer();
+             DamagePlayer(damageType);
          }
      }
 
      private void KillPlayer()
      {
-         // Destroy(GameObject);
+             // Destroy(gameObject);
+             // Destroy(healthBar.gameObject);
+         
+         
      }
 
      private void ResetPlayer()
      {
+         hitPoints.HitPointValue = startingHitPoints;
+         healthBar = Instantiate(healthBarPrefab);
+         healthBar.player = this;
+         // respawnPoint = transform.position;
+
          
      }
 
-     private void DamagePlayer()
+     private void DamagePlayer(string damageType)
      {
-         // Debug.Log("succes tag compare");
-         hitPoints.HitPointValue = hitPoints.HitPointValue - 0.5f;
-         transform.position = respawnPoint;
+         if (damageType == "FallDetector")
+         {
+             hitPoints.HitPointValue = hitPoints.HitPointValue - fallDamageValue;
+             gameObject.SetActive(false);
+             
+         }else if (damageType == "Hazards")
+         {
+             hitPoints.HitPointValue = hitPoints.HitPointValue - hazardDamageValue;
+             gameObject.SetActive(false);
+         }
+        
+         if (hitPoints.HitPointValue <= float.Epsilon)
+         {
+             KillPlayer();
+             ResetPlayer();
+             //game manager lives -1;
+         }
+         
+
+
      }
+     
 }
