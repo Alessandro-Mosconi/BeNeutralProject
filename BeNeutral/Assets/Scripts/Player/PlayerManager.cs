@@ -17,19 +17,20 @@ public class PlayerManager : MonoBehaviour
      private float hazardDamageValue = 1f;
      
      //fall detection
-     // private Vector3 respawnPoint;
+     // private Vector3 playerPos;
      [SerializeField] private GameObject fallDetector;
 
+     
+     //
+     private bool isCheckpoint;
+     private bool fell;
      private void Start()
      {
          hitPoints.HitPointValue = startingHitPoints;
          healthBar = Instantiate(healthBarPrefab);
          healthBar.player = this;
          //
-         // respawnPoint = transform.position;
          
-         //
-         Debug.Log("OBJECT TYPE: "+gameObject.GetType());
      }
 
      public float MaxHitPoints
@@ -48,6 +49,9 @@ public class PlayerManager : MonoBehaviour
          if (other.CompareTag("FallDetector") || other.CompareTag("Hazards"))
          {
              DamagePlayer(damageType);
+         }else if (other.CompareTag("checkpoint"))
+         {
+             isCheckpoint = true;
          }
      }
 
@@ -64,7 +68,6 @@ public class PlayerManager : MonoBehaviour
          hitPoints.HitPointValue = startingHitPoints;
          healthBar = Instantiate(healthBarPrefab);
          healthBar.player = this;
-         // respawnPoint = transform.position;
 
          
      }
@@ -74,12 +77,13 @@ public class PlayerManager : MonoBehaviour
          if (damageType == "FallDetector")
          {
              hitPoints.HitPointValue = hitPoints.HitPointValue - fallDamageValue;
-             gameObject.SetActive(false);
-             
+             // gameObject.SetActive(false);
+             fell = true;
          }else if (damageType == "Hazards")
          {
              hitPoints.HitPointValue = hitPoints.HitPointValue - hazardDamageValue;
-             gameObject.SetActive(false);
+             // gameObject.SetActive(false);
+             fell = true;
          }
         
          if (hitPoints.HitPointValue <= float.Epsilon)
@@ -92,5 +96,21 @@ public class PlayerManager : MonoBehaviour
 
 
      }
+
+     
+     public bool IsCheckpoint
+     {
+         get { return isCheckpoint; }
+         
+     }
+     
+     public bool Fell
+     {
+         get { return fell; }
+         set { fell = value; }
+
+     }
+
+     
      
 }

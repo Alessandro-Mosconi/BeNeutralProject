@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FallDetector
   - Hazards
+  - checkpoint
   layers:
   - Default
   - TransparentFX

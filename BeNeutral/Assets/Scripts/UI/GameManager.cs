@@ -149,7 +149,8 @@ namespace UI
         {
             if (initialScreenOpen)
             {
-                scoreDisplay.Close();
+                // disabled this for now
+                // scoreDisplay.Close();
             }
         }
         
