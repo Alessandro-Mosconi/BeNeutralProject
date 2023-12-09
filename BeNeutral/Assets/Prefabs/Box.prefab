@@ -120,6 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxForceDistance: 10
+  magneticAttraction: 1
 --- !u!1 &1529552535395975888
 GameObject:
   m_ObjectHideFlags: 0

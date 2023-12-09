@@ -31,4 +31,9 @@ public class HealthBar : MonoBehaviour
         }
     }
 
+    private float MaxHitPoints
+    {
+        get { return maxHitPoints; }
+    }
+
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class BoxForces : MonoBehaviour
 {
+    [SerializeField] public int positivty = 1;
     [SerializeField] public float maxForceDistance = 3;
     [SerializeField] public int magneticAttraction = 1;
     private Rigidbody2D boxRb;
@@ -17,6 +18,18 @@ public class BoxForces : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+
+        var fieldRender = gameObject.transform.GetChild(0).gameObject.GetComponent<Renderer>();
+        if (positivty > 0)
+        {
+            fieldRender.material.SetColor("_Color", Color.red);
+        }
+        else
+        {
+            fieldRender.material.SetColor("_Color", Color.blue);
+        }
+
         GetComponents();
     }
 
@@ -25,52 +38,58 @@ public class BoxForces : MonoBehaviour
     {
         if (magneticField1 != null && magneticField1.activeSelf)
         {
-            ApplyForceX(magneticField1, 1);
+            ApplyForce(magneticField1, positivty);
         }
         
         if (magneticField2 != null && magneticField2.activeSelf)
         {
-            ApplyForceX(magneticField2, -1);
+            ApplyForce(magneticField2, -positivty);
         }
         
     }
 
-    private void ApplyForceX(GameObject magneticField, int playerPositivity)
+private void ApplyForce(GameObject magneticField, int playerPositivity)
     {
         //deltaX positive if box right, field left
 
         float distanceX = GetDistanceXFrom(magneticField);
 
-        float direction = GetDirectionXFrom(magneticField);
+        float directionX = GetDirectionXFrom(magneticField);
 
-        float forceX = GetForceXFromDistance(distanceX, 1.3f);
+        float forceX = GetForceFromDistance(distanceX, 1.3f);
+        
+        float distanceY = GetDistanceYFrom(magneticField);
 
-        if (distanceX < maxForceDistance)
+        float directionY = GetDirectionYFrom(magneticField);
+
+        float forceY = GetForceFromDistance(distanceY, 1.3f);
+
+        if (distanceX * distanceX +  distanceY * distanceY < maxForceDistance * maxForceDistance)
         {
             if (playerPositivity * magneticAttraction > 0)
             {
-                if (distanceX > 0.9)
+                if (distanceX > 1)
                 {
-                    attractBox(direction, forceX);
+                    attractBox(directionX, forceX, directionY, forceY);
                 }
             }
             else
             {
-                repelBox(direction, forceX);
+                repelBox(directionX, forceX, directionY, forceY);
             }
         }
     }
 
-    private void repelBox(float direction, float forceX)
+    private void repelBox(float directionX, float forceX, float directionY, float forceY)
     {
         //repelli
-        boxRb.velocity = new Vector2(direction * forceX, boxRb.velocity.y);
+        boxRb.velocity = new Vector2(directionX * forceX, directionY * forceY);
     }
 
-    private void attractBox(float direction, float forceX)
+    private void attractBox(float directionX, float forceX, float directionY, float forceY)
     {
         //attrai fino a essere vicini 
-        boxRb.velocity = new Vector2(-direction * forceX, boxRb.velocity.y);
+        boxRb.velocity = new Vector2(-directionX * forceX, -directionY * forceY);
     }
 
     private float GetDistanceXFrom(GameObject otherObject)
@@ -89,10 +108,27 @@ public class BoxForces : MonoBehaviour
             return -1f;
         }
     }
-    private float GetForceXFromDistance(float distance, float increaser)
+    private float GetForceFromDistance(float distance, float increaser)
     {
         //aumenta avvicinandosi
         return Math.Abs(maxForceDistance * increaser - distance * increaser);
+    }
+
+    private float GetDistanceYFrom(GameObject otherObject)
+    {
+        return Math.Abs(transform.position.y - otherObject.transform.position.y);
+    }
+    private float GetDirectionYFrom(GameObject otherObject)
+    {
+        //1 a destra, -1 a sinistra
+        if (otherObject.transform.position.y > transform.position.y)
+        {
+            return 1f;
+        }
+        else
+        {
+            return -1f;
+        }
     }
 
     private void GetComponents()
