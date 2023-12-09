@@ -1,14 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UI;
+using UnityEditor.Build.Content;
 using UnityEngine;
+
 
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private HitPointsSO hitPoints;
     [SerializeField] private float maxHitPoints;
     [SerializeField] private float startingHitPoints;
-
+    
      public HealthBar healthBarPrefab;
      private HealthBar healthBar;
      
@@ -86,7 +89,12 @@ public class PlayerManager : MonoBehaviour
          {
              KillPlayer();
              ResetPlayer();
-             //game manager lives -1;
+             
+             // Game manager lives -1
+             // Game manager restart current level
+             GameManager.instance.KillPlayer();
+             
+             
          }
          
 

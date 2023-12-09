@@ -544,7 +544,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2bd8e7cf7f74c94cbfba53b1e17a1cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeDisplay: {fileID: 999536237}
+  pointsDisplay: {fileID: 0}
+  lifesDisplay: {fileID: 999536237}
 --- !u!1 &963321816
 GameObject:
   m_ObjectHideFlags: 0
@@ -590,6 +591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundMusicAudioSource: {fileID: 0}
+  backgroundMusicGamingAudioSource: {fileID: 0}
   playerAudioSource: {fileID: 0}
   enemieAudioSource: {fileID: 0}
   fireAudioClipPlayer: {fileID: 0}
@@ -602,6 +604,7 @@ MonoBehaviour:
   quietBeatInterval: 1
   dramaticBeatAudioClip: {fileID: 0}
   dramaticBeatInterval: 0.5
+  gamingAudioClip: {fileID: 0}
   mixer: {fileID: 0}
 --- !u!1 &967834900
 GameObject:
@@ -905,6 +908,12 @@ MonoBehaviour:
   audioManager: {fileID: 963321819}
   startGame: {fileID: 366612195}
   playerSpawnPoint: {fileID: 0}
+  startingLifes: 3
+  levelPassedPoints: 100
+  enemieDestroyedPoints: 2
+  multiplierPoints: 1
+  damageLostPoints: 1
+  dieLostPoints: 20
 --- !u!1 &1682946954
 GameObject:
   m_ObjectHideFlags: 0

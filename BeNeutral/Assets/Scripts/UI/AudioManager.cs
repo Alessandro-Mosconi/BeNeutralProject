@@ -1,10 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioManager : Singleton<AudioManager>
+namespace UI
 {
+    public class AudioManager : Singleton<AudioManager>
+    {
         [Space(20)]
         [Header("Audio Sources")]
         [SerializeField] private AudioSource backgroundMusicAudioSource;
@@ -150,8 +151,8 @@ public class AudioManager : Singleton<AudioManager>
         // these functions are needed if the game has a menu that can modify the master volume
         public void SetMixerMasterVolume(float volume)
         {
-                float mixerVolume = AudioManager.SliderToDB(volume);
-                mixer.SetFloat ("MasterVolume", mixerVolume);
+            float mixerVolume = AudioManager.SliderToDB(volume);
+            mixer.SetFloat ("MasterVolume", mixerVolume);
         }
     
         public static float SliderToDB(float volume, float maxDB=-10, float minDB=-80)
@@ -159,4 +160,5 @@ public class AudioManager : Singleton<AudioManager>
             float dbRange = maxDB - minDB;
             return minDB + volume * dbRange;
         }
+    }
 }
