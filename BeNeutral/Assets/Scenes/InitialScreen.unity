@@ -367,8 +367,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 366612195}
-        m_TargetAssemblyTypeName: UI.StartGame, UI
-        m_MethodName: StartNewGame
+        m_TargetAssemblyTypeName: UI.StartButton, UI
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -425,10 +425,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 366612190}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17a0fa0422e027e41a16d0496d2ac4c6, type: 3}
+  m_Script: {fileID: 11500000, guid: f10d536b0f8fc874781c33ea626ee436, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelName: Level1
 --- !u!1 &501694565
 GameObject:
   m_ObjectHideFlags: 0
@@ -1282,13 +1281,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreDisplay: {fileID: 704699563}
   audioManager: {fileID: 963321819}
-  startGame: {fileID: 366612195}
   playerSpawnPoint: {fileID: 0}
   startingLifes: 3
   levelPassedPoints: 100
   multiplierPoints: 1
   damageLostPoints: 1
   dieLostPoints: 20
+  LevelName: 
 --- !u!1001 &1627161629
 PrefabInstance:
   m_ObjectHideFlags: 0

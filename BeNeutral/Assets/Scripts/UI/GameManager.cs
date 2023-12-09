@@ -12,7 +12,6 @@ namespace UI
         [Header("UI")]
         [SerializeField] private ScoreManager scoreDisplay;
         [SerializeField] private AudioManager audioManager;
-        [SerializeField] private StartGame startGame;   
         
         //My changes
         [Header("PLAYER")]
@@ -26,13 +25,12 @@ namespace UI
         [SerializeField] private int dieLostPoints;
         
         private int level = 0;
+        public string LevelName;
         
         
         public void Start()
         {
-            ClearUI();
-            startGame.LevelName = "Level1";
-            scoreDisplay.SetLifes(startingLifes);
+            ResetGame();
             
             // start background music
             AudioManager.instance.StartBackgroundMusic();
@@ -44,14 +42,16 @@ namespace UI
             Debug.Log("game manager");
             
         }
+        public void LoadLevel()
+        {
+            SceneManager.LoadScene(LevelName);
+        }
 
         public void StartGame()
         {
             SetupScene();
             // get starting level
-            startGame.LevelName = ChooseLevel(level);
-            scoreDisplay.ResetScore();
-            startGame.LoadLevel();
+            LoadLevel();
 
             StartCoroutine(StartGameCoroutine());
         }
@@ -66,7 +66,13 @@ namespace UI
             yield return new WaitForSeconds(0.5f);
             scoreDisplay.Open();
         }
-
+        public void ResetGame()
+        {
+            ClearUI();
+            LevelName = "Level1";
+            scoreDisplay.SetLifes(startingLifes);
+            scoreDisplay.ResetScore();
+        }
         private void ClearUI()
         {
             scoreDisplay.Close();
@@ -75,9 +81,7 @@ namespace UI
         public void StartGameOver()
         {
             // If we want to start from the beginning of the game
-            scoreDisplay.ResetScore();
-            level = 0;
-            ClearUI();
+            ResetGame();
             StartCoroutine(StartGameOverCoroutine());
         }
 
@@ -90,11 +94,11 @@ namespace UI
         
         public void ShowStartScreen()
         {
-            // - clear all the UI
-            ClearUI();
+            // - Reset game from the beginning
+            ResetGame();
             // - activate the start screen
             SceneManager.LoadScene("InitialScreen");
-            level = 0;
+            
         }
 
         public string ChooseLevel(int n)
@@ -122,7 +126,7 @@ namespace UI
         {
             // - Progress to the next level
             level = level + 1;
-            startGame.LevelName = ChooseLevel(level);
+            LevelName = ChooseLevel(level);
             StartGame();
         }
         public void ShowNextLevel()
@@ -137,7 +141,7 @@ namespace UI
         public void RestartThisLevel()
         {
             // Restart after die from the same level
-            startGame.LevelName = ChooseLevel(level);
+            LevelName = ChooseLevel(level);
             StartGame(); 
         }
         
@@ -178,10 +182,9 @@ namespace UI
                 // If yes
                 scoreDisplay.RestoreScore();
                 scoreDisplay.SubToScore(dieLostPoints);
+                scoreDisplay.SaveLastScore();
                 RestartThisLevel(); 
-            }
-            else
-            {
+            }else{
                 // If not
                 scoreDisplay.ResetScore();
                 StartGameOver();

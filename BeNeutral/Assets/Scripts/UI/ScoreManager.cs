@@ -61,12 +61,14 @@ public class ScoreManager : Singleton<ScoreManager>
         public void RestoreScore()
         {
             points = checkpointScore;
+            pointsDisplay.text = string.Format("{0:D6}", points);
         }
 
         public void ResetScore()
         {
             points = 0;
             checkpointScore = 0;
+            pointsDisplay.text = string.Format("{0:D6}", points);
         }
         
         public void Open()
