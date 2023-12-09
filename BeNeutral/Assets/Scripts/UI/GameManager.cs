@@ -25,7 +25,7 @@ namespace UI
         [SerializeField] private int dieLostPoints;
         
         private int level = 0;
-        public string LevelName;
+        private string LevelName;
         
         
         public void Start()
@@ -63,7 +63,7 @@ namespace UI
             //AudioManager.Instance.StartBackgroundGamingMusic();
         
             ClearUI();
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
             scoreDisplay.Open();
         }
         public void ResetGame()
@@ -144,7 +144,13 @@ namespace UI
             LevelName = ChooseLevel(level);
             StartGame(); 
         }
+
+        public int GetStartingLifes()
+        {
+            return startingLifes;
+        }
         
+
         public void SetupScene()
         {
             SpawnPlayer();

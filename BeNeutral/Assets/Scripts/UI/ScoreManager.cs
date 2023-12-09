@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using UI;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ public class ScoreManager : Singleton<ScoreManager>
         private int points = 0;
         private int lifes;
         private int checkpointScore = 0;
+        [SerializeField] private Image lifeImage;
             
        
         
@@ -38,6 +40,7 @@ public class ScoreManager : Singleton<ScoreManager>
         {
             lifes--;
             lifesDisplay.text = string.Format("{0:D1}", lifes);
+            lifeImage.fillAmount = (float) lifes / GameManager.instance.GetStartingLifes();
             return lifes != 0;
         }
 
@@ -48,8 +51,12 @@ public class ScoreManager : Singleton<ScoreManager>
         }
         
         public void SubToScore(int n)
-        {
+        {   
             points -= n;
+            if (points < 0)
+            {
+                points = 0;
+            }
             pointsDisplay.text = string.Format("{0:D6}", points);
         }
 

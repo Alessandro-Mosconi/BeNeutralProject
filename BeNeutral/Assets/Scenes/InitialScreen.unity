@@ -685,6 +685,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointsDisplay: {fileID: 501694566}
   lifesDisplay: {fileID: 878624066}
+  lifeImage: {fileID: 1627161631}
 --- !u!1 &878624064
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,7 +910,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6086567743815016378, guid: 30072f30a6b678e4cb33b83d65d26050, type: 3}
       propertyPath: m_Name
-      value: lostLife1
+      value: lostLife
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1287,7 +1288,6 @@ MonoBehaviour:
   multiplierPoints: 1
   damageLostPoints: 1
   dieLostPoints: 20
-  LevelName: 
 --- !u!1001 &1627161629
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1298,7 +1298,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3083147178974731412, guid: 86160f0d6aaaa2b40aa61762fa884f25, type: 3}
       propertyPath: m_Name
-      value: singleLife1
+      value: singleLife
       objectReference: {fileID: 0}
     - target: {fileID: 3917245497757506836, guid: 86160f0d6aaaa2b40aa61762fa884f25, type: 3}
       propertyPath: m_Type
@@ -1402,6 +1402,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6862458023057942960, guid: 86160f0d6aaaa2b40aa61762fa884f25, type: 3}
   m_PrefabInstance: {fileID: 1627161629}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1627161631 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3917245497757506836, guid: 86160f0d6aaaa2b40aa61762fa884f25, type: 3}
+  m_PrefabInstance: {fileID: 1627161629}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1682946954
 GameObject:
   m_ObjectHideFlags: 0
