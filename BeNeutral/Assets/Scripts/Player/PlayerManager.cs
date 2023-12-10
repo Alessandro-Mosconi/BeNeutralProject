@@ -51,6 +51,7 @@ public class PlayerManager : MonoBehaviour
          if (other.CompareTag("FallDetector") || other.CompareTag("Hazards"))
          {
              DamagePlayer(damageType == "FallDetector" ? fallDamageValue : hazardDamageValue);
+             fell = true;
          } else if (other.CompareTag("checkpoint"))
          {
              isCheckpoint = true;
