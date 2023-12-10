@@ -6269,7 +6269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8370481660930125990, guid: dc9d76f49faea2946a503196d384a774, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.7459767
+      value: -0.48
       objectReference: {fileID: 0}
     - target: {fileID: 8370481660930125990, guid: dc9d76f49faea2946a503196d384a774, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7565,6 +7565,7 @@ MonoBehaviour:
   verticalOffset: 0
   maxPlayerDistance: 6
   cinemachineBrain: {fileID: 519420035}
+  _vcam: {fileID: 0}
 --- !u!4 &1004942391
 Transform:
   m_ObjectHideFlags: 0
