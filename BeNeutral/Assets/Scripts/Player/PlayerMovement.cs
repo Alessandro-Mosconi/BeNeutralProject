@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         
         if (dirX != 0)
         {
-            movementDirection =  new Vector2(Input.GetAxis("HorizontalPlayer1"), Input.GetAxis("JumpPlayer1")).normalized;
+            movementDirection =  new Vector2(Input.GetAxis("HorizontalPlayer" + playerNumber), Input.GetAxis("JumpPlayer" + playerNumber)).normalized;
         }
         
         rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);

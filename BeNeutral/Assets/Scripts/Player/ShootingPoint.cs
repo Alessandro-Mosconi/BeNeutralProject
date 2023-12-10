@@ -18,6 +18,7 @@ public class ShootingPoint : MonoBehaviour
     {
         Vector3 transformPosition = transform.position;
         
+        
         if (playerMovementScript!=null && playerMovementScript.movementDirection.x > 0)
         {
             transform.position = new Vector2((playerTransform.position.x + distFromPlayer), transformPosition.y);
@@ -31,6 +32,10 @@ public class ShootingPoint : MonoBehaviour
     {
         
         playerMovementScript = GetComponentInParent<PlayerMovement>();
+        if (playerMovementScript == null)
+        {
+            print("ecco");
+        }
 
         playerTransform = transform.parent;
         
