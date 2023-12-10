@@ -13,14 +13,17 @@ public class FollowLastPlayer : MonoBehaviour
     [SerializeField] public float verticalOffset = 0;
     [SerializeField] public float maxPlayerDistance = 6f;
     public CinemachineBrain cinemachineBrain;
-    private CinemachineVirtualCamera _vcam;
+    [SerializeField] private CinemachineVirtualCamera _vcam;
     
     // Start is called before the first frame update
     void Start()
     {
         transform.position = new Vector3(Mathf.Max(player1.position.x, player2.position.x),
             ((player1.position.y + player2.position.y) * 0.5f) + verticalOffset, transform.position.z);
-        _vcam = (cinemachineBrain == null) ? null : cinemachineBrain.ActiveVirtualCamera as CinemachineVirtualCamera;
+        if (_vcam == null)
+        {
+            _vcam = (cinemachineBrain == null) ? null : cinemachineBrain.ActiveVirtualCamera as CinemachineVirtualCamera;
+        }
     }
 
     // Update is called once per frame
@@ -37,6 +40,7 @@ public class FollowLastPlayer : MonoBehaviour
             //vcam.m_Lens.OrthographicSize = p1Pos.y - p2Pos.y;
             if (_vcam == null)
             {
+                print(Math.Min( p1Pos.y - p2Pos.y, 9f));
                 _vcam = cinemachineBrain.ActiveVirtualCamera as CinemachineVirtualCamera;
             }
             else
