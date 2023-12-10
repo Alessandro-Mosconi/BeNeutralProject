@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8370481660930125990}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: MagneticField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4464154616275965457}
   - component: {fileID: 5955907735309880577}
   - component: {fileID: 3870650715600653630}
-  m_Layer: 7
+  m_Layer: 11
   m_Name: Field
   m_TagString: Untagged
   m_Icon: {fileID: 0}

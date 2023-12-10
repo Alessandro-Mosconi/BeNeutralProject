@@ -31,10 +31,14 @@ namespace Enemies.Weapons
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.layer == 6) //Layer 6 = Player
+            if (other.gameObject.layer == LayerMask.NameToLayer("Player")) 
+            {
+                other.gameObject.GetComponent<PlayerManager>().DamagePlayer(damage);
+            }
+            print(other.gameObject.layer);
+            if (other.gameObject.layer == LayerMask.NameToLayer("MagneticField")) 
             {
                 gameObject.SetActive(false);
-                other.gameObject.GetComponent<PlayerManager>().DamagePlayer(damage);
             }
         }
     }

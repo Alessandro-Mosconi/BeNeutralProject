@@ -30,7 +30,7 @@ public class FollowLastPlayer : MonoBehaviour
         Vector3 p2Pos = player2.position;
         float middleX = (p1Pos.x + p2Pos.x) * 0.5f;
         //Mathf.Max(p1Pos.x, p2Pos.x)
-        transform.position = new Vector3(middleX, ((p1Pos.y + p2Pos.y) * 0.5f) + verticalOffset, transform.position.z);
+        transform.position = new Vector3(middleX +2.5f, ((p1Pos.y + p2Pos.y) * 0.5f) + verticalOffset, transform.position.z);
 
         if (Math.Abs(p1Pos.y - p2Pos.y) > maxPlayerDistance)
         {

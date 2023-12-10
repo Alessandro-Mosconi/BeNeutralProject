@@ -7,6 +7,7 @@ using UnityEngine;
 public class BoxForces : MonoBehaviour
 {
     [SerializeField] public int positivty = 1;
+    [SerializeField] public int gravityDirextion = 1;
     [SerializeField] public float maxForceDistance = 3;
     [SerializeField] public int magneticAttraction = 1;
     private Rigidbody2D boxRb;
@@ -36,6 +37,8 @@ public class BoxForces : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HandleGravity();
+            
         if (magneticField1 != null && magneticField1.activeSelf)
         {
             ApplyForce(magneticField1, positivty);
@@ -48,6 +51,23 @@ public class BoxForces : MonoBehaviour
         
     }
 
+    private void HandleGravity()
+    {
+        if (gravityDirextion > 0)
+        {
+            boxRb.gravityScale = Math.Abs(boxRb.gravityScale);
+            Quaternion rotation = transform.rotation;
+            rotation.x = 0;
+            transform.rotation = rotation;
+        }
+        else
+        {
+            boxRb.gravityScale = Math.Abs(boxRb.gravityScale) * -1;
+            Quaternion rotation = transform.rotation;
+            rotation.x = -180;
+            transform.rotation = rotation;
+        }
+    }
 private void ApplyForce(GameObject magneticField, int playerPositivity)
     {
         //deltaX positive if box right, field left

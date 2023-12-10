@@ -6,20 +6,20 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
+    private SpriteRenderer spriteRenderer;
     
     [SerializeField] public int yPositivity = 1;
     [SerializeField] public int playerNumber = 1;
 
     private float dirX = 0f;
 
-    private SpriteRenderer spriteRenderer;
     public Vector2 movementDirection { get; private set; }
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -35,7 +35,6 @@ public class PlayerMovement : MonoBehaviour
         {
             movementDirection =  new Vector2(Input.GetAxis("HorizontalPlayer1"), Input.GetAxis("JumpPlayer1")).normalized;
         }
-            
         
         rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
 
