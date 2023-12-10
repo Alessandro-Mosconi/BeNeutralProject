@@ -25,6 +25,8 @@ public class PlayerManager : MonoBehaviour
      
      //
      private bool isCheckpoint;
+     private bool isCheckpoint2;
+     private bool isCheckpoint3;
      private bool fell;
      private void Start()
      {
@@ -55,6 +57,14 @@ public class PlayerManager : MonoBehaviour
          } else if (other.CompareTag("checkpoint"))
          {
              isCheckpoint = true;
+         }else if (other.CompareTag("checkpoint2"))
+         {
+             isCheckpoint2 = true;
+             isCheckpoint = false;
+         } else if (other.CompareTag("checkpoint3"))
+         {
+             isCheckpoint3 = true;
+             isCheckpoint2 = false;
          }
      }
 
@@ -95,7 +105,17 @@ public class PlayerManager : MonoBehaviour
          get { return isCheckpoint; }
          
      }
-     
+     public bool IsCheckpoint2
+     {
+         get { return isCheckpoint2; }
+
+     }
+
+     public bool IsCheckpoint3
+     {
+         get { return isCheckpoint3; }
+     }
+
      public bool Fell
      {
          get { return fell; }
