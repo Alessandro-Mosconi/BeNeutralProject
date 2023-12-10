@@ -28,6 +28,7 @@ public class ScoreManager : Singleton<ScoreManager>
         {
             lifes = n;
             lifesDisplay.text = string.Format("{0:D1}", lifes);
+            lifeImage.fillAmount = (float) lifes / GameManager.instance.GetStartingLifes();
         }
 
         public int GetLifes()
