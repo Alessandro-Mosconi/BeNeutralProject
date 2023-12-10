@@ -10,16 +10,20 @@ public class RespawnPlayers : MonoBehaviour
     private PlayerManager pSc2;
     private Vector3 pos1;
     private Vector3 pos2;
-    private Vector3 colliderPosition;
-    private Vector3 colliderDimensions;
+    private Vector3 checkpoint1;
+    private Vector3 checkpoint2;
+    private Vector3 checkpoint3;
+    private BoxCollider2D[] checkpoints;
     void Start()
     { 
         pSc1 = player1.GetComponent<PlayerManager>();
         pos1 = pSc1.transform.position;
         pSc2 = player2.GetComponent<PlayerManager>();
         pos2 = pSc2.transform.position;
-        // colliderDimensions = GetComponentInChildren<BoxCollider2D>().offset;
-        colliderPosition = GetComponentInChildren<BoxCollider2D>().transform.position;
+        checkpoints = GetComponentsInChildren<BoxCollider2D>();
+        checkpoint1 = checkpoints[0].transform.position;
+        checkpoint2 = checkpoints[1].transform.position;
+        checkpoint3 = checkpoints[2].transform.position;
 
     }
 
@@ -29,11 +33,23 @@ public class RespawnPlayers : MonoBehaviour
         if (pSc1.IsCheckpoint || pSc2.IsCheckpoint)
         {
             
-            pos1 = colliderPosition;
-            pos2 = colliderPosition;
-            pos2.y = -colliderPosition.y;
-            
-
+            pos1 = checkpoint1;
+            pos2 = checkpoint1;
+            pos2.y = -checkpoint1.y;
+        }
+        
+        if (pSc1.IsCheckpoint2 || pSc2.IsCheckpoint2)
+        {
+            pos1 = checkpoint2;
+            pos2 = checkpoint2;
+            pos2.y = -checkpoint2.y;
+        }
+        
+        if (pSc1.IsCheckpoint3 || pSc2.IsCheckpoint3)
+        {
+            pos1 = checkpoint3;
+            pos2 = checkpoint3;
+            pos2.y = -checkpoint3.y;
         }
         if (pSc1.Fell || pSc2.Fell)
         {
