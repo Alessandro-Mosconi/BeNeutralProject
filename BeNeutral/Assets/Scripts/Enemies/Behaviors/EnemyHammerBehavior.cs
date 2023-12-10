@@ -11,6 +11,11 @@ namespace Enemies.Behaviors
         private GameObject _hammerObject;
         private bool _hammeringActionCompleted;
 
+        public override EnemyBehaviorType Type()
+        {
+            return EnemyBehaviorType.Hammer;
+        }
+        
         public override void ResetBehavior(Transform self)
         {
             _hammerObject = hammer.gameObject;
@@ -33,7 +38,7 @@ namespace Enemies.Behaviors
             base.ResetBehavior(self);
         }
 
-        public override bool PerformStep(GameObject target, float deltaTime)
+        public override bool PerformStep(PlayerManager target, float deltaTime)
         {
             return _hammeringActionCompleted;
         }

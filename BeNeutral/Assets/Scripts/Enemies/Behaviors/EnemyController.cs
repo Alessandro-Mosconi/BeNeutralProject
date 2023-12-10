@@ -15,6 +15,7 @@ namespace Enemies.Behaviors
         private readonly List<int> _currentStates = new List<int>();
         private readonly Dictionary<int, int> _behaviorToIndexMap = new Dictionary<int, int>();
         private int _stateToRestoreAfterAction = -1;
+        private PlayerManager _target;
 
         private void Start()
         {
@@ -22,33 +23,43 @@ namespace Enemies.Behaviors
             //Initialize the hash map
             for (int i = 0; i < _activeBehaviors.Length; i++)
             {
-                _behaviorToIndexMap[(int)_activeBehaviors[i].Type] = i;
+                _behaviorToIndexMap[(int)_activeBehaviors[i].Type()] = i;
             }
             foreach (int type in Enum.GetValues(typeof(EnemyBehaviorType)))
             {
                 _behaviorToIndexMap.TryAdd(type, -1);
             }
 
+            bool addedInitialState = false;
             foreach (EnemyBehaviorType behaviorType in Enum.GetValues(typeof(EnemyBehaviorType)))
             {
                 int index = _behaviorToIndexMap[(int)behaviorType];
-                if (index != -1)
+                if (index != -1 && (!addedInitialState || behaviorType == EnemyBehaviorType.AbsorbsCharge))
                 {
                     _currentStates.Add(index);
-                    break;
+                    addedInitialState = true;
                 }
             }
 
+            List<EnemyBehaviorType> currentBehaviors = new List<EnemyBehaviorType>(_currentStates.Count);
+            foreach (var state in _currentStates)
+            {
+                currentBehaviors.Add(_activeBehaviors[state].Type());
+            }
             foreach (EnemyBehavior activeBehavior in _activeBehaviors)
             {
                 activeBehavior.LinkToController(this);
                 activeBehavior.ResetBehavior(transform);
-                if (activeBehavior.Type != _activeBehaviors[_currentStates[0]].Type)
+                if (!currentBehaviors.Contains(activeBehavior.Type()))
                 {
                     activeBehavior.DidAbandonState();
                 }
             }
-            print("STATE MACHINE INIT: Initial state is " + _activeBehaviors[_currentStates[0]].Type);
+
+            _target = target.GetComponent<PlayerManager>();
+            String states = "";
+            _currentStates.ForEach(s => states += _activeBehaviors[s].Type() + ", ");
+            print("STATE MACHINE INIT: Initial states are " + states);
         }
 
         private void Update()
@@ -60,11 +71,11 @@ namespace Enemies.Behaviors
             {
                 int currentState = _currentStates[i];
                 EnemyBehavior behavior = _activeBehaviors[currentState];
-                bool shouldMoveToNextState = behavior.PerformStep(target, Time.deltaTime);
+                bool shouldMoveToNextState = behavior.PerformStep(_target, Time.deltaTime);
                 int signalCode = behavior.switchSignalCode;
                 if (shouldMoveToNextState)
                 {
-                    switch (behavior.Type)
+                    switch (behavior.Type())
                     {
                         case EnemyBehaviorType.Patrol:
                             //Move to Follow

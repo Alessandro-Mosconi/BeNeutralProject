@@ -10,6 +10,11 @@ namespace Enemies.Behaviors
         private int _playerLayerMask;
         private float _currentAlpha;
         private Vector2 _currentRadarDir;
+        
+        public override EnemyBehaviorType Type()
+        {
+            return EnemyBehaviorType.Radar;
+        }
 
         public override void ResetBehavior(Transform self)
         {
@@ -20,7 +25,7 @@ namespace Enemies.Behaviors
             base.ResetBehavior(self);
         }
 
-        public override bool PerformStep(GameObject target, float deltaTime)
+        public override bool PerformStep(PlayerManager target, float deltaTime)
         {
             //1. Decide whether we need to stay in this state or switch to action. Decision is taken based on the policy update interval
             bool shouldSwitchToAction = ShouldSwitchToAction(deltaTime);

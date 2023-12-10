@@ -5,13 +5,17 @@ namespace Enemies.Behaviors
 {
     public class EnemyBehavior : MonoBehaviour
     {
-        [SerializeField] public EnemyBehaviorType Type;
         [SerializeField] public float UpdateInterval;
         [HideInInspector] public int switchSignalCode;
 
         protected float TimeSinceLastUpdate = 0;
         protected WeakReference<Transform> WeakSelf;
         protected EnemyController Controller;
+
+        public virtual EnemyBehaviorType Type()
+        {
+            throw new NotImplementedException();
+        }
 
         public void LinkToController(EnemyController controller)
         {
@@ -24,7 +28,7 @@ namespace Enemies.Behaviors
             TimeSinceLastUpdate = 0;
         }
 
-        public virtual bool PerformStep(GameObject target, float deltaTime)
+        public virtual bool PerformStep(PlayerManager target, float deltaTime)
         {
             return false;
         }
