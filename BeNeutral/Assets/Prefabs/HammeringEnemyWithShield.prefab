@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7990655534008209303}
   - component: {fileID: 792834963814030442}
   - component: {fileID: 8300553169265573164}
+  - component: {fileID: 1764819617293546844}
   m_Layer: 7
   m_Name: Shield
   m_TagString: Untagged
@@ -114,7 +115,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -130,6 +131,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1764819617293546844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330900017778750419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 623788fe787444348ff040ffc0c0c64e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &861106887215471587
 GameObject:
   m_ObjectHideFlags: 0
@@ -307,7 +320,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9668a05e734b49a93d20eb709aa567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
   target: {fileID: 0}
+  maxLife: 10
 --- !u!114 &3913126130799117371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +335,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf30614da464d7187cd6918f32f2972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
   UpdateInterval: 0.2
   switchSignalCode: 0
   maxCoveredDistance: 10
@@ -338,7 +352,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17b81f2349714108881736a0e27b3183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 1
   UpdateInterval: 0.2
   switchSignalCode: 0
   minTargetDistance: 1
@@ -361,10 +374,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4894fa3fa1144f29ac8540b1daf805e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 3
   UpdateInterval: 1
   switchSignalCode: 0
   hammer: {fileID: 9164398171334417650}
+  damage: 2
 --- !u!114 &7853839227027935692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,7 +390,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84988e7ef59646cb960fb2094ead0217, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 4
   UpdateInterval: 1
   switchSignalCode: 0
   shieldObject: {fileID: 330900017778750419}
@@ -483,6 +495,7 @@ MonoBehaviour:
   speedDown: 2
   speedUp: 0.5
   waitTime: 0.5
+  damage: 0
 --- !u!61 &7249298143231044468
 BoxCollider2D:
   m_ObjectHideFlags: 0
