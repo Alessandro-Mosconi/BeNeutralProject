@@ -27,11 +27,7 @@ public class BulletPlayer : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         print(other.gameObject.layer);
-        
-        if (other.gameObject.layer == LayerMask.NameToLayer("Terrain"))
-        {
-            print("eccomi");
-            gameObject.SetActive(false);
-        }
+
+        gameObject.SetActive(false);
     }
 }

@@ -1,3 +1,16 @@
 {
-  "name": "EnemyWeapons"
+    "name": "EnemyWeapons",
+    "rootNamespace": "",
+    "references": [
+        "GUID:a9541f3d53bc4491a41d5afaa9fc0257"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
