@@ -11,6 +11,11 @@ namespace Enemies.Behaviors
         private GameObject _hammerObject;
         private bool _hammeringActionCompleted;
 
+        public override EnemyBehaviorType Type()
+        {
+            return EnemyBehaviorType.Hammer;
+        }
+        
         public override void ResetBehavior(Transform self)
         {
             _hammerObject = hammer.gameObject;

@@ -10,6 +10,11 @@ namespace Enemies.Behaviors
         private int _playerLayerMask;
         private float _currentAlpha;
         private Vector2 _currentRadarDir;
+        
+        public override EnemyBehaviorType Type()
+        {
+            return EnemyBehaviorType.Radar;
+        }
 
         public override void ResetBehavior(Transform self)
         {

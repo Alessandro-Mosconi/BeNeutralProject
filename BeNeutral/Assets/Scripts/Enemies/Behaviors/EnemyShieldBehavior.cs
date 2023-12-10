@@ -5,6 +5,11 @@ namespace Enemies.Behaviors
     public class EnemyShieldBehavior : EnemyBehavior
     {
         public GameObject shieldObject;
+        
+        public override EnemyBehaviorType Type()
+        {
+            return EnemyBehaviorType.Shield;
+        }
 
         public override void ResetBehavior(Transform self)
         {

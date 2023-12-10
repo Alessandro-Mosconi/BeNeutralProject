@@ -10,6 +10,11 @@ namespace Enemies.Behaviors
         public float maxDamagePerSecond = 2;
         public AnimationCurve damageCurve = new AnimationCurve(new []{new Keyframe(0, 1), new Keyframe(1, 0)});
 
+        public override EnemyBehaviorType Type()
+        {
+            return EnemyBehaviorType.AbsorbsCharge;
+        }
+
         public override void ResetBehavior(Transform self)
         {
             base.ResetBehavior(self);

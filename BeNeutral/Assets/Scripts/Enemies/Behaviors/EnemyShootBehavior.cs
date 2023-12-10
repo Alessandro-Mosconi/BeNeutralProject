@@ -14,6 +14,11 @@ namespace Enemies.Behaviors
 
         private float _cumulatedShootingDelay = 0;
         private Vector2 _shootingBaseDirection;
+        
+        public override EnemyBehaviorType Type()
+        {
+            return EnemyBehaviorType.Shoot;
+        }
 
         public override void ResetBehavior(Transform self)
         {

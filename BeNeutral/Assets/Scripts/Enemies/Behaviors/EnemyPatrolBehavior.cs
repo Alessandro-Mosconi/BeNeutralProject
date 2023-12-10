@@ -18,6 +18,11 @@ namespace Enemies.Behaviors
         
         private float _cos30, _sin30, _cos60, _sin60;
 
+        public override EnemyBehaviorType Type()
+        {
+            return EnemyBehaviorType.Patrol;
+        }
+        
         public override void ResetBehavior(Transform self)
         {
             _terrainCheckRaycastLength = self.GetComponent<Collider2D>().bounds.extents.y + 0.2f;

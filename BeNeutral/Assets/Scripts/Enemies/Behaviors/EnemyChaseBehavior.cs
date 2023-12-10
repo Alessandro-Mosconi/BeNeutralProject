@@ -25,6 +25,11 @@ namespace Enemies.Behaviors
         private float _cumulatedCooldownTime = 0;
         private float _cumulatedAttackTime = 0; 
         private bool _cooldownInProgress = false;
+        
+        public override EnemyBehaviorType Type()
+        {
+            return EnemyBehaviorType.Chase;
+        }
 
         public override void ResetBehavior(Transform self)
         {
