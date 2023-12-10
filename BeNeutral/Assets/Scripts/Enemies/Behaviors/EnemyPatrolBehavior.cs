@@ -37,7 +37,7 @@ namespace Enemies.Behaviors
             base.ResetBehavior(self);
         }
 
-        public override bool PerformStep(GameObject target, float deltaTime)
+        public override bool PerformStep(PlayerManager target, float deltaTime)
         {
             //1. Decide whether we need to stay in this state or switch to active Follow. Decision is taken based on the policy update interval
             bool shouldSwitchToFollow = ShouldSwitchToFollow(deltaTime);

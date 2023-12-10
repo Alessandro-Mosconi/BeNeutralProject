@@ -23,7 +23,7 @@ namespace Enemies.Behaviors
             base.ResetBehavior(self);
         }
 
-        public override bool PerformStep(GameObject target, float deltaTime)
+        public override bool PerformStep(PlayerManager target, float deltaTime)
         {
             //1. Check if the Player is not visible anymore - in this case stop shooting
             bool playerVisible = CheckTargetVisible(target);
@@ -38,10 +38,11 @@ namespace Enemies.Behaviors
             base.DidAbandonState();
         }
 
-        private bool CheckTargetVisible(GameObject target)
+        private bool CheckTargetVisible(PlayerManager target)
         {
             if (WeakSelf.TryGetTarget(out Transform self))
             {
+                print(self + " - " + target);
                 return Vector3.SqrMagnitude(self.position - target.transform.position) <=
                        (maxTargetDistance * maxTargetDistance);
             }
@@ -49,7 +50,7 @@ namespace Enemies.Behaviors
             return true;
         }
 
-        private void UpdateBaseShootingDirection(GameObject target, float deltaTime)
+        private void UpdateBaseShootingDirection(PlayerManager target, float deltaTime)
         {
             if (WeakSelf.TryGetTarget(out Transform self))
             {
@@ -63,7 +64,7 @@ namespace Enemies.Behaviors
             }
         }
 
-        private void ShootTarget(GameObject target, float deltaTime)
+        private void ShootTarget(PlayerManager target, float deltaTime)
         {
             if (WeakSelf.TryGetTarget(out Transform self))
             {

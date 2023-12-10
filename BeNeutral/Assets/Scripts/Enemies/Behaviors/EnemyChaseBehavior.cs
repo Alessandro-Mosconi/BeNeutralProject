@@ -49,7 +49,7 @@ namespace Enemies.Behaviors
             base.ResetBehavior(self);
         }
 
-        public override bool PerformStep(GameObject target, float deltaTime)
+        public override bool PerformStep(PlayerManager target, float deltaTime)
         {
             //1. Check if the player is visible to start any cooldown timers and then decide if we need to move back to Patrol mode
             CheckPlayerVisibility(target, deltaTime);
@@ -67,7 +67,7 @@ namespace Enemies.Behaviors
             base.DidAbandonState();
         }
 
-        private void CheckPlayerVisibility(GameObject target, float deltaTime)
+        private void CheckPlayerVisibility(PlayerManager target, float deltaTime)
         {
             TimeSinceLastUpdate += deltaTime;
             if (TimeSinceLastUpdate >= UpdateInterval && WeakSelf.TryGetTarget(out Transform self))
@@ -107,7 +107,7 @@ namespace Enemies.Behaviors
             return false;
         }
 
-        private void ChasePlayer(GameObject target, float deltaTime)
+        private void ChasePlayer(PlayerManager target, float deltaTime)
         {
             //Chase the player until either we are too close to the player or to an obstacle
             if (WeakSelf.TryGetTarget(out Transform self))

@@ -24,7 +24,7 @@ namespace Enemies.Behaviors
             TimeSinceLastUpdate = 0;
         }
 
-        public virtual bool PerformStep(GameObject target, float deltaTime)
+        public virtual bool PerformStep(PlayerManager target, float deltaTime)
         {
             return false;
         }

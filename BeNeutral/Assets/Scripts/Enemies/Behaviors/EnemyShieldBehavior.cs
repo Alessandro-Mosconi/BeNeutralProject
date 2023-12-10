@@ -12,7 +12,7 @@ namespace Enemies.Behaviors
             base.ResetBehavior(self);
         }
 
-        public override bool PerformStep(GameObject target, float deltaTime)
+        public override bool PerformStep(PlayerManager target, float deltaTime)
         {
             return false; //Transitions to other states must be controlled externally
         }
