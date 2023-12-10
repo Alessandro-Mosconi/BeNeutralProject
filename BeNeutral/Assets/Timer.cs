@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using TMPro;
 using TMPro.Examples;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -52,6 +53,8 @@ public class Timer : MonoBehaviour
             }
             else
             {
+                print("kill-manager");
+                GameManager.instance.KillPlayer();
                 ResetTimer();
                 gameObject.SetActive(false);
             }
