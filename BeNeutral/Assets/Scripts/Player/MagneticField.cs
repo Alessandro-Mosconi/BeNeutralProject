@@ -73,12 +73,17 @@ public class MagneticField : MonoBehaviour
             magneticFieldInstance.SetActive(false);
         }
     }
-    public GameObject GetChildGameObject(GameObject fromGameObject, string withName)
+    private GameObject GetChildGameObject(GameObject fromGameObject, string withName)
     {
-        var allKids = fromGameObject.GetComponentsInChildren<Transform>();
-        var kid = allKids.FirstOrDefault(k => k.gameObject.name == withName);
-        if (kid == null) return null;
-        return kid.gameObject;
+        foreach (Transform childTransform in transform)
+        {
+            if (childTransform.gameObject.name == withName)
+            {
+                return childTransform.gameObject;
+            }
+        }
+
+        return null;
     }
     
 }
