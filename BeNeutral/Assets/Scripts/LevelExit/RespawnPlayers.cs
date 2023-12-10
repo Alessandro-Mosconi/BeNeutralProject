@@ -22,9 +22,11 @@ public class RespawnPlayers : MonoBehaviour
         pos2 = pSc2.transform.position;
         checkpoints = GetComponentsInChildren<BoxCollider2D>();
         checkpoint1 = checkpoints[0].transform.position;
-        checkpoint2 = checkpoints[1].transform.position;
-        checkpoint3 = checkpoints[2].transform.position;
-
+        if (checkpoints.Length > 1)
+        {
+            checkpoint2 = checkpoints[1].transform.position;
+            checkpoint3 = checkpoints[2].transform.position;
+        }
     }
 
     // Update is called once per frame
