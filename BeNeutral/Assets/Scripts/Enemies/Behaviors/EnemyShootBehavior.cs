@@ -47,7 +47,6 @@ namespace Enemies.Behaviors
         {
             if (WeakSelf.TryGetTarget(out Transform self))
             {
-                print(self + " - " + target);
                 return Vector3.SqrMagnitude(self.position - target.transform.position) <=
                        (maxTargetDistance * maxTargetDistance);
             }
