@@ -15,7 +15,7 @@ namespace UI
         
         //My changes
         [Header("PLAYER")]
-        [SerializeField] private  SpwanPoint playerSpawnPoint; 
+        //[SerializeField] private  SpwanPoint playerSpawnPoint; 
         [SerializeField] private  int startingLifes;
         //
         [Header("SCORES")]
@@ -49,7 +49,7 @@ namespace UI
 
         public void StartGame()
         {
-            SetupScene();
+            //SetupScene();
             // get starting level
             LoadLevel();
 
@@ -151,20 +151,20 @@ namespace UI
         }
         
 
-        public void SetupScene()
-        {
-            SpawnPlayer();
-        }
+        //public void SetupScene()
+        //{
+         //   SpawnPlayer();
+        //}
         
         
         //myChanges
-        public void SpawnPlayer()
-        {
-            if (playerSpawnPoint != null)
-            {
-                GameObject player = playerSpawnPoint.SpawnObject();
-            }
-        }
+        //public void SpawnPlayer()
+        //{
+        //    if (playerSpawnPoint != null)
+        //    {
+        //        GameObject player = playerSpawnPoint.SpawnObject();
+        //    }
+        //}
 
         public void TakeDamage()
         {
