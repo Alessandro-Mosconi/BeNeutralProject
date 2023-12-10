@@ -70,6 +70,6 @@ public class Timer : MonoBehaviour
     {
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);  
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        timeText.SetText("Players are too distance\n Get closer in: \n" + string.Format("{0:00}:{1:00}", minutes, seconds));
+        timeText.SetText("Players are too distant\n Get closer in: \n" + string.Format("{0:00}:{1:00}", minutes, seconds));
     }
 }
