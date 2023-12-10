@@ -25,6 +25,7 @@ namespace Enemies.Behaviors
         private float _cumulatedCooldownTime = 0;
         private float _cumulatedAttackTime = 0; 
         private bool _cooldownInProgress = false;
+        private float _raycastVerticalSign = 1;
         
         public override EnemyBehaviorType Type()
         {
@@ -34,11 +35,12 @@ namespace Enemies.Behaviors
         public override void ResetBehavior(Transform self)
         {
             _selfCollider = self.GetComponent<Collider2D>();
+            _raycastVerticalSign = Mathf.Sign(transform.up.y);
             
-            _cos30 = Mathf.Cos(30 * Mathf.Deg2Rad);
-            _sin30 = Mathf.Sin(30 * Mathf.Deg2Rad);
-            _cos60 = Mathf.Cos(60 * Mathf.Deg2Rad);
-            _sin60 = Mathf.Sin(60 * Mathf.Deg2Rad);
+            _cos30 = Mathf.Cos(30 * Mathf.Deg2Rad * _raycastVerticalSign);
+            _sin30 = Mathf.Sin(30 * Mathf.Deg2Rad * _raycastVerticalSign);
+            _cos60 = Mathf.Cos(60 * Mathf.Deg2Rad * _raycastVerticalSign);
+            _sin60 = Mathf.Sin(60 * Mathf.Deg2Rad * _raycastVerticalSign);
             
             _playerLayerMask = LayerMask.GetMask("Player");
             _terrainRaycastLayermask = LayerMask.GetMask("Terrain");
@@ -182,7 +184,7 @@ namespace Enemies.Behaviors
             if (WeakSelf.TryGetTarget(out Transform self))
             {
                 Vector2 position = self.position;
-                Vector2 direction = Vector2.down;
+                Vector2 direction = Vector2.down * _raycastVerticalSign;
             
                 //Debug.DrawRay(position, direction * distance, Color.green);
                 RaycastHit2D hit = Physics2D.Raycast(position, direction, 1.5f, _terrainRaycastLayermask);

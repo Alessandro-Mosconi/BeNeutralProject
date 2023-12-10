@@ -72,7 +72,6 @@ namespace Enemies.Weapons
         {
             if (other.gameObject.layer == 6) //Layer 6 = Player
             {
-                gameObject.SetActive(false);
                 other.gameObject.GetComponent<PlayerManager>().DamagePlayer(damage);
             }
         }

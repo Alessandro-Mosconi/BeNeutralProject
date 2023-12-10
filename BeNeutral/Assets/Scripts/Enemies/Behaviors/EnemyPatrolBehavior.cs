@@ -15,6 +15,7 @@ namespace Enemies.Behaviors
         private float _terrainCheckRaycastLength = 0;
         private float _obstacleCheckRaycastLength = 0;
         private int _terrainRaycastLayermask, _obstacleRaycastLayermask, _playerLayerMask;
+        private float _raycastVerticalSign = 1;
         
         private float _cos30, _sin30, _cos60, _sin60;
 
@@ -25,16 +26,17 @@ namespace Enemies.Behaviors
         
         public override void ResetBehavior(Transform self)
         {
-            _terrainCheckRaycastLength = self.GetComponent<Collider2D>().bounds.extents.y + 0.2f;
+            _raycastVerticalSign = Mathf.Sign(transform.up.y);
+            _terrainCheckRaycastLength = self.GetComponent<Collider2D>().bounds.extents.y + 0.3f;
             _terrainRaycastLayermask = LayerMask.GetMask("Terrain");
             _obstacleCheckRaycastLength = self.GetComponent<Collider2D>().bounds.extents.x + 0.6f;
             _obstacleRaycastLayermask = LayerMask.GetMask("Damage-dealing", "Terrain", "Default");
             _playerLayerMask = LayerMask.GetMask("Player");
 
-            _cos30 = Mathf.Cos(30 * Mathf.Deg2Rad);
-            _sin30 = Mathf.Sin(30 * Mathf.Deg2Rad);
-            _cos60 = Mathf.Cos(60 * Mathf.Deg2Rad);
-            _sin60 = Mathf.Sin(60 * Mathf.Deg2Rad);
+            _cos30 = Mathf.Cos(30 * Mathf.Deg2Rad * _raycastVerticalSign);
+            _sin30 = Mathf.Sin(30 * Mathf.Deg2Rad * _raycastVerticalSign);
+            _cos60 = Mathf.Cos(60 * Mathf.Deg2Rad * _raycastVerticalSign);
+            _sin60 = Mathf.Sin(60 * Mathf.Deg2Rad * _raycastVerticalSign);
             
             _directionSign = Mathf.Sign(self.localScale.x);
             _cumulatedCoveredDirection = 0;
@@ -128,7 +130,7 @@ namespace Enemies.Behaviors
                     }
                 }
 
-                direction = Vector2.down;
+                direction = Vector2.down * _raycastVerticalSign;
                 position += (rightVector * 0.3f);
                 RaycastHit2D hitTerrain = Physics2D.Raycast(position, direction, _terrainCheckRaycastLength, _terrainRaycastLayermask);
                 Debug.DrawRay(position, direction * _terrainCheckRaycastLength, Color.green);

@@ -10,10 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8496501070019739887}
   - component: {fileID: 2002587354276304326}
-  - component: {fileID: 5758205175933577887}
-  - component: {fileID: 6202094401736245641}
   - component: {fileID: 2562335282963376997}
   - component: {fileID: 5532522957138646741}
+  - component: {fileID: 972921570583660620}
+  - component: {fileID: 5690646366766526955}
+  - component: {fileID: 7524809489413438773}
+  - component: {fileID: 5576023887727286080}
   m_Layer: 7
   m_Name: HammeringEnemy
   m_TagString: Untagged
@@ -89,41 +91,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5758205175933577887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 861106887215471587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaf9ecacd3194418a28be92b035ac41d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  updateInterval: 1
-  maxHammeringDistance: 10
-  hammerActionProbability: 0.6
-  hammer: {fileID: 9164398171334417650}
-  shieldObject: {fileID: 0}
---- !u!114 &6202094401736245641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 861106887215471587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b62e1d954c4ab4c698ba85337bf26a98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  updateInterval: 1
-  minTargetDistance: 0
-  maxTargetDistance: 1
-  movementSpeed: 1
 --- !u!50 &2562335282963376997
 Rigidbody2D:
   serializedVersion: 4
@@ -196,6 +163,74 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.34, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &972921570583660620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861106887215471587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d9668a05e734b49a93d20eb709aa567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+--- !u!114 &5690646366766526955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861106887215471587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eaf30614da464d7187cd6918f32f2972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UpdateInterval: 0.2
+  switchSignalCode: 0
+  maxCoveredDistance: 10
+  patrolSpeed: 1
+  visibilityRange: 3
+--- !u!114 &7524809489413438773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861106887215471587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b81f2349714108881736a0e27b3183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UpdateInterval: 0.2
+  switchSignalCode: 0
+  minTargetDistance: 1
+  maxTargetDistance: 5
+  movementSpeed: 1.2
+  cooldown: 2
+  attacks: 1
+  attackDecisionTimer: 1
+  attackProbability: 0.5
+  maxAttackDistance: 2
+--- !u!114 &5576023887727286080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861106887215471587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4894fa3fa1144f29ac8540b1daf805e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UpdateInterval: 0
+  switchSignalCode: 0
+  hammer: {fileID: 9164398171334417650}
+  damage: 2
 --- !u!1 &4443769518694693835
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,13 +258,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4443769518694693835}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: -0.16666667, y: 0.1666667, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
+  m_LocalPosition: {x: 0.158, y: 0.164, z: 0}
   m_LocalScale: {x: 0.1, y: 0.5, z: 0.33333334}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8496501070019739887}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
 --- !u!212 &1499901193668642370
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -298,6 +333,7 @@ MonoBehaviour:
   speedDown: 2
   speedUp: 0.5
   waitTime: 0.5
+  damage: 0
 --- !u!61 &7249298143231044468
 BoxCollider2D:
   m_ObjectHideFlags: 0
