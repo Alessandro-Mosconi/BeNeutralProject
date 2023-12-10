@@ -697,7 +697,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9678a7f37ec84d19aa7c47b87f50ac4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 3
   UpdateInterval: 1
   switchSignalCode: 0
   minDirectionalError: 0
@@ -718,7 +717,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3dc5c0e25ae49198752abeea320f5b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 1
   UpdateInterval: 0.2
   switchSignalCode: 0
   radarSpeed: 30
@@ -887,11 +885,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b86bd4908b64bafb6a192f20778e928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 6
   UpdateInterval: 0
   switchSignalCode: 0
   maxDistance: 5
-  maxDamage: 2
+  maxDamagePerSecond: 2
   damageCurve:
     serializedVersion: 2
     m_Curve:
@@ -2968,8 +2965,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
-  m_fontSizeBase: 70
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3883,7 +3880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -3906,7 +3903,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -19230,7 +19227,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -19253,7 +19250,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
