@@ -59,7 +59,7 @@ namespace Enemies.Behaviors
             _target = target.GetComponent<PlayerManager>();
             String states = "";
             _currentStates.ForEach(s => states += _activeBehaviors[s].Type() + ", ");
-            print("STATE MACHINE INIT: Initial states are " + states);
+            //print("STATE MACHINE INIT: Initial states are " + states);
         }
 
         private void Update()
@@ -147,7 +147,7 @@ namespace Enemies.Behaviors
             {
                 _currentStates[currentStateIndex] = newStateIndex;
                 _activeBehaviors[newStateIndex].ResetBehavior(transform);
-                print("MOVING to state " + nextState);
+                //print("MOVING to state " + nextState);
                 return true;
             }
             else
@@ -168,7 +168,7 @@ namespace Enemies.Behaviors
                     _currentStates.Add(newStateIndex);
                 }
                 _activeBehaviors[newStateIndex].ResetBehavior(transform);
-                print("ADDING state " + newState);
+                //print("ADDING state " + newState);
                 return true;
             }
 
@@ -182,7 +182,7 @@ namespace Enemies.Behaviors
             {
                 _activeBehaviors[stateIndex].DidAbandonState();
                 _currentStates.Remove(stateIndex);
-                print("REMOVING state " + state);
+                //print("REMOVING state " + state);
                 return true;
             }
 

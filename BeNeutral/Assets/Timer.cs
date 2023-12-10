@@ -53,7 +53,6 @@ public class Timer : MonoBehaviour
             }
             else
             {
-                print("kill-manager");
                 GameManager.instance.KillPlayer();
                 ResetTimer();
                 gameObject.SetActive(false);
