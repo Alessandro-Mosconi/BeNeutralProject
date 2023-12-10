@@ -6,6 +6,7 @@ namespace Enemies.Behaviors
     public class EnemyHammerBehavior : EnemyBehavior
     {
         public HammerComponent hammer;
+        public float damage = 2;
         
         private GameObject _hammerObject;
         private bool _hammeringActionCompleted;
@@ -16,6 +17,7 @@ namespace Enemies.Behaviors
             hammer.enabled = true;
             _hammerObject.SetActive(true);
             _hammeringActionCompleted = false;
+            hammer.damage = damage;
             
             hammer.OnHammeringStart = () =>
             {

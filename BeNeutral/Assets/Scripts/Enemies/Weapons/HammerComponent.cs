@@ -10,6 +10,7 @@ namespace Enemies.Weapons
         public float speedDown = 1;
         public float speedUp = 1;
         public float waitTime = 0.5f;
+        [HideInInspector] public float damage = 0;
         
         [HideInInspector]
         public System.Action OnHammeringStart = () => { };
@@ -64,6 +65,15 @@ namespace Enemies.Weapons
                     _currentSpeed = -speedUp;
                     _cumulatedWaitTime = 0;
                 }
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            if (other.gameObject.layer == 6) //Layer 6 = Player
+            {
+                gameObject.SetActive(false);
+                other.gameObject.GetComponent<PlayerManager>().DamagePlayer(damage);
             }
         }
     }
