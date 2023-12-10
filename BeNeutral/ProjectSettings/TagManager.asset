@@ -8,6 +8,8 @@ TagManager:
   - Hazards
   - checkpoint
   - Particle
+  - checkpoint2
+  - checkpoint3
   layers:
   - Default
   - TransparentFX
