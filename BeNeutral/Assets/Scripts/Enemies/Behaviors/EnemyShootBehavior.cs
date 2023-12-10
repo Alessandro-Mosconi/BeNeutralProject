@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using Enemies.Weapons;
+using Random = UnityEngine.Random;
 
 namespace Enemies.Behaviors
 {

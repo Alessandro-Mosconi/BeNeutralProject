@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
-public class BulletPlayer : MonoBehaviour
+public class BulletPlayer : BasePlayerWeapon
 {
     public float speed = 10;
     
@@ -28,5 +29,16 @@ public class BulletPlayer : MonoBehaviour
         //print(other.gameObject.layer);
 
         //gameObject.SetActive(false);
+        if (other.gameObject.layer == LayerMask.GetMask("Terrain"))
+        {
+            //collision with terrain will despawn the object
+            gameObject.SetActive(false);
+        }
+    }
+
+    public override void DidCollideWithEnemy()
+    {
+        //Collided with enemy -> hide (not destroy) since we are in a pool!
+        gameObject.SetActive(false);
     }
 }

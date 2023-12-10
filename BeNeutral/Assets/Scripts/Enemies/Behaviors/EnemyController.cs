@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using Player;
 using UnityEngine;
 
 namespace Enemies.Behaviors
@@ -9,16 +11,24 @@ namespace Enemies.Behaviors
      */
     public class EnemyController : MonoBehaviour
     {
+        public SpriteRenderer spriteRenderer;
         public GameObject target;
+        public float maxLife = 10;
 
         private EnemyBehavior[] _activeBehaviors;
         private readonly List<int> _currentStates = new List<int>();
         private readonly Dictionary<int, int> _behaviorToIndexMap = new Dictionary<int, int>();
         private int _stateToRestoreAfterAction = -1;
         private PlayerManager _target;
+        private float _life;
+        private Coroutine _flashCoroutine;
+        private Material _originalMaterial, _flashMaterial;
 
         private void Start()
         {
+            _life = maxLife;
+            _originalMaterial = spriteRenderer.material;
+            _flashMaterial = new Material(_originalMaterial);
             _activeBehaviors = GetComponents<EnemyBehavior>();
             //Initialize the hash map
             for (int i = 0; i < _activeBehaviors.Length; i++)
@@ -187,6 +197,72 @@ namespace Enemies.Behaviors
             }
 
             return false;
+        }
+
+        private void OnCollisionEnter2D(Collision2D other)
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Player Weapon"))
+            {
+                //Collision with enemy
+                print("Collision with enemy");
+                BasePlayerWeapon otherObj = other.gameObject.GetComponent<BasePlayerWeapon>();
+                ReceiveDamage(otherObj.damage);
+                otherObj.DidCollideWithEnemy();
+            }
+        }
+
+        private void ReceiveDamage(float damage)
+        {
+            if (_life - damage <= 0)
+            {
+                //Despawn
+                Destroy(gameObject);
+            }
+            else
+            {
+                //Flash the enemy
+                Flash(Color.red);
+                //Deal damage
+                _life -= damage;
+            }
+        }
+        
+        public void Flash(Color color)
+        {
+            // If the flashRoutine is not null, then it is currently running.
+            if (_flashCoroutine != null)
+            {
+                // In this case, we should stop it first.
+                // Multiple FlashRoutines the same time would cause bugs.
+                StopCoroutine(_flashCoroutine);
+            }
+
+            // Start the Coroutine, and store the reference for it.
+            _flashCoroutine = StartCoroutine(FlashRoutine(color));
+        }
+
+        private IEnumerator FlashRoutine(Color color, int repetitions = 1)
+        {
+            for (int i = 0; i < repetitions; i++)
+            {
+                // Swap to the flashMaterial.
+                spriteRenderer.material = _flashMaterial;
+
+                // Set the desired color for the flash.
+                _flashMaterial.color = color;
+
+                // Pause the execution of this function for "duration" seconds.
+                yield return new WaitForSeconds(0.2f);
+
+                // After the pause, swap back to the original material.
+                spriteRenderer.material = _originalMaterial;
+                
+                // Pasue to wait for the next flash
+                yield return new WaitForSeconds(0.2f);
+            }
+
+            // Set the flashRoutine to null, signaling that it's finished.
+            _flashCoroutine = null;
         }
     }
 }
