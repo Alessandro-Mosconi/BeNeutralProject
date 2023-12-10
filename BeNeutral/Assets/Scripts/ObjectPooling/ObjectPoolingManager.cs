@@ -99,4 +99,12 @@ public class ObjectPoolingManager
 		//Find the Right pool and ask it for an object.
 		return ObjectPoolingManager.Instance.objectPools[objName].GetObject();
 	}
+
+	public void ResetPools()
+	{
+		foreach (var objectPool in ObjectPoolingManager.Instance.objectPools)
+		{
+			objectPool.Value.ResetPool();
+		}
+	}
 }

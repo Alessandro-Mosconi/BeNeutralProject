@@ -158,4 +158,12 @@ public class ObjectPool
 //		}
 //	}
 
+	public void ResetPool()
+	{
+		foreach (var pooledObject in pooledObjects)
+		{
+			pooledObject.SetActive(false);
+		}
+	}
+	
 }
