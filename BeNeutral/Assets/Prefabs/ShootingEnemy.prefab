@@ -86,9 +86,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpdateInterval: 0.5
   switchSignalCode: 0
-  minDirectionalError: 0
-  maxDirectionalError: 0.05
-  maxTargetDistance: 5
+  minDirectionalError: 0.05
+  maxDirectionalError: 0.1
+  maxTargetDistance: 3
   shootingSpeed: 2
   bulletPrefab: {fileID: 128505314186681869, guid: a7f132655597d4134a43f7a88c67e40d, type: 3}
   bulletDamage: 2
