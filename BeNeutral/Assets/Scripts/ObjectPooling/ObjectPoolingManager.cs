@@ -107,4 +107,20 @@ public class ObjectPoolingManager
 			objectPool.Value.ResetPool();
 		}
 	}
+	
+	public void RegenPools()
+	{
+		foreach (var objectPool in ObjectPoolingManager.Instance.objectPools)
+		{
+			objectPool.Value.RegenPool();
+		}
+	}
+
+	public void DestroyPools()
+	{
+		foreach (var objectPool in ObjectPoolingManager.Instance.objectPools)
+		{
+			objectPool.Value.DestroyPool();
+		}
+	}
 }

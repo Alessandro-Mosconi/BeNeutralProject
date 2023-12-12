@@ -21,7 +21,7 @@ public class ObjectPool
 
 	//sample of the actual object to store.
 	//used if we need to grow the list.
-	private GameObject pooledObj;
+	private GameObject pooledObj, parent;
 
 	//maximum number of objects to have in the list.
 	private int maxPoolSize;
@@ -39,7 +39,7 @@ public class ObjectPool
 	public ObjectPool(GameObject obj, int initialPoolSize, int maxPoolSize, bool shouldShrink = false)
 	{
 		// Check if an empty object with obj.name exist
-		GameObject parent = GameObject.Find(obj.name);
+		parent = GameObject.Find(obj.name);
 
 		if (parent == null) {
 			parent = new GameObject ();
@@ -164,6 +164,48 @@ public class ObjectPool
 		{
 			pooledObject.SetActive(false);
 		}
+	}
+	
+	public void RegenPool()
+	{
+		GameObject obj = pooledObj;
+		DestroyPool();
+
+		//instantiate a new list of game objects to store our pooled objects in.
+		pooledObjects = new List<GameObject>();
+
+		//create and add an object based on initial size.
+		for (int i = 0; i < initialPoolSize; i++)
+		{
+			//instantiate and create a game object with useless attributes.
+			//these should be reset anyways.
+			GameObject nObj = GameObject.Instantiate(obj, Vector3.zero, Quaternion.identity) as GameObject;
+
+			nObj.transform.parent = parent.transform;
+
+			//make sure the object isn't active.
+			nObj.SetActive(false);
+
+			//add the object too our list.
+			pooledObjects.Add(nObj);
+
+			//Don't destroy on load, so
+			//we can manage centrally.
+			//GameObject.DontDestroyOnLoad(nObj);
+		}
+
+		//store our other variables that are useful.
+		pooledObj = pooledObjects[0];
+	}
+	
+	public void DestroyPool()
+	{
+		foreach (var pooledObject in pooledObjects)
+		{
+			GameObject.Destroy(pooledObject);
+		}
+
+		pooledObjects.Clear();
 	}
 	
 }

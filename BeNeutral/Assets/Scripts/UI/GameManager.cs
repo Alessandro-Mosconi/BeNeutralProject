@@ -45,6 +45,7 @@ namespace UI
         public void LoadLevel()
         {
             SceneManager.LoadScene(LevelName);
+            ObjectPoolingManager.Instance.RegenPools();
         }
 
         public void StartGame()
@@ -68,6 +69,7 @@ namespace UI
         }
         public void ResetGame()
         {
+            ObjectPoolingManager.Instance.ResetPools();
             ClearUI();
             LevelName = "Level1";
             scoreDisplay.SetLifes(startingLifes);

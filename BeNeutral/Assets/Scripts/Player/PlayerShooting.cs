@@ -34,7 +34,6 @@ public class PlayerShooting : MonoBehaviour
     private void Fire()
     {
         GameObject go = ObjectPoolingManager.Instance.GetObject (bulletPrefab.name);
-        go.transform.SetParent(firingTransform);
         go.transform.position = firingTransform.position;
         
         Vector3 shootingDirection = Vector3.up;
@@ -49,6 +48,13 @@ public class PlayerShooting : MonoBehaviour
         Quaternion rotation = Quaternion.LookRotation(Vector3.forward, shootingDirection);
         go.transform.rotation =  rotation;
         
+        //Enable all children of the Bullet object
+        List<MonoBehaviour> childObjects = new List<MonoBehaviour>();
+        go.GetComponents<MonoBehaviour>(childObjects);
+        foreach (MonoBehaviour component in childObjects)
+        {
+            component.enabled = true;
+        }
     }
     
     private void GetComponents()

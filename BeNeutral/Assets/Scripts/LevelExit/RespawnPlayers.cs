@@ -68,6 +68,8 @@ public class RespawnPlayers : MonoBehaviour
         pSc1.Fell=false;
         pSc2.Fell=false;
 
-
+        //Reset object pools to avoid having past bullets
+        //TODO: Have a manager handle player respawn (so we can reset some state of the level if necessary)
+        ObjectPoolingManager.Instance.ResetPools();
     }
 }
