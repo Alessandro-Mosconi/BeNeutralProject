@@ -49,11 +49,13 @@ public class PlayerShooting : MonoBehaviour
         go.transform.rotation =  rotation;
         
         //Enable all children of the Bullet object
-        List<MonoBehaviour> childObjects = new List<MonoBehaviour>();
-        go.GetComponents<MonoBehaviour>(childObjects);
-        foreach (MonoBehaviour component in childObjects)
+        Component[] components = go.GetComponents(typeof(Component));
+        foreach (Component component in components)
         {
-            component.enabled = true;
+            if (component is Behaviour)
+            {
+                ((Behaviour)component).enabled = true;
+            }
         }
     }
     
