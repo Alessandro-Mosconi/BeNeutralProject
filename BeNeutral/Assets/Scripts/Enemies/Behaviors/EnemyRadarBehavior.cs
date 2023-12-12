@@ -1,3 +1,4 @@
+using Enemies.Weapons;
 using UnityEngine;
 
 namespace Enemies.Behaviors
@@ -5,7 +6,9 @@ namespace Enemies.Behaviors
     public class EnemyRadarBehavior : EnemyBehavior
     {
         public float radarSpeed = 1;
+        [Range(3, 120)] public float radarAperture = 15;
         public float visibilityRange = 10;
+        public ConicRadar radarIndicator;
 
         private int _playerLayerMask;
         private float _currentAlpha;
@@ -21,6 +24,10 @@ namespace Enemies.Behaviors
             _playerLayerMask = LayerMask.GetMask("Player");
             _currentRadarDir = new Vector2(1, 0);
             _currentAlpha = 0;
+            
+            radarIndicator.ResetRotation();
+            radarIndicator.SetConeAperture(radarAperture);
+            radarIndicator.SetConeDepth(visibilityRange);
             
             base.ResetBehavior(self);
         }
@@ -39,6 +46,7 @@ namespace Enemies.Behaviors
 
         public override void DidAbandonState()
         {
+            radarIndicator.gameObject.SetActive(false);
             base.DidAbandonState();
         }
 
@@ -58,17 +66,20 @@ namespace Enemies.Behaviors
             return false;
         }
 
-        public static bool IsPlayerVisible(Vector2 position, Vector2 direction, float visibilityRange, int playerLayerMask, float rayVisibility)
+        private bool IsPlayerVisible(Vector2 position, Vector2 direction, float visibilityRange, int playerLayerMask, float rayVisibility)
         {
-            RaycastHit2D hit = Physics2D.Raycast(position, direction, visibilityRange, playerLayerMask);
+            /*RaycastHit2D hit = Physics2D.Raycast(position, direction, visibilityRange, playerLayerMask);
             Debug.DrawRay(position, direction * visibilityRange, Color.red, rayVisibility);
 
-            return hit.collider != null;
+            return hit.collider != null;*/
+            Debug.DrawRay(position, direction * visibilityRange, Color.red, rayVisibility);
+            return radarIndicator.CheckRadarIntersections(playerLayerMask);
         }
 
         private void RunRadarActions(float deltaTime)
         {
-            _currentAlpha += (deltaTime * radarSpeed * Mathf.Deg2Rad);
+            radarIndicator.RotateToDir(_currentRadarDir);
+            _currentAlpha += deltaTime * radarSpeed;
             if (_currentAlpha > 2 * Mathf.PI)
             {
                 _currentAlpha -= 2 * Mathf.PI;

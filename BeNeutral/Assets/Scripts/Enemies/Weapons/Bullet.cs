@@ -33,8 +33,8 @@ namespace Enemies.Weapons
             if (other.gameObject.layer == LayerMask.NameToLayer("Player")) 
             {
                 other.gameObject.GetComponent<PlayerManager>().DamagePlayer(damage);
+                gameObject.SetActive(false);
             }
-            print(other.gameObject.layer);
             if (other.gameObject.layer == LayerMask.NameToLayer("MagneticField")) 
             {
                 gameObject.SetActive(false);

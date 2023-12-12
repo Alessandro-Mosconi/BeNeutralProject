@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7683828737675096828}
   - component: {fileID: 8257548884960383268}
   - component: {fileID: 6437785004484212628}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ChasingEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -50,7 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9668a05e734b49a93d20eb709aa567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 6437785004484212628}
   target: {fileID: 0}
+  maxLife: 10
 --- !u!114 &8117821932281940032
 MonoBehaviour:
   m_ObjectHideFlags: 0

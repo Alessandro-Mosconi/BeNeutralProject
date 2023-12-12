@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9668a05e734b49a93d20eb709aa567, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 2002587354276304326}
   target: {fileID: 0}
   maxLife: 10
 --- !u!114 &3913126130799117371
