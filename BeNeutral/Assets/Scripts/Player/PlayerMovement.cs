@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
         bool isJumping = false;
 
         dirX = Input.GetAxis("HorizontalPlayer" + playerNumber);
-        isJumping = Input.GetButton("JumpPlayer" + playerNumber);
+        isJumping = Input.GetButtonDown("JumpPlayer" + playerNumber);
         
         if (dirX != 0)
         {
