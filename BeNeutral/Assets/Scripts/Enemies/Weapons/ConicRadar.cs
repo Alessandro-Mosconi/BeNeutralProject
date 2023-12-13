@@ -12,6 +12,7 @@ namespace Enemies.Weapons
         private Vector2 _currentAxis;
         private float _currentDepth;
         private float _currentApertureAngle;
+        private Collider2D _targetCollider;
         private void Start()
         {
             // Get the sprite renderer and its vertices
@@ -64,17 +65,27 @@ namespace Enemies.Weapons
             _currentAxis = coneAxisDirection;
         }
 
-        public bool CheckRadarIntersections(int targetLayerMask)
+        public bool CheckRadarIntersections(GameObject target)
         {
             //Sphere cast, then discard intersections outside the cone
-            RaycastHit2D[] hits = Physics2D.CircleCastAll(_rotationPivot, _currentDepth, _currentAxis, _currentDepth, targetLayerMask);
-            //Debug.DrawRay(_rotationPivot, _currentAxis * _currentDepth, Color.red, 0.1f);
-            foreach (RaycastHit2D hit in hits)
+            //RaycastHit2D hit = Physics2D.CircleCast(_rotationPivot, _currentDepth, _currentAxis, _currentDepth, targetLayerMask);
+            Vector3 closestPoint = target.transform.position;
+
+            Collider2D collider;
+            if (_targetCollider != null)
             {
-                if (hit.collider != null && Vector2.Angle(_currentAxis, hit.point - (Vector2)_rotationPivot) <= (0.5f * _currentApertureAngle))
-                {
-                    return true;
-                }
+                collider = _targetCollider;
+            }
+            else
+            {
+                collider = target.GetComponent<Collider2D>();
+            }
+            
+            Bounds targetBounds = collider.bounds;
+            closestPoint = targetBounds.ClosestPoint(transform.parent.position);
+            if (Vector2.SqrMagnitude(transform.parent.position - closestPoint) <= (_currentDepth * _currentDepth))
+            {
+                return Vector2.Angle(_currentAxis, target.transform.position - _rotationPivot) <= (0.5f * _currentApertureAngle);
             }
 
             return false;

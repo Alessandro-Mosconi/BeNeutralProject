@@ -2531,7 +2531,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8496501070019739887, guid: c0fb09b9ef33c439abaee59608d967af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.85
+      value: -3.67
       objectReference: {fileID: 0}
     - target: {fileID: 8496501070019739887, guid: c0fb09b9ef33c439abaee59608d967af, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3313,11 +3313,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8496501070019739887, guid: c0fb09b9ef33c439abaee59608d967af, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.873373
+      value: 23.29
       objectReference: {fileID: 0}
     - target: {fileID: 8496501070019739887, guid: c0fb09b9ef33c439abaee59608d967af, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.3992906
+      value: -4.67
       objectReference: {fileID: 0}
     - target: {fileID: 8496501070019739887, guid: c0fb09b9ef33c439abaee59608d967af, type: 3}
       propertyPath: m_LocalPosition.z
@@ -49171,7 +49171,7 @@ PrefabInstance:
       objectReference: {fileID: 1002601142}
     - target: {fileID: 5140953223931546145, guid: b07fc51f32dde4064914b731c5588262, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40.58234
+      value: 46.56
       objectReference: {fileID: 0}
     - target: {fileID: 5140953223931546145, guid: b07fc51f32dde4064914b731c5588262, type: 3}
       propertyPath: m_LocalPosition.y
@@ -50468,6 +50468,10 @@ PrefabInstance:
     - target: {fileID: 861106887215471587, guid: c0fb09b9ef33c439abaee59608d967af, type: 3}
       propertyPath: m_Name
       value: HammeringEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 861106887215471587, guid: c0fb09b9ef33c439abaee59608d967af, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 972921570583660620, guid: c0fb09b9ef33c439abaee59608d967af, type: 3}
       propertyPath: target

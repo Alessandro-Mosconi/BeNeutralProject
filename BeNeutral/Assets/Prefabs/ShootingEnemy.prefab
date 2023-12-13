@@ -66,7 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3dc5c0e25ae49198752abeea320f5b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UpdateInterval: 0.1
+  UpdateInterval: 0
   switchSignalCode: 0
   radarSpeed: 5
   radarAperture: 5

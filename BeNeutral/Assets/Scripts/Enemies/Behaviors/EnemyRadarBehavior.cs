@@ -29,13 +29,13 @@ namespace Enemies.Behaviors
             radarIndicator.SetConeAperture(radarAperture);
             radarIndicator.SetConeDepth(visibilityRange);
             
-            base.ResetBehavior(self);
+            radarIndicator.gameObject.SetActive(true);
         }
 
         public override bool PerformStep(PlayerManager target, float deltaTime)
         {
             //1. Decide whether we need to stay in this state or switch to action. Decision is taken based on the policy update interval
-            bool shouldSwitchToAction = ShouldSwitchToAction(deltaTime);
+            bool shouldSwitchToAction = ShouldSwitchToAction(target, deltaTime);
             //2. If we stay in this state, keep patrolling
             if (!shouldSwitchToAction)
             {
@@ -50,7 +50,7 @@ namespace Enemies.Behaviors
             base.DidAbandonState();
         }
 
-        private bool ShouldSwitchToAction(float deltaTime)
+        private bool ShouldSwitchToAction(PlayerManager target, float deltaTime)
         {
             //Decides whether to stay in Radar mode or switch to action
             //NB: If the player escapes, then the policy will move the enemy back to Radar mode!
@@ -60,20 +60,20 @@ namespace Enemies.Behaviors
                 TimeSinceLastUpdate -= UpdateInterval;
                 _currentRadarDir.x = Mathf.Cos(_currentAlpha);
                 _currentRadarDir.y = Mathf.Sin(_currentAlpha);
-                return IsPlayerVisible(self.position, _currentRadarDir, visibilityRange, _playerLayerMask, UpdateInterval * 0.5f);
+                return IsPlayerVisible(target, self.position, _currentRadarDir, visibilityRange, _playerLayerMask, UpdateInterval * 0.5f);
             }
 
             return false;
         }
 
-        private bool IsPlayerVisible(Vector2 position, Vector2 direction, float visibilityRange, int playerLayerMask, float rayVisibility)
+        private bool IsPlayerVisible(PlayerManager target, Vector2 position, Vector2 direction, float visibilityRange, int playerLayerMask, float rayVisibility)
         {
             /*RaycastHit2D hit = Physics2D.Raycast(position, direction, visibilityRange, playerLayerMask);
             Debug.DrawRay(position, direction * visibilityRange, Color.red, rayVisibility);
 
             return hit.collider != null;*/
-            Debug.DrawRay(position, direction * visibilityRange, Color.red, rayVisibility);
-            return radarIndicator.CheckRadarIntersections(playerLayerMask);
+            Debug.DrawRay(position, direction * visibilityRange, Color.blue, rayVisibility);
+            return radarIndicator.CheckRadarIntersections(target.gameObject);
         }
 
         private void RunRadarActions(float deltaTime)
