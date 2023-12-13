@@ -12,6 +12,7 @@ namespace UI
         [Header("UI")]
         [SerializeField] private ScoreManager scoreDisplay;
         [SerializeField] private AudioManager audioManager;
+        [SerializeField] private LoadingManager loadingManager;
         
         //My changes
         [Header("PLAYER")]
@@ -44,29 +45,15 @@ namespace UI
         }
         public void LoadLevel()
         {
-            SceneManager.LoadScene(LevelName);
+            loadingManager.startScene(LevelName);
             ObjectPoolingManager.Instance.RegenPools();
         }
 
         public void StartGame()
         {
-            //SetupScene();
-            // get starting level
             LoadLevel();
-
-            StartCoroutine(StartGameCoroutine());
         }
-
-        IEnumerator StartGameCoroutine()
-        {
-            // TODO
-            // start background music for the game
-            //AudioManager.Instance.StartBackgroundGamingMusic();
         
-            ClearUI();
-            yield return new WaitForSeconds(0.3f);
-            scoreDisplay.Open();
-        }
         public void ResetGame()
         {
             ObjectPoolingManager.Instance.ResetPools();
