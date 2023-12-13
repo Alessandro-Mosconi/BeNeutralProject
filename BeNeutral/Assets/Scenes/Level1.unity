@@ -2517,6 +2517,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HammeringEnemy (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 861106887215471587, guid: c0fb09b9ef33c439abaee59608d967af, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 972921570583660620, guid: c0fb09b9ef33c439abaee59608d967af, type: 3}
       propertyPath: target
       value: 
