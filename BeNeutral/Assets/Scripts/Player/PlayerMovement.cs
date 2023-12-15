@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Transform _originalParent;
     
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Animator animator;
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
+        _originalParent = transform.parent;
     }
 
     // Update is called once per frame
@@ -81,5 +83,16 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool(varRunning, false);
         }
+    }
+    
+    public void setParent(Transform newParent)
+    {
+        _originalParent = transform.parent;
+        transform.parent = newParent;
+    }
+    
+    public void resetParent()
+    {
+        transform.parent = _originalParent;
     }
 }
