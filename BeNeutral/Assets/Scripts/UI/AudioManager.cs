@@ -1,53 +1,62 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
 namespace UI
 {
+
     public class AudioManager : Singleton<AudioManager>
     {
-        [Space(20)]
-        [Header("Audio Sources")]
-        [SerializeField] private AudioSource backgroundMusicAudioSource;
-        [SerializeField] private AudioSource backgroundMusicGamingAudioSource;
 
+
+        [Space(20)] [Header("Audio Sources")] 
+        [SerializeField] private AudioSource backgroundMusicAudioSource;
         [SerializeField] private AudioSource playerAudioSource;
-        
         [SerializeField] private AudioSource enemieAudioSource;
-        
-        
-        [Space(30)]
-        [Header("Player sounds")]
+        [SerializeField] private AudioSource menuInteractionSource;
+
+
+        [Space(30)] [Header("Player sounds")] 
         [SerializeField] private AudioClip fireAudioClipPlayer;
         [SerializeField] private AudioClip walkingAudioClipPlayer;
         [SerializeField] private AudioClip dieAudioClipPlayer;
-        
-        [Space(30)]
-        [Header("Enemies sounds")]
-        [SerializeField] private AudioClip fireAudioClipEnemie;
+        [SerializeField] private AudioClip forceFieldAudioClipPlayer;
+
+        [Space(30)] [Header("Enemies sounds")] [SerializeField]
+        private AudioClip fireAudioClipEnemie;
+
         [SerializeField] private AudioClip walkingAudioClipEnemie;
         [SerializeField] private AudioClip dieAudioClipEnemie;
-        
-        
+
+
         [Space(5)]
         [Header("Background Music")]
-        [SerializeField] private AudioClip quietBeatAudioClip;
-        [SerializeField] private float quietBeatInterval = 1.0f;
-        [SerializeField] private AudioClip dramaticBeatAudioClip;
-        [SerializeField] private float dramaticBeatInterval = 0.5f;
+        [SerializeField] private AudioClip backgroundMenuAudioClip; //0
+        [SerializeField] private AudioClip backgroundGameAudioClip; //1
+        [SerializeField] private AudioClip backgroundLoseAudioClip; //2
+        [SerializeField] private AudioClip backgroundNextLevelAudioClip; //3
+        [Space(3)]
+        [Header("Background music controls")]
+        [SerializeField] private float backgroundVolume;
+        [SerializeField] private float fadeInTime;
         
-        [SerializeField] private AudioClip gamingAudioClip;
-
+        [Space(20)]
+        [Header("Menu Interactions")]
+        [SerializeField] private AudioClip buttonClick;
+        
+        
         [Space(20)]
         [Header("Audio Mixer")]
         [SerializeField] private AudioMixer mixer;
         
-        private AudioClip beatAudioClip;
-        private float beatInterval = 0f;
         private Coroutine backgroundMusicCoroutine;
-        private Coroutine backgroundMusicGameCoroutine;
-        private bool dramaticBackgroundMusic = false;
+        private Coroutine fadeInCoroutine;
+        private AudioClip currentBackgroundMusic;
         
+        
+        // - player sounds
         public void PlayFirePlayer()
         {
             playerAudioSource.PlayOneShot(fireAudioClipPlayer);
@@ -60,7 +69,13 @@ namespace UI
         {
             playerAudioSource.PlayOneShot(dieAudioClipPlayer);
         }
+        public void PlayForceFieldPlayer() 
+        {
+            playerAudioSource.PlayOneShot(forceFieldAudioClipPlayer);
+        }
         
+        
+        // - enemies sounds
         public void PlayFireEnemie()
         {
             enemieAudioSource.PlayOneShot(fireAudioClipEnemie);
@@ -73,80 +88,91 @@ namespace UI
         {
             enemieAudioSource.PlayOneShot(dieAudioClipEnemie);
         }
+
+        // - menu interactions
         
-        
-        public void StartBackgroundMusic()
+        public void PlayClickButton()
         {
+            enemieAudioSource.PlayOneShot(buttonClick);
+        }
+        
+        // - background sounds
+        public void ChooseBackgroundMusic(int musicChoice)
+        {
+            switch (musicChoice)
+            {
+                case 0:
+                    currentBackgroundMusic = backgroundMenuAudioClip;
+                    break;
+                case 1:
+                    currentBackgroundMusic = backgroundGameAudioClip;
+                    break;
+                case 2:
+                    currentBackgroundMusic = backgroundLoseAudioClip;
+                    break;
+                case 3:
+                    currentBackgroundMusic = backgroundNextLevelAudioClip;
+                    break;
+                default:
+                    currentBackgroundMusic = backgroundMenuAudioClip;
+                    break;
+            }
+            StartBackgroundMusic();
+        }
+
+        private void StartBackgroundMusic()
+        {
+            StopBackgroundMusic();
             if (backgroundMusicCoroutine != null)
                 return;
-            backgroundMusicCoroutine = StartCoroutine("PlayBackgroundMusicRoutine");
-
-
-        }
-        
-        public void StartBackgroundGamingMusic()
-        {
-            if (backgroundMusicGameCoroutine != null)
-                return;
-            backgroundMusicGameCoroutine = StartCoroutine("PlayBackgroundMusicGameRoutine");
-
-
-        }
-
-        public void StopBackgroundMusic()
-        {
-            if (backgroundMusicCoroutine != null)
-                StopCoroutine(backgroundMusicCoroutine);
-        }
-        public void StopBackgroundGameMusic()
-        {
-            if (backgroundMusicGameCoroutine != null)
-                StopCoroutine(backgroundMusicGameCoroutine);
-        }
-        
-        public void ShiftToDramaticBackgroundMusic()
-        {
-            if (backgroundMusicCoroutine != null)
-                dramaticBackgroundMusic = true;
-        }
-
-        public void ResetBackgroundMusic()
-        {
-            beatAudioClip = quietBeatAudioClip;
-            beatInterval = quietBeatInterval;
-            dramaticBackgroundMusic = false;
+            if(fadeInCoroutine != null)
+                StopCoroutine(fadeInCoroutine);
+            FadeInMusic(backgroundMusicAudioSource, fadeInTime);
+            backgroundMusicAudioSource.PlayOneShot(currentBackgroundMusic);
+            backgroundMusicCoroutine = StartCoroutine(PlayBackgroundMusicRoutine());
         }
         
         private IEnumerator PlayBackgroundMusicRoutine()
         {
-            ResetBackgroundMusic();
-            
-            while (true)
+            while (backgroundMusicAudioSource.isPlaying)
             {
-                backgroundMusicAudioSource.PlayOneShot(beatAudioClip);
-                yield return new WaitForSeconds(beatInterval);
+                yield return null;
+            }
 
-                if (dramaticBackgroundMusic)
-                {
-                    beatAudioClip = dramaticBeatAudioClip;
-                    beatInterval = dramaticBeatInterval;
-                    
-                } 
-                
-            }
+            yield return new WaitForSeconds(1f);
+            backgroundMusicCoroutine = null;
+            StartBackgroundMusic();
         }
-        
-        private IEnumerator PlayBackgroundMusicGameRoutine()
+
+        public void StopBackgroundMusic()
         {
-            ResetBackgroundMusic();
-            
-            while (true)
-            {
-                backgroundMusicGamingAudioSource.PlayOneShot(gamingAudioClip);
-                yield return new WaitForSeconds(beatInterval);
-                
-            }
+            backgroundMusicAudioSource.Stop();
+            if (backgroundMusicCoroutine == null) return;
+            StopCoroutine(backgroundMusicCoroutine);
+            backgroundMusicCoroutine = null;
         }
+
+        // - effects 
+        private void FadeInMusic(AudioSource audioS, float time)
+        {
+            audioS.volume = 0;
+            fadeInCoroutine = StartCoroutine(FadeInRoutine(audioS, time));
+        }
+
+        private IEnumerator FadeInRoutine(AudioSource audioS, float time)
+        {
+            float currentVolume = 0;
+            const float step = 0.01f;
+            float waitingTime = time / (backgroundVolume / step);
+            while (backgroundVolume > currentVolume)
+            {
+                currentVolume += step;
+                audioS.volume = currentVolume;
+                yield return new WaitForSeconds(waitingTime);
+            }
+            audioS.volume = backgroundVolume;
+        }
+       
         
         // these functions are needed if the game has a menu that can modify the master volume
         public void SetMixerMasterVolume(float volume)

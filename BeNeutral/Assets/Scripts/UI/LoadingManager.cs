@@ -23,7 +23,8 @@ namespace UI
             
         }
 
-        public void startScene(string sceneName)
+        // ReSharper disable Unity.PerformanceAnalysis
+        public void StartScene(string sceneName)
         {
             loadingScreen.SetActive(true);
             StartCoroutine(LoadScene(sceneName));
@@ -44,6 +45,7 @@ namespace UI
             loadBar.fillAmount = 1;
             yield return new WaitForSeconds(1f);
             StartCoroutine(fadeOutLoadingScreen(timeFadeOut));
+            AudioManager.Instance.ChooseBackgroundMusic(1);
         }
 
         IEnumerator fadeOutLoadingScreen(float time)

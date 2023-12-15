@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Linq;
+using UI;
 using UnityEngine;
 
 public class MagneticField : MonoBehaviour
@@ -45,6 +46,10 @@ public class MagneticField : MonoBehaviour
     {
         bollaAttiva = true;
         magneticFieldInstance.SetActive(true);
+        
+        // - start magnetic field sound
+        AudioManager.instance.PlayForceFieldPlayer();
+        
         StartCoroutine(TransizioneBolla(true));
     }
 

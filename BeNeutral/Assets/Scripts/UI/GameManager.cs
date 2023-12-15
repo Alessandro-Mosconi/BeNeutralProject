@@ -1,4 +1,5 @@
 using System.Collections;
+using Codice.Client.BaseCommands.CheckIn;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
@@ -14,9 +15,7 @@ namespace UI
         [SerializeField] private AudioManager audioManager;
         [SerializeField] private LoadingManager loadingManager;
         
-        //My changes
         [Header("PLAYER")]
-        //[SerializeField] private  SpwanPoint playerSpawnPoint; 
         [SerializeField] private  int startingLifes;
         //
         [Header("SCORES")]
@@ -28,13 +27,12 @@ namespace UI
         private int level = 0;
         private string LevelName;
         
-        
         public void Start()
         {
             ResetGame();
             
-            // start background music
-            AudioManager.instance.StartBackgroundMusic();
+            // - start background music
+            AudioManager.instance.ChooseBackgroundMusic(0);
             
             //TODO
             //start animations on the load screen
@@ -45,7 +43,7 @@ namespace UI
         }
         public void LoadLevel()
         {
-            loadingManager.startScene(LevelName);
+            loadingManager.StartScene(LevelName);
             ObjectPoolingManager.Instance.RegenPools();
         }
 
@@ -69,9 +67,11 @@ namespace UI
 
         public void StartGameOver()
         {
-            // If we want to start from the beginning of the game
+            // - If we want to start from the beginning of the game
             ResetGame();
             StartCoroutine(StartGameOverCoroutine());
+            // - Background music set to Losing music
+            audioManager.ChooseBackgroundMusic(2);
         }
 
         IEnumerator StartGameOverCoroutine()
@@ -87,13 +87,14 @@ namespace UI
             ResetGame();
             // - activate the start screen
             SceneManager.LoadScene("InitialScreen");
-            
+            // - background music set to Main Menu music
+            audioManager.ChooseBackgroundMusic(0);
         }
 
         public string ChooseLevel(int n)
         {
             string levelName;
-            // Select the level name corresponding to the level number
+            // - Select the level name corresponding to the level number
             switch (n)
             {
                 case 0:
@@ -120,16 +121,19 @@ namespace UI
         }
         public void ShowNextLevel()
         {
-            // Show next level scene with button to proceed in the next game level
+            // - Show next level scene with button to proceed in the next game level
             SceneManager.LoadScene("NextLevelScreen");
+            // - set music to Next level screen music
+            audioManager.ChooseBackgroundMusic(3);
+            // - giving points for winning the level
             scoreDisplay.AddToScore(levelPassedPoints);
-            // checkpoint for the score
+            // - checkpoint for the score
             scoreDisplay.SaveLastScore();
         }
         
         public void RestartThisLevel()
         {
-            // Restart after die from the same level
+            // - Restart after die from the same level
             LevelName = ChooseLevel(level);
             StartGame(); 
         }
@@ -158,29 +162,31 @@ namespace UI
         public void TakeDamage()
         {
             //TODO
-            //death sound of player
-            //audioManager.PlayDiePlayer();
+            // - death sound of player
+            // - audioManager.PlayDiePlayer();
             scoreDisplay.SubToScore(damageLostPoints);
         }
         public void KillEnemie(int points)
         {
             //TODO
-            //death sound of enemie
-            //audioManager.PlayDieEnemie();
+            // - death sound of the enemie
+            audioManager.PlayDieEnemie();
             scoreDisplay.AddToScore(points);
         }
         public void KillPlayer()
         {
-            // Check if has more life
+            // - death sound of the player
+            audioManager.PlayDiePlayer();
+            // - Check if has more life
             if (scoreDisplay.LoseOneLife())
             {
-                // If yes
+                // - If yes
                 scoreDisplay.RestoreScore();
                 scoreDisplay.SubToScore(dieLostPoints);
                 scoreDisplay.SaveLastScore();
                 RestartThisLevel(); 
             }else{
-                // If not
+                // - If not
                 scoreDisplay.ResetScore();
                 StartGameOver();
             }
