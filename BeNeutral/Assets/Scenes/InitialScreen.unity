@@ -1787,16 +1787,17 @@ MonoBehaviour:
   playerAudioSource: {fileID: 340905742}
   enemieAudioSource: {fileID: 1564178158}
   menuInteractionSource: {fileID: 915010494}
-  fireAudioClipPlayer: {fileID: 0}
+  fireAudioClipPlayer: {fileID: 8300000, guid: dcf1a5931478f35469f022f17439f2f6, type: 3}
   walkingAudioClipPlayer: {fileID: 0}
-  dieAudioClipPlayer: {fileID: 0}
+  dieAudioClipPlayer: {fileID: 8300000, guid: 2d75adc0318d59c43b8bd2dd6a12c0fb, type: 3}
   forceFieldAudioClipPlayer: {fileID: 8300000, guid: 91abb36a0be1e1c45947534cfc9b64b2, type: 3}
+  fallAudioClipPlayer: {fileID: 8300000, guid: 33c541bdc6239c64593846cfa4a906f6, type: 3}
   fireAudioClipEnemie: {fileID: 0}
   walkingAudioClipEnemie: {fileID: 0}
-  dieAudioClipEnemie: {fileID: 0}
+  dieAudioClipEnemie: {fileID: 8300000, guid: 31b17dcf4e9d8b649a5f8791dcc299ab, type: 3}
   backgroundMenuAudioClip: {fileID: 8300000, guid: b318f23d4f20e2449915504010891312, type: 3}
   backgroundGameAudioClip: {fileID: 8300000, guid: ba5859ed376d8d34484fc40655e05e52, type: 3}
-  backgroundLoseAudioClip: {fileID: 8300000, guid: dd9e62f47aaabcb489e62527088fe3e7, type: 3}
+  backgroundLoseAudioClip: {fileID: 8300000, guid: a48c48a16c53065429045f3178410da5, type: 3}
   backgroundNextLevelAudioClip: {fileID: 0}
   backgroundVolume: 0.1
   fadeInTime: 20

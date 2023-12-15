@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 
 public class RespawnPlayers : MonoBehaviour
@@ -55,6 +56,8 @@ public class RespawnPlayers : MonoBehaviour
         }
         if (pSc1.Fell || pSc2.Fell)
         {
+            // - falling player audio
+            AudioManager.instance.PlayFallPlayer();
             respawnPlayers();
         }
     }

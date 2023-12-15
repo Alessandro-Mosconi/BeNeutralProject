@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Player;
+using UI;
 using UnityEngine;
 
 namespace Enemies.Behaviors
@@ -215,6 +216,9 @@ namespace Enemies.Behaviors
         {
             if (_life - damage <= 0)
             {
+                // - enemy destroyed audio
+                AudioManager.instance.PlayDieEnemie();
+                
                 //Despawn
                 Destroy(gameObject);
             }

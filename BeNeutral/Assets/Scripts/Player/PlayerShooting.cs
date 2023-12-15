@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,6 +34,9 @@ public class PlayerShooting : MonoBehaviour
     
     private void Fire()
     {
+        // - fire audio
+        AudioManager.Instance.PlayFirePlayer();
+        
         GameObject go = ObjectPoolingManager.Instance.GetObject (bulletPrefab.name);
         go.transform.position = firingTransform.position;
         

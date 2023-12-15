@@ -51,6 +51,15 @@ namespace UI
         {
             LoadLevel();
         }
+        public void ReloadLevel()
+        {
+            loadingManager.RestartScene(LevelName);
+            ObjectPoolingManager.Instance.RegenPools();
+        }
+        public void RestartGame()
+        {
+            ReloadLevel();
+        }
         
         public void ResetGame()
         {
@@ -71,7 +80,8 @@ namespace UI
             ResetGame();
             StartCoroutine(StartGameOverCoroutine());
             // - Background music set to Losing music
-            audioManager.ChooseBackgroundMusic(2);
+            audioManager.StopBackgroundMusic();
+            audioManager.PlayGameOver();
         }
 
         IEnumerator StartGameOverCoroutine()
@@ -135,7 +145,7 @@ namespace UI
         {
             // - Restart after die from the same level
             LevelName = ChooseLevel(level);
-            StartGame(); 
+            RestartGame(); 
         }
 
         public int GetStartingLifes()

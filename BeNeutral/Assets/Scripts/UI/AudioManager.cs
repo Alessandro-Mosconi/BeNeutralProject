@@ -23,6 +23,7 @@ namespace UI
         [SerializeField] private AudioClip walkingAudioClipPlayer;
         [SerializeField] private AudioClip dieAudioClipPlayer;
         [SerializeField] private AudioClip forceFieldAudioClipPlayer;
+        [SerializeField] private AudioClip fallAudioClipPlayer;
 
         [Space(30)] [Header("Enemies sounds")] [SerializeField]
         private AudioClip fireAudioClipEnemie;
@@ -35,8 +36,10 @@ namespace UI
         [Header("Background Music")]
         [SerializeField] private AudioClip backgroundMenuAudioClip; //0
         [SerializeField] private AudioClip backgroundGameAudioClip; //1
-        [SerializeField] private AudioClip backgroundLoseAudioClip; //2
-        [SerializeField] private AudioClip backgroundNextLevelAudioClip; //3
+        [SerializeField] private AudioClip backgroundNextLevelAudioClip; //2
+        
+        [SerializeField] private AudioClip gameOverAudioClip; 
+        
         [Space(3)]
         [Header("Background music controls")]
         [SerializeField] private float backgroundVolume;
@@ -73,6 +76,10 @@ namespace UI
         {
             playerAudioSource.PlayOneShot(forceFieldAudioClipPlayer);
         }
+        public void PlayFallPlayer() 
+        {
+            playerAudioSource.PlayOneShot(fallAudioClipPlayer);
+        }
         
         
         // - enemies sounds
@@ -97,6 +104,18 @@ namespace UI
         }
         
         // - background sounds
+        
+        public void PlayGameOver()
+        {
+            StartCoroutine(GameOverRoutine());
+        }
+
+        private IEnumerator GameOverRoutine()
+        {
+            yield return new WaitForSeconds(1f);
+            playerAudioSource.PlayOneShot(gameOverAudioClip);
+        }
+
         public void ChooseBackgroundMusic(int musicChoice)
         {
             switch (musicChoice)
@@ -108,9 +127,6 @@ namespace UI
                     currentBackgroundMusic = backgroundGameAudioClip;
                     break;
                 case 2:
-                    currentBackgroundMusic = backgroundLoseAudioClip;
-                    break;
-                case 3:
                     currentBackgroundMusic = backgroundNextLevelAudioClip;
                     break;
                 default:

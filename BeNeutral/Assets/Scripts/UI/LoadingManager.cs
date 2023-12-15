@@ -30,6 +30,13 @@ namespace UI
             StartCoroutine(LoadScene(sceneName));
         }
 
+        public void RestartScene(string sceneName)
+        {
+            ScoreManager.instance.Open();
+            SceneManager.LoadScene(sceneName);
+            AudioManager.Instance.ChooseBackgroundMusic(1);
+        }
+
         IEnumerator LoadScene(string sceneName)
         {
             loadBar.fillAmount = 0;
