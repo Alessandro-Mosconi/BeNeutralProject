@@ -9,6 +9,7 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private float _speed;
     [SerializeField] private float _checkDistance = 0.05f;
     
+    [SerializeField] private PlatformActivator activator;
     [SerializeField] private Transform _targetWaypoint;
 
     [SerializeField] private int _currentWaypointIndex = 0;
@@ -21,15 +22,19 @@ public class MovingPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(
-            transform.position,
-            _targetWaypoint.position,
-            _speed * Time.deltaTime);
-
-        if (Vector2.Distance(transform.position, _targetWaypoint.position) < _checkDistance)
+        if (activator != null && activator.platformCanMove)
         {
-            _targetWaypoint = GetNextWaypoint();
+            transform.position = Vector2.MoveTowards(
+                transform.position,
+                _targetWaypoint.position,
+                _speed * Time.deltaTime);
+
+            if (Vector2.Distance(transform.position, _targetWaypoint.position) < _checkDistance)
+            {
+                _targetWaypoint = GetNextWaypoint();
+            }
         }
+        
     }
     
     private Transform GetNextWaypoint()
@@ -44,6 +49,7 @@ public class MovingPlatform : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        print("sono dentro");
         var _playerMovement = other.collider.GetComponent<PlayerMovement>();
         if (_playerMovement != null)
         {

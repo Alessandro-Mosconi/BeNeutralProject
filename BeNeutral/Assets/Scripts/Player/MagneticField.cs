@@ -11,7 +11,7 @@ public class MagneticField : MonoBehaviour
     public float dimensioneIniziale = 0.01f;
     public float dimensioneFinale = 0.5f;
     public float velocitaTransizione = 2.0f;
-    private bool bollaAttiva = false;
+    public bool isActive = false;
     
     private PlayerMovement playerMovementScript;
 
@@ -24,7 +24,7 @@ public class MagneticField : MonoBehaviour
         // Istanzia il campo magnetico come un oggetto disattivato
         magneticFieldInstance = GetChildGameObject(gameObject, "MagneticField");
         magneticFieldInstance.transform.localScale = new Vector3(0.0f, 0.0f, 1.0f);
-        magneticFieldInstance.SetActive(bollaAttiva);
+        magneticFieldInstance.SetActive(isActive);
 
         // Imposta la dimensione iniziale
         magneticFieldInstance.transform.localScale = new Vector3(dimensioneIniziale, dimensioneIniziale, 1.0f);
@@ -44,7 +44,7 @@ public class MagneticField : MonoBehaviour
 
     private void AttivaMagneticField()
     {
-        bollaAttiva = true;
+        isActive = true;
         magneticFieldInstance.SetActive(true);
         
         // - start magnetic field sound
@@ -74,7 +74,7 @@ public class MagneticField : MonoBehaviour
 
         if (!ingrandisci)
         {
-            bollaAttiva = false;
+            isActive = false;
             magneticFieldInstance.SetActive(false);
         }
     }
