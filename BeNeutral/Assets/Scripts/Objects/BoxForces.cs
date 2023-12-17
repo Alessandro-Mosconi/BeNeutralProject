@@ -3,11 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BoxForces : MonoBehaviour
 {
     [SerializeField] public int positivty = 1;
-    [SerializeField] public int gravityDirextion = 1;
+    [SerializeField] public int gravityDirection = 1;
     [SerializeField] public float maxForceDistance = 3;
     [SerializeField] public int magneticAttraction = 1;
     private Rigidbody2D boxRb;
@@ -53,7 +54,7 @@ public class BoxForces : MonoBehaviour
 
     private void HandleGravity()
     {
-        if (gravityDirextion > 0)
+        if (gravityDirection > 0)
         {
             boxRb.gravityScale = Math.Abs(boxRb.gravityScale);
             Quaternion rotation = transform.rotation;

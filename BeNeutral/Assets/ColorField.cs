@@ -8,10 +8,10 @@ public class ColorField : MonoBehaviour
     void Start()
     {
 
-        var playerMovement = GetComponentInParent<PlayerMovement>();
+        var playerMovement = GetComponentInParent<MagneticField>();
 
         var fieldRender = gameObject.GetComponent<Renderer>();
-        if (playerMovement.yPositivity > 0)
+        if (playerMovement.playerPolarity > 0)
         {
             fieldRender.material.SetColor("_Color", Color.red);
         }

@@ -15,8 +15,8 @@ public class SwitchPlayer : MonoBehaviour
         Player2.transform.position = support;
 
         PlayerMovement pl1Movement = Player1.GetComponent<PlayerMovement>();
-        pl1Movement.yPositivity = pl1Movement.yPositivity * -1;
+        pl1Movement.gravityDirection = pl1Movement.gravityDirection * -1;
         PlayerMovement pl2Movement = Player2.GetComponent<PlayerMovement>();
-        pl2Movement.yPositivity = pl2Movement.yPositivity * -1;
+        pl2Movement.gravityDirection = pl2Movement.gravityDirection * -1;
     }
 }

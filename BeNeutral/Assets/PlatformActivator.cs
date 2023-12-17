@@ -5,12 +5,23 @@ using UnityEngine;
 
 public class PlatformActivator : MonoBehaviour
 {
-    public MagneticField _playerMagneticField;
+    private MagneticField _playerMagneticField;
     public bool platformCanMove = false;
-    // Start is called before the first frame update
+
+    [SerializeField] private int activatorPolarity = 1;
+    private int playerPolarity = 1;
+    
     void Start()
     {
-        
+        var fieldRender = gameObject.GetComponent<Renderer>();
+        if (activatorPolarity > 0)
+        {
+            fieldRender.material.SetColor("_Color", Color.red);
+        }
+        else
+        {
+            fieldRender.material.SetColor("_Color", Color.blue);
+        }
     }
 
     // Update is called once per frame
@@ -28,8 +39,15 @@ public class PlatformActivator : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        
-        _playerMagneticField = other.collider.GetComponent<MagneticField>();
+        var tempPlayerMagneticField = other.collider.GetComponent<MagneticField>();
+        if (activatorPolarity == tempPlayerMagneticField.playerPolarity)
+        {
+            _playerMagneticField = tempPlayerMagneticField;
+        }
+        else
+        {
+            _playerMagneticField = null;
+        }
     }
     private void OnCollisionExit2D(Collision2D other)
     {

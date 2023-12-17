@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class MagneticField : MonoBehaviour
 {
-    [SerializeField] private GameObject magneticFieldPrefab;
-    private GameObject magneticFieldInstance;
-
-    public float dimensioneIniziale = 0.01f;
-    public float dimensioneFinale = 0.5f;
-    public float velocitaTransizione = 2.0f;
-    public bool isActive = false;
+    [SerializeField] private float dimensioneIniziale = 0.01f;
+    [SerializeField] private float dimensioneFinale = 10.0f;
+    [SerializeField] private float velocitaTransizione = 2.0f;
+    [SerializeField] public int playerPolarity = 1;
     
+    private GameObject magneticFieldInstance;
     private PlayerMovement playerMovementScript;
+    public bool isActive = true;
+   
 
     private void Awake()
     {
@@ -22,12 +22,10 @@ public class MagneticField : MonoBehaviour
     private void Start()
     {
         // Istanzia il campo magnetico come un oggetto disattivato
-        magneticFieldInstance = GetChildGameObject(gameObject, "MagneticField");
-        magneticFieldInstance.transform.localScale = new Vector3(0.0f, 0.0f, 1.0f);
-        magneticFieldInstance.SetActive(isActive);
-
-        // Imposta la dimensione iniziale
+        magneticFieldInstance = GetChildGameObject("MagneticField");
         magneticFieldInstance.transform.localScale = new Vector3(dimensioneIniziale, dimensioneIniziale, 1.0f);
+        magneticFieldInstance.SetActive(isActive);
+        
     }
 
     private void Update()
@@ -78,12 +76,13 @@ public class MagneticField : MonoBehaviour
             magneticFieldInstance.SetActive(false);
         }
     }
-    private GameObject GetChildGameObject(GameObject fromGameObject, string withName)
+    private GameObject GetChildGameObject(string withName)
     {
         foreach (Transform childTransform in transform)
-        {
+        {;
             if (childTransform.gameObject.name == withName)
             {
+                print("trovato");
                 return childTransform.gameObject;
             }
         }

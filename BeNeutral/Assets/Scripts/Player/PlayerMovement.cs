@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,9 +10,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Animator animator;
     private SpriteRenderer spriteRenderer;
     
-    [SerializeField] public int yPositivity = 1;
+    [SerializeField] public int gravityDirection = 1;
     [SerializeField] public int playerNumber = 1;
 
+    private bool isGrounded = false;
     private float dirX = 0f;
 
     public Vector2 movementDirection { get; private set; }
@@ -31,8 +33,8 @@ public class PlayerMovement : MonoBehaviour
         bool isJumping = false;
 
         dirX = Input.GetAxis("HorizontalPlayer" + playerNumber);
-        isJumping = Input.GetButtonDown("JumpPlayer" + playerNumber);
-        
+        isJumping = Input.GetButton("JumpPlayer" + playerNumber);
+
         if (dirX != 0)
         {
             movementDirection =  new Vector2(Input.GetAxis("HorizontalPlayer" + playerNumber), Input.GetAxis("JumpPlayer" + playerNumber)).normalized;
@@ -40,9 +42,10 @@ public class PlayerMovement : MonoBehaviour
         
         rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
 
-        if (isJumping && Math.Round(rb.velocity.y,3)  == 0f)
+        if (isJumping && isGrounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x, yPositivity * 8f);
+            rb.velocity = new Vector2(rb.velocity.x, gravityDirection * 8f);
+            isGrounded = false;
         }
 
         UpdateAnimationUpdate();
@@ -50,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleGravity()
     {
-        if (yPositivity > 0)
+        if (gravityDirection > 0)
         {
             rb.gravityScale = Math.Abs(rb.gravityScale);
             Quaternion rotation = transform.rotation;
@@ -94,5 +97,22 @@ public class PlayerMovement : MonoBehaviour
     public void resetParent()
     {
         transform.parent = _originalParent;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.contacts.Length > 0)
+        {
+            ContactPoint2D contact = other.contacts[0];
+            if(Vector3.Dot(contact.normal, Vector3.up) > 0.5)
+            {
+                if (other.gameObject.layer == LayerMask.NameToLayer("Terrain") || other.gameObject.layer == LayerMask.NameToLayer("External-objects") )
+                {
+                    print("tocco terra");
+                    isGrounded = true;
+                }
+            }
+        }
+        
     }
 }
