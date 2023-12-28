@@ -10,6 +10,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private HitPointsSO hitPoints;
     [SerializeField] private float maxHitPoints;
     [SerializeField] private float startingHitPoints;
+
+    [SerializeField] private float maxStamina;
     
      public HealthBar healthBarPrefab;
      private HealthBar healthBar;
@@ -40,6 +42,10 @@ public class PlayerManager : MonoBehaviour
      public float MaxHitPoints
      {
          get { return maxHitPoints; }
+     }
+     public float MaxStamina
+     {
+         get { return maxStamina; }
      }
 
      private void Update()

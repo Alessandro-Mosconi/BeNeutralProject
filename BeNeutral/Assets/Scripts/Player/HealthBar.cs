@@ -12,12 +12,15 @@ public class HealthBar : MonoBehaviour
     [HideInInspector]
     public PlayerManager player;
     [SerializeField] private Image meterImage;
+    [SerializeField] private Image staminaImage;
     private float maxHitPoints;
+    private float maxStamina;
 
     private void Start()
     {
 
         maxHitPoints = player.MaxHitPoints;
+        maxStamina = player.MaxStamina;
 
         // fixed the issue by moving the above line into the if statement
     }
@@ -28,6 +31,7 @@ public class HealthBar : MonoBehaviour
         {
             // maxHitPoints = player.MaxHitPoints;
             meterImage.fillAmount = hitPoints.HitPointValue / maxHitPoints;
+            staminaImage.fillAmount = hitPoints.StaminaValue / maxStamina;
         }
     }
 
