@@ -31,7 +31,7 @@ public class HealthBar : MonoBehaviour
         {
             // maxHitPoints = player.MaxHitPoints;
             meterImage.fillAmount = hitPoints.HitPointValue / maxHitPoints;
-            staminaImage.fillAmount = hitPoints.StaminaValue / maxStamina;
+            staminaImage.fillAmount = hitPoints.StaminaValue/maxStamina;
         }
     }
 

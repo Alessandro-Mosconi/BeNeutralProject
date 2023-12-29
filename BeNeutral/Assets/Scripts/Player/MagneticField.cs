@@ -39,8 +39,11 @@ public class MagneticField : MonoBehaviour
             DisattivaMagneticField();
         }
     }
+    
+    //made the method public so I can access it 
 
-    private void AttivaMagneticField()
+    public void AttivaMagneticField()
+    
     {
         isActive = true;
         magneticFieldInstance.SetActive(true);
@@ -50,8 +53,8 @@ public class MagneticField : MonoBehaviour
         
         StartCoroutine(TransizioneBolla(true));
     }
-
-    private void DisattivaMagneticField()
+    //made the method public so I can access it
+    public void DisattivaMagneticField()
     {
         StartCoroutine(TransizioneBolla(false));
     }
@@ -89,5 +92,6 @@ public class MagneticField : MonoBehaviour
 
         return null;
     }
+    
     
 }

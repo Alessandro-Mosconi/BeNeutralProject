@@ -11,7 +11,10 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private float maxHitPoints;
     [SerializeField] private float startingHitPoints;
 
+    //Stamina
     [SerializeField] private float maxStamina;
+    [SerializeField] private float staminaConsumption;
+    private MagneticField magneticField;
     
      public HealthBar healthBarPrefab;
      private HealthBar healthBar;
@@ -19,6 +22,9 @@ public class PlayerManager : MonoBehaviour
      //Damage value
      private float fallDamageValue = 3f;
      private float hazardDamageValue = 1f;
+     
+     
+     
      
      //fall detection
      // private Vector3 playerPos;
@@ -32,11 +38,14 @@ public class PlayerManager : MonoBehaviour
      private bool fell;
      private void Start()
      {
+         magneticField = GetComponent<MagneticField>();
          hitPoints.HitPointValue = startingHitPoints;
+         hitPoints.StaminaValue = maxStamina;
          healthBar = Instantiate(healthBarPrefab);
          healthBar.player = this;
          //
          
+
      }
 
      public float MaxHitPoints
@@ -51,6 +60,15 @@ public class PlayerManager : MonoBehaviour
      private void Update()
      {
          fallDetector.transform.position = new Vector2(transform.position.x, fallDetector.transform.position.y);
+         if (magneticField.isActive)
+         {
+             ConsumeStamina();
+         }
+         else
+         {
+             RegenerateStamina();
+         }
+         
      }
 
      private void OnTriggerEnter2D(Collider2D other)
@@ -127,6 +145,27 @@ public class PlayerManager : MonoBehaviour
          get { return fell; }
          set { fell = value; }
 
+     }
+
+     private void ConsumeStamina()
+     {
+         if (hitPoints.StaminaValue !=0)
+         {
+             hitPoints.StaminaValue -= staminaConsumption * Time.deltaTime;
+         }
+         if (hitPoints.StaminaValue <= float.Epsilon)
+         {
+             magneticField.DisattivaMagneticField();
+             hitPoints.StaminaValue = 0;
+         }
+     }
+     private void RegenerateStamina()
+     {
+         hitPoints.StaminaValue += staminaConsumption * Time.deltaTime;
+         if (hitPoints.StaminaValue > maxStamina)
+         {
+             hitPoints.StaminaValue = maxStamina;
+         }
      }
 
      

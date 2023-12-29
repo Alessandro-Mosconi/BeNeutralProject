@@ -13520,6 +13520,7 @@ MonoBehaviour:
   maxHitPoints: 10
   startingHitPoints: 10
   maxStamina: 10
+  staminaConsumption: 2
   healthBarPrefab: {fileID: 3903108039550141002, guid: 6566ce529312745c7a5a5cde9e33e7c2, type: 3}
   fallDetector: {fileID: 1102002614}
 --- !u!114 &1002601151
@@ -53852,6 +53853,7 @@ MonoBehaviour:
   maxHitPoints: 10
   startingHitPoints: 10
   maxStamina: 10
+  staminaConsumption: 2
   healthBarPrefab: {fileID: 4465264988908156300, guid: 2c0d0cf162eb443f1a9b8387b3f0827f, type: 3}
   fallDetector: {fileID: 931952391}
 --- !u!114 &1492408746
