@@ -40,12 +40,12 @@ public class FollowLastPlayer : MonoBehaviour
             //vcam.m_Lens.OrthographicSize = p1Pos.y - p2Pos.y;
             if (_vcam == null)
             {
-                print(Math.Min( p1Pos.y - p2Pos.y, 9f));
+                print(Math.Min( Math.Abs(p1Pos.y - p2Pos.y), 9f));
                 _vcam = cinemachineBrain.ActiveVirtualCamera as CinemachineVirtualCamera;
             }
             else
             {
-                _vcam.m_Lens.OrthographicSize = Math.Min( Math.Abs(p1Pos.y) - p2Pos.y, 12f);
+                _vcam.m_Lens.OrthographicSize = Math.Min( Math.Abs(p1Pos.y - p2Pos.y), 12f);
             }
         }
         
