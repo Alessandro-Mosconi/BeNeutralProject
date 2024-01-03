@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class SwitchPortalScript : MonoBehaviour
@@ -7,12 +8,33 @@ public class SwitchPortalScript : MonoBehaviour
     [SerializeField] private GameObject Player1;
     [SerializeField] private GameObject Player2;
 
+    [SerializeField] private TextMeshProUGUI timerText;
+
     private bool canSwitch = true;
     private Renderer objectRenderer;
+    private float disableDuration = 10f;
 
     void Start()
     {
         objectRenderer = GetComponent<Renderer>();
+    }
+
+    void Update()
+    {
+        UpdateTimerText();
+    }
+
+    void UpdateTimerText()
+    {
+        if (!canSwitch)
+        {
+            disableDuration -= Time.deltaTime;
+            timerText.text = Mathf.Ceil(disableDuration).ToString();
+        }
+        else
+        {
+            timerText.text = "";
+        }
     }
 
     public void SwitchPlayer()
@@ -27,6 +49,7 @@ public class SwitchPortalScript : MonoBehaviour
         pl2Movement.gravityDirection = pl2Movement.gravityDirection * -1;
 
         canSwitch = false;
+        disableDuration = 10f; // Reset the timer when switching
         StartCoroutine(EnableSwitchingAfterDelay());
         StartCoroutine(MakeObjectTransparent(0.5f));
     }
@@ -40,9 +63,8 @@ public class SwitchPortalScript : MonoBehaviour
 
     private IEnumerator MakeObjectTransparent(float targetAlpha)
     {
-
         int direction = objectRenderer.material.color.a < targetAlpha ? +1 : -1;
-        
+
         while (Math.Abs(objectRenderer.material.color.a - targetAlpha) > 0.01)
         {
             Color currentColor = objectRenderer.material.color;
