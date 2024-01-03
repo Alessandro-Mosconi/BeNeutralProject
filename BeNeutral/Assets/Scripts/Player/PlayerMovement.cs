@@ -42,7 +42,6 @@ public class PlayerMovement : MonoBehaviour
         
         if(Input.GetButton("JumpPlayer" + playerNumber)  && isGrounded)
         {
-            print("DOVREI SALTARE...");
             rb.velocity = new Vector2(rb.velocity.x, gravityDirection * 8f);
             isGrounded = false;
         }
@@ -102,13 +101,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if(other.contacts.Length > 0)
         {
-            //ContactPoint2D contact = other.contacts[0];
-
             for (int i = 0; i < other.contacts.Length; i++)
             {
                 ContactPoint2D contact = other.contacts[i];
 
-                print(other.contacts.Length);
                 if (Mathf.Abs(Vector2.Dot(contact.normal, Vector2.up)) > 0.5f)
                 {
                     if (other.gameObject.layer == LayerMask.NameToLayer("Terrain") ||

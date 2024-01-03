@@ -9,7 +9,6 @@ public class PlatformActivator : MonoBehaviour
     public bool platformCanMove = false;
 
     [SerializeField] private int activatorPolarity = 1;
-    private int playerPolarity = 1;
     
     void Start()
     {

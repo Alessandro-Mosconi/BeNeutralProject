@@ -65,7 +65,7 @@ namespace UI
         {
             ObjectPoolingManager.Instance.ResetPools();
             ClearUI();
-            LevelName = "Level1";
+            LevelName = "LevelTutorial";
             scoreDisplay.SetLifes(startingLifes);
             scoreDisplay.ResetScore();
         }
@@ -108,12 +108,15 @@ namespace UI
             switch (n)
             {
                 case 0:
-                    levelName = "Level1";
+                    levelName = "LevelTutorial";
                     break;
                 case 1:
-                    levelName = "Level2";
+                    levelName = "Level1";
                     break;
                 case 2:
+                    levelName = "Level2";
+                    break;
+                case 3:
                     levelName = "Level3";
                     break;
                 default:
