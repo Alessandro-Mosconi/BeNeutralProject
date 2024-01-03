@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public int gravityDirection = 1;
     [SerializeField] public int playerNumber = 1;
 
-    private bool isGrounded = false;
+    private bool isGrounded;
     private float dirX = 0f;
 
     public Vector2 movementDirection { get; private set; }
@@ -30,10 +30,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         HandleGravity();
-        bool isJumping = false;
 
         dirX = Input.GetAxis("HorizontalPlayer" + playerNumber);
-        isJumping = Input.GetButton("JumpPlayer" + playerNumber);
 
         if (dirX != 0)
         {
@@ -41,10 +39,10 @@ public class PlayerMovement : MonoBehaviour
         }
         
         rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
-        // Disableed for now
-        if (isJumping && isGrounded)
-        // if(isJumping)
+        
+        if(Input.GetButton("JumpPlayer" + playerNumber)  && isGrounded)
         {
+            print("DOVREI SALTARE...");
             rb.velocity = new Vector2(rb.velocity.x, gravityDirection * 8f);
             isGrounded = false;
         }
@@ -100,17 +98,25 @@ public class PlayerMovement : MonoBehaviour
         transform.parent = _originalParent;
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionStay2D(Collision2D other)
     {
         if(other.contacts.Length > 0)
         {
-            ContactPoint2D contact = other.contacts[0];
-            if(Vector3.Dot(contact.normal, Vector3.up) > 0.5)
+            //ContactPoint2D contact = other.contacts[0];
+
+            for (int i = 0; i < other.contacts.Length; i++)
             {
-                if (other.gameObject.layer == LayerMask.NameToLayer("Terrain") || other.gameObject.layer == LayerMask.NameToLayer("External-objects") )
+                ContactPoint2D contact = other.contacts[i];
+
+                print(other.contacts.Length);
+                if (Mathf.Abs(Vector2.Dot(contact.normal, Vector2.up)) > 0.5f)
                 {
-                    print("tocco terra");
-                    isGrounded = true;
+                    if (other.gameObject.layer == LayerMask.NameToLayer("Terrain") ||
+                        other.gameObject.layer == LayerMask.NameToLayer("External-objects"))
+                    {
+                        isGrounded = true;
+                        return;
+                    }
                 }
             }
         }
