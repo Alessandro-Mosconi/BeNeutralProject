@@ -45,7 +45,7 @@ public class FollowLastPlayer : MonoBehaviour
             }
             else
             {
-                _vcam.m_Lens.OrthographicSize = Math.Min( p1Pos.y - p2Pos.y, 12f);
+                _vcam.m_Lens.OrthographicSize = Math.Min( Math.Abs(p1Pos.y) - p2Pos.y, 12f);
             }
         }
         

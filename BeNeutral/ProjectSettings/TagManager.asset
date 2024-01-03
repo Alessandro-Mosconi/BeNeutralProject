@@ -10,6 +10,8 @@ TagManager:
   - Particle
   - checkpoint2
   - checkpoint3
+  - RotatingPlatform
+  - EMP
   layers:
   - Default
   - TransparentFX

@@ -42,8 +42,8 @@ public class PlayerMovement : MonoBehaviour
         
         rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
         // Disableed for now
-        // if (isJumping && isGrounded)
-        if(isJumping)
+        if (isJumping && isGrounded)
+        // if(isJumping)
         {
             rb.velocity = new Vector2(rb.velocity.x, gravityDirection * 8f);
             isGrounded = false;

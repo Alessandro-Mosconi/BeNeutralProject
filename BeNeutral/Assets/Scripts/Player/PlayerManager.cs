@@ -22,13 +22,16 @@ public class PlayerManager : MonoBehaviour
      //Damage value
      private float fallDamageValue = 3f;
      private float hazardDamageValue = 1f;
+
+     private float continuousDamageValue = 0.5f;
+     private Coroutine damageCoroutine;
      
-     
+    
      
      
      //fall detection
      // private Vector3 playerPos;
-     [SerializeField] private GameObject fallDetector;
+     [SerializeField] public GameObject fallDetector;
 
      
      //
@@ -90,8 +93,42 @@ public class PlayerManager : MonoBehaviour
              isCheckpoint3 = true;
              isCheckpoint2 = false;
          }
+         
      }
 
+     private void OnCollisionEnter2D(Collision2D other)
+     {
+
+         if (other.gameObject.CompareTag("RotatingPlatform"))
+         {
+             transform.parent = other.transform;
+         }
+         if (other.gameObject.CompareTag("EMP"))
+         {
+             if (damageCoroutine == null)
+             {
+                 damageCoroutine=StartCoroutine(ContinuousDamagePlayer(continuousDamageValue,1f));
+             }
+
+         }
+     }
+
+     private void OnCollisionExit2D(Collision2D other)
+     {
+         if (other.gameObject.CompareTag("RotatingPlatform"))
+         {
+             transform.parent = null;
+         }
+         if (other.gameObject.CompareTag("EMP"))
+         {
+             if (damageCoroutine != null)
+             {
+                 StopCoroutine(damageCoroutine);
+                 damageCoroutine=null;
+             }
+
+         }
+     }
      private void KillPlayer()
      {
              // Destroy(gameObject);
@@ -114,12 +151,34 @@ public class PlayerManager : MonoBehaviour
          
          if (hitPoints.HitPointValue <= float.Epsilon)
          {
-             KillPlayer();
-             ResetPlayer();
+             // KillPlayer();
+             // ResetPlayer();
              
              // Game manager lives -1
              // Game manager restart current level
              GameManager.instance.KillPlayer();
+         }
+     }
+
+     public IEnumerator ContinuousDamagePlayer(float damage, float interval)
+     {
+         while (true)
+         {
+             hitPoints.HitPointValue -= damage;
+
+             if (hitPoints.HitPointValue <= float.Epsilon)
+             {
+                 GameManager.instance.KillPlayer();
+                 break;
+             }
+             if (interval > float.Epsilon)
+             {
+                 yield return new WaitForSeconds(interval);
+             }
+             else
+             {
+                 break;
+             }
          }
      }
 

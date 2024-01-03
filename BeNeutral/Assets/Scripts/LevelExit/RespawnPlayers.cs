@@ -57,18 +57,21 @@ public class RespawnPlayers : MonoBehaviour
         if (pSc1.Fell || pSc2.Fell)
         {
             // - falling player audio
+            StartCoroutine(respawnPlayers());
             AudioManager.instance.PlayFallPlayer();
-            respawnPlayers();
+            
         }
     }
 
 
-    public void respawnPlayers()
+    public IEnumerator respawnPlayers()
     {
         
         pSc1.transform.position = pos1;
         pSc2.transform.position = pos2;
+        yield return null;
         pSc1.Fell=false;
+        yield return null;
         pSc2.Fell=false;
 
         //Reset object pools to avoid having past bullets
