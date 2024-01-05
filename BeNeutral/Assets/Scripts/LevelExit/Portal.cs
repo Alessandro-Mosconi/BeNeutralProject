@@ -25,12 +25,12 @@ public class Portal : MonoBehaviour
     [SerializeField] private Transform secretLevelPosition2;
 
 
-    [SerializeField] private Transform SecretCameraTarget;
+    private Transform SecretCameraTarget;
     
-    [SerializeField] private FollowLastPlayer OriginalCameraTarget;
+    private FollowLastPlayer OriginalCameraTarget;
 
     
-    [SerializeField] private CinemachineVirtualCamera _vcam;
+    private CinemachineVirtualCamera _vcam;
 
 
     
