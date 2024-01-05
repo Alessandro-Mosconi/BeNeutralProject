@@ -32,6 +32,8 @@ public class Portal : MonoBehaviour
     
     private CinemachineVirtualCamera _vcam;
 
+    private EMPwall empWall;
+
 
     
     
@@ -55,7 +57,7 @@ public class Portal : MonoBehaviour
         OriginalCameraTarget = GameObject.Find("Camera Target").GetComponent<FollowLastPlayer>();
 
 
-
+        empWall = GameObject.Find("EMP").GetComponent<EMPwall>();
 
 
 
@@ -70,6 +72,7 @@ public class Portal : MonoBehaviour
     public void ActivatePortal()
     {
         telportAnimator.SetTrigger("OnPlayerEnter");
+        
     }
 
     public void OnTriggerStay2D(Collider2D other)
@@ -97,6 +100,10 @@ public class Portal : MonoBehaviour
         pos2.transform.position = secretLevelPosition2.position;
         _vcam.PreviousStateIsValid = false;
         _vcam.Follow = SecretCameraTarget;
+
+        empWall.isActive = true;
+        
+        
         pSc1.fallDetector.SetActive(false);
         pSc2.fallDetector.SetActive(false);
         player.GetComponent<PlayerMovement>().enabled = true;

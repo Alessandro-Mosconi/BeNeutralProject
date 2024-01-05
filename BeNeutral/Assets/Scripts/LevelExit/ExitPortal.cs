@@ -32,6 +32,7 @@ public class ExitPortal : MonoBehaviour
     
     [SerializeField] private CinemachineVirtualCamera _vcam;
 
+    private EMPwall empWall;
 
     
     
@@ -57,6 +58,7 @@ public class ExitPortal : MonoBehaviour
         originalCameraScript = GameObject.Find("Camera Target").GetComponent<FollowLastPlayer>();
 
 
+        empWall = GameObject.Find("EMP").GetComponent<EMPwall>();
 
 
 
@@ -100,6 +102,8 @@ public class ExitPortal : MonoBehaviour
         pos2.transform.position = exitLevelPosition2.position;
         _vcam.PreviousStateIsValid = false;
         _vcam.Follow = OriginalCameraTarget;
+
+        empWall.isActive = false;
         pSc1.fallDetector.SetActive(true);
         pSc2.fallDetector.SetActive(true);
         player.GetComponent<PlayerMovement>().enabled = true;

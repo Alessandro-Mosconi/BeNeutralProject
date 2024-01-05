@@ -17,6 +17,9 @@ public class EMPwall : MonoBehaviour
     private PlayerManager p1;
     private PlayerManager p2;
 
+
+    public bool isActive = false;
+
     void Start()
     {
         empPos = transform.position;
@@ -29,12 +32,15 @@ public class EMPwall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right*speed*Time.deltaTime);
-        if (p1.Fell || p2.Fell)
+        if (isActive)
         {
-            transform.position=empPos;
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            if (p1.Fell || p2.Fell)
+            {
+                transform.position = empPos;
+            }
         }
-        
+
     }
 
 }
