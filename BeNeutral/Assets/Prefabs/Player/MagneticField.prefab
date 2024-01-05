@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 323981587732651497}
   - component: {fileID: 1465320341705956150}
   - component: {fileID: 8863545214923472934}
+  - component: {fileID: 7277037857014423745}
   m_Layer: 11
   m_Name: MagneticField
   m_TagString: Untagged
@@ -148,3 +149,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1183973
+--- !u!114 &7277037857014423745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4367381147602538487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5532ac7a2cf9c9544871a998a416cf75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

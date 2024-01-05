@@ -129,7 +129,6 @@ private void ApplyForce(GameObject magneticField, int playerPositivity)
 
     private void attractBox(float directionX, float forceX, float directionY, float forceY)
     {
-        print("attiro");
         //attrai fino a essere vicini 
         boxRb.velocity = new Vector2(-directionX * forceX, -directionY * forceY);
     }
