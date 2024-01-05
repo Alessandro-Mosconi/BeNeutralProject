@@ -27,6 +27,9 @@ public class Portal : MonoBehaviour
 
     [SerializeField] private Transform SecretCameraTarget;
     
+    [SerializeField] private FollowLastPlayer OriginalCameraTarget;
+
+    
     [SerializeField] private CinemachineVirtualCamera _vcam;
 
 
@@ -44,9 +47,14 @@ public class Portal : MonoBehaviour
         pSc2 = player2.GetComponent<PlayerManager>();
         pos2 = pSc2.transform;
 
-        SecretCameraTarget = GameObject.Find("SecretLevelCameraTarget").GetComponent<Transform>();
+        SecretCameraTarget = GameObject.Find("Secret Level Camera Target").GetComponent<Transform>();
 
         _vcam = GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
+
+
+        OriginalCameraTarget = GameObject.Find("Camera Target").GetComponent<FollowLastPlayer>();
+
+
 
 
 
@@ -83,6 +91,7 @@ public class Portal : MonoBehaviour
         player.GetComponent<PlayerMovement>().enabled = false;
         
         yield return EnterPortalEffect(player);
+        OriginalCameraTarget.enabled = false;
         yield return new WaitForSeconds(1f);
         pos1.transform.position = secretLevelPosition1.position;
         pos2.transform.position = secretLevelPosition2.position;
