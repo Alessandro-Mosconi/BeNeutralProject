@@ -24,6 +24,12 @@ public class Portal : MonoBehaviour
 
     [SerializeField] private Transform secretLevelPosition2;
 
+
+    [SerializeField] private GameObject cameraTraget;
+    
+    [SerializeField] private CinemachineVirtualCamera _vcam;
+
+
     
     
     
@@ -37,8 +43,10 @@ public class Portal : MonoBehaviour
         pos1 = pSc1.transform;
         pSc2 = player2.GetComponent<PlayerManager>();
         pos2 = pSc2.transform;
-        
-        
+
+        cameraTraget = GameObject.Find("Camera Target");
+
+
     }
 
     // Update is called once per frame
