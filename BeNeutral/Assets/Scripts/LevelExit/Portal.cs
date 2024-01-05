@@ -56,7 +56,7 @@ public class Portal : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (Input.GetButton("InteractPlayer" + playerMovementScript.playerNumber))
+            if (Input.GetButton("MagneticFieldPlayer" + playerMovementScript.playerNumber))
             {
                 ActivatePortal();
                 StartCoroutine(EnterPortal(other.transform));
