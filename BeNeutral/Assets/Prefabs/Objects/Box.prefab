@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   positivty: 1
   gravityDirection: 1
-  maxForceDistance: 10
+  maxForceDistance: 2
   magneticAttraction: 1
 --- !u!1 &1529552535395975888
 GameObject:
