@@ -11,6 +11,7 @@ public class BoxForces : MonoBehaviour
     [SerializeField] public int gravityDirection = 1;
     [SerializeField] public float maxForceDistance = 3;
     [SerializeField] public int magneticAttraction = 1;
+    private Transform _originalParent;
     private Rigidbody2D boxRb;
     private GameObject player1;
     private GameObject player2;
@@ -21,6 +22,7 @@ public class BoxForces : MonoBehaviour
     void Start()
     {
         
+        _originalParent = transform.parent;
 
         var fieldRender = gameObject.transform.GetChild(0).gameObject.GetComponent<Renderer>();
         if (positivty > 0)
@@ -38,6 +40,7 @@ public class BoxForces : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         HandleGravity();
             
         if (magneticField1 != null && magneticField1.activeSelf)
@@ -189,5 +192,45 @@ private void ApplyForce(GameObject magneticField, int playerPositivity)
         var kid = allKids.FirstOrDefault(k => k.gameObject.name == withName);
         if (kid == null) return null;
         return kid.gameObject;
+    }
+    
+    public void setParent(Transform newParent)
+    {
+        _originalParent = transform.parent;
+        transform.parent = newParent;
+        transform.position = new Vector3(transform.position.x, transform.position.y, 10);
+    }
+    
+    public void resetParent()
+    {
+        transform.parent = _originalParent;
+        transform.position = new Vector3(transform.position.x, transform.position.y, 10);
+    }
+    
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        var _playerMovement = other.collider.GetComponent<PlayerMovement>();
+        if (_playerMovement != null)
+        {
+            _playerMovement.setParent(transform);
+        }
+        var _boxForces = other.collider.GetComponent<BoxForces>();
+        if (_boxForces != null)
+        {
+            _boxForces.setParent(transform);
+        }
+    }
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        var _playerMovement = other.collider.GetComponent<PlayerMovement>();
+        if (_playerMovement != null)
+        {
+            _playerMovement.resetParent();
+        }
+        var _boxForces = other.collider.GetComponent<BoxForces>();
+        if (_boxForces != null)
+        {
+            _boxForces.resetParent();
+        }
     }
 }

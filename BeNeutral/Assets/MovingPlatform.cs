@@ -24,10 +24,12 @@ public class MovingPlatform : MonoBehaviour
     {
         if (activator != null && activator.platformCanMove)
         {
-            transform.position = Vector2.MoveTowards(
+            Vector2 vectorMove =Vector2.MoveTowards(
                 transform.position,
                 _targetWaypoint.position,
                 _speed * Time.deltaTime);
+            
+            transform.position = new Vector3(vectorMove.x, vectorMove.y, 70);
 
             if (Vector2.Distance(transform.position, _targetWaypoint.position) < _checkDistance)
             {
@@ -49,11 +51,15 @@ public class MovingPlatform : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        print("sono dentro");
         var _playerMovement = other.collider.GetComponent<PlayerMovement>();
         if (_playerMovement != null)
         {
             _playerMovement.setParent(transform);
+        }
+        var _boxForces = other.collider.GetComponent<BoxForces>();
+        if (_boxForces != null)
+        {
+            _boxForces.setParent(transform);
         }
     }
     private void OnCollisionExit2D(Collision2D other)
@@ -62,6 +68,11 @@ public class MovingPlatform : MonoBehaviour
         if (_playerMovement != null)
         {
             _playerMovement.resetParent();
+        }
+        var _boxForces = other.collider.GetComponent<BoxForces>();
+        if (_boxForces != null)
+        {
+            _boxForces.resetParent();
         }
     }
 }
