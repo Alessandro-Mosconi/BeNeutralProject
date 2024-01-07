@@ -123,6 +123,7 @@ MonoBehaviour:
   gravityDirection: 1
   maxForceDistance: 2
   magneticAttraction: 1
+  isFloating: 0
 --- !u!1 &1529552535395975888
 GameObject:
   m_ObjectHideFlags: 0

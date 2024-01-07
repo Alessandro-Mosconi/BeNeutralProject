@@ -85,7 +85,6 @@ public class MagneticField : MonoBehaviour
         {;
             if (childTransform.gameObject.name == withName)
             {
-                print("trovato");
                 return childTransform.gameObject;
             }
         }

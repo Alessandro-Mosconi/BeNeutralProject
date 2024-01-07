@@ -26,7 +26,6 @@ public class EMPwall : MonoBehaviour
         p1 = player1.GetComponent<PlayerManager>();
         p2 = player2.GetComponent<PlayerManager>();
 
-
     }
 
     // Update is called once per frame

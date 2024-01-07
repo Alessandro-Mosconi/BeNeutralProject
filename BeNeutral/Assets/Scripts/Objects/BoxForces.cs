@@ -11,17 +11,20 @@ public class BoxForces : MonoBehaviour
     [SerializeField] public int gravityDirection = 1;
     [SerializeField] public float maxForceDistance = 3;
     [SerializeField] public int magneticAttraction = 1;
+    [SerializeField] public bool isFloating = false;
     private Transform _originalParent;
     private Rigidbody2D boxRb;
     private GameObject player1;
     private GameObject player2;
     private GameObject magneticField1;
     private GameObject magneticField2;
+    
+    private Vector3 _originalPos;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        _originalPos = transform.position;
         _originalParent = transform.parent;
 
         var fieldRender = gameObject.transform.GetChild(0).gameObject.GetComponent<Renderer>();
@@ -209,6 +212,11 @@ private void ApplyForce(GameObject magneticField, int playerPositivity)
     
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if(!isFloating && other.gameObject.layer == LayerMask.NameToLayer("Damage-dealing"))
+        {
+            transform.position = _originalPos;
+            return;
+        }
         var _playerMovement = other.collider.GetComponent<PlayerMovement>();
         if (_playerMovement != null)
         {

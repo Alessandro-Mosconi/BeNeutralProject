@@ -25,7 +25,7 @@ TagManager:
   - Fall
   - External-objects
   - MagneticField
-  - 
+  - Enemies
   - 
   - 
   - 
@@ -49,8 +49,14 @@ TagManager:
   - name: Background
     uniqueID: 1829618491
     locked: 0
+  - name: Water
+    uniqueID: 1122347829
+    locked: 0
   - name: Terrain
     uniqueID: 769897455
+    locked: 0
+  - name: Object
+    uniqueID: 426109451
     locked: 0
   - name: Default
     uniqueID: 0
