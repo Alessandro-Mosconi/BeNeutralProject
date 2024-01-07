@@ -105,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 ContactPoint2D contact = other.contacts[i];
 
-                if (Mathf.Abs(Vector2.Dot(contact.normal, Vector2.up)) > 0.5f)
+                if (gravityDirection * Vector2.Dot(contact.normal, Vector2.up) > 0.5f)
                 {
                     if (other.gameObject.layer == LayerMask.NameToLayer("Terrain") ||
                         other.gameObject.layer == LayerMask.NameToLayer("External-objects"))
