@@ -51,22 +51,14 @@ public class PressurePlate : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.transform.name == "Player1")
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             other.transform.parent = transform;
             GetComponent<SpriteRenderer>().color=Color.red;
 
             for (int i = 0; i < targetSpikes.Length; i++)
             {
-                targetSpikes[i].Translate(0,0.6f,0);
-            }
-        } else if (other.transform.name == "Player2")
-        {
-            other.transform.parent = transform;
-            GetComponent<SpriteRenderer>().color=Color.red;
-
-            for (int i = 0; i < targetSpikes.Length; i++)
-            {
+                //targetSpikes[i].Translate(0,0.6f,0);
                 targetSpikes[i].Translate(0,-0.6f,0);
             }
         }
@@ -77,17 +69,11 @@ public class PressurePlate : MonoBehaviour
         moveBack = true;
         other.transform.parent = null;
         GetComponent<SpriteRenderer>().color=originalColor;
-        if (other.transform.name == "Player1")
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             for (int i = 0; i < targetSpikes.Length; i++)
             {
-                targetSpikes[i].Translate(0, -0.6f, 0);
-            }
-        }else if (other.transform.name == "Player2")
-        {
-            for (int i = 0; i < targetSpikes.Length; i++)
-            {
-                targetSpikes[i].Translate(0, 0.6f, 0);
+                targetSpikes[i].Translate(0, +0.6f, 0);
             }
         }
 
