@@ -126,10 +126,10 @@ private void ApplyForce(GameObject magneticField, int playerPositivity)
         //repelli
         boxRb.velocity = new Vector2(directionX * forceX, directionY * forceY);
 
-        print("repello");
+        //print("repello");
         if (forceX > 0 && Math.Round(oldXPosition, 2) == Math.Round(boxRb.position.x, 2))
         {
-            print("autorepello");
+            //print("autorepello");
         }
     }
 

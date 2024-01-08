@@ -13,6 +13,10 @@ public class MovingPlatform : MonoBehaviour
     [SerializeField] private Transform _targetWaypoint;
 
     [SerializeField] private int _currentWaypointIndex = 0;
+    [SerializeField] private bool moveWithoutActivator = false;
+    
+    [SerializeField] private bool isCrush = false;
+    private bool touchGround = false;
     
     void Start()
     {
@@ -22,7 +26,14 @@ public class MovingPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (activator != null && activator.platformCanMove)
+        if (isCrush && !touchGround)
+        {
+            _targetWaypoint = null;
+            gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            return;
+        }
+        
+        if (moveWithoutActivator || (activator != null && activator.platformCanMove && _targetWaypoint!=null))
         {
             Vector2 vectorMove =Vector2.MoveTowards(
                 transform.position,
@@ -34,6 +45,7 @@ public class MovingPlatform : MonoBehaviour
             if (Vector2.Distance(transform.position, _targetWaypoint.position) < _checkDistance)
             {
                 _targetWaypoint = GetNextWaypoint();
+                touchGround = false;
             }
         }
         
@@ -60,6 +72,14 @@ public class MovingPlatform : MonoBehaviour
         if (_boxForces != null)
         {
             _boxForces.setParent(transform);
+        }
+        if (isCrush && other.gameObject.layer == LayerMask.NameToLayer("Terrain") ||
+            other.gameObject.layer == LayerMask.NameToLayer("External-objects") ||
+            other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            touchGround = true;
+            gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            _targetWaypoint = _waypoints[0];
         }
     }
     private void OnCollisionExit2D(Collision2D other)

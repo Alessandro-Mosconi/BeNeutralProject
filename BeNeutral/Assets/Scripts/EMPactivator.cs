@@ -7,11 +7,12 @@ public class EMPactivator : MonoBehaviour
 {
 
     [SerializeField] private EMPwall emp;
+    [SerializeField] private bool disactivate = false;
     // Start is called before the first frame update
     void Start()
     {
         
-        emp.gameObject.SetActive(false);
+        emp.gameObject.SetActive(disactivate);
     }
 
     // Update is called once per frame
@@ -22,7 +23,7 @@ public class EMPactivator : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        emp.gameObject.SetActive(true);
-        emp.isActive = true;
+        emp.gameObject.SetActive(!disactivate);
+        emp.isActive = !disactivate;
     }
 }
