@@ -7,6 +7,8 @@ using UI;
 
 public class PlayerTwoExit : MonoBehaviour
 {
+    
+    [SerializeField] private Animator animator;
     private bool playerTwoExited = false;
     private Player0neExit p1e;
 
@@ -22,6 +24,10 @@ public class PlayerTwoExit : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
+        
+        other.gameObject.SetActive(false);
+        animator.SetBool("player_entered", true);
+        
         playerTwoExited = true;
         
         if (playerTwoExited && p1e.PlayerOneExited)
