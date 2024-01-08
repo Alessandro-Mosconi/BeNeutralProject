@@ -1795,10 +1795,10 @@ MonoBehaviour:
   fireAudioClipEnemie: {fileID: 0}
   walkingAudioClipEnemie: {fileID: 0}
   dieAudioClipEnemie: {fileID: 8300000, guid: 31b17dcf4e9d8b649a5f8791dcc299ab, type: 3}
-  backgroundMenuAudioClip: {fileID: 8300000, guid: b318f23d4f20e2449915504010891312, type: 3}
-  backgroundGameAudioClip: {fileID: 8300000, guid: ba5859ed376d8d34484fc40655e05e52, type: 3}
-  backgroundLoseAudioClip: {fileID: 8300000, guid: a48c48a16c53065429045f3178410da5, type: 3}
-  backgroundNextLevelAudioClip: {fileID: 0}
+  backgroundMenuAudioClip: {fileID: 8300000, guid: 8af89456b83b2e64ebdf31d92615604a, type: 3}
+  backgroundGameAudioClip: {fileID: 8300000, guid: f318aa704bcc58e4cb2407f2a9beeeb7, type: 3}
+  backgroundNextLevelAudioClip: {fileID: 8300000, guid: 7f63903c90de7284faa604c1b915eac8, type: 3}
+  gameOverAudioClip: {fileID: 0}
   backgroundVolume: 0.1
   fadeInTime: 20
   buttonClick: {fileID: 8300000, guid: 5ce5946188767cf45b10f15e2479f3f8, type: 3}
