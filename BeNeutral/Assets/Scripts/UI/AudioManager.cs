@@ -52,14 +52,27 @@ namespace UI
         
         [Space(20)]
         [Header("Audio Mixer")]
-        [SerializeField] private AudioMixer mixer;
+        [SerializeField] private VolumeManager mixer;
         
         private Coroutine backgroundMusicCoroutine;
         private Coroutine fadeInCoroutine;
         private AudioClip currentBackgroundMusic;
         
+        // change volumes
+        public void ChangeSoundsVolume(float newVolume)
+        {
+            playerAudioSource.volume = newVolume;
+            enemieAudioSource.volume = newVolume;
+        }
+        
+        public void ChangeMenuMusicVolume(float newVolume)
+        {
+            backgroundMusicAudioSource.volume = newVolume;
+            backgroundVolume = newVolume;
+        }
         
         // - player sounds
+
         public void PlayFirePlayer()
         {
             playerAudioSource.PlayOneShot(fireAudioClipPlayer);
@@ -122,15 +135,19 @@ namespace UI
             {
                 case 0:
                     currentBackgroundMusic = backgroundMenuAudioClip;
+                    backgroundVolume = mixer.GetMenuMusicVolume();
                     break;
                 case 1:
                     currentBackgroundMusic = backgroundGameAudioClip;
+                    backgroundVolume = mixer.GetGameMusicVolume();
                     break;
                 case 2:
                     currentBackgroundMusic = backgroundNextLevelAudioClip;
+                    backgroundVolume = mixer.GetGameMusicVolume();
                     break;
                 default:
                     currentBackgroundMusic = backgroundMenuAudioClip;
+                    backgroundVolume = mixer.GetMenuMusicVolume();
                     break;
             }
             StartBackgroundMusic();
@@ -187,20 +204,6 @@ namespace UI
                 yield return new WaitForSeconds(waitingTime);
             }
             audioS.volume = backgroundVolume;
-        }
-       
-        
-        // these functions are needed if the game has a menu that can modify the master volume
-        public void SetMixerMasterVolume(float volume)
-        {
-            float mixerVolume = AudioManager.SliderToDB(volume);
-            mixer.SetFloat ("MasterVolume", mixerVolume);
-        }
-    
-        public static float SliderToDB(float volume, float maxDB=-10, float minDB=-80)
-        {
-            float dbRange = maxDB - minDB;
-            return minDB + volume * dbRange;
         }
     }
 }
