@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Codice.Client.BaseCommands.CheckIn;
 using UnityEngine;
@@ -14,22 +15,25 @@ namespace UI
         [SerializeField] private ScoreManager scoreDisplay;
         [SerializeField] private AudioManager audioManager;
         [SerializeField] private LoadingManager loadingManager;
+        [SerializeField] private OptionsGroup optionsManager;
         
         [Header("PLAYER")]
         [SerializeField] private  int startingLifes;
-        //
+        
         [Header("SCORES")]
         [SerializeField] private int levelPassedPoints;
         [SerializeField] private int multiplierPoints;
         [SerializeField] private int damageLostPoints;
         [SerializeField] private int dieLostPoints;
         
-        private int level = 0;
+        [Header("STARTING OPTIONS")]
+        [SerializeField] private int level = 0;
         private string LevelName;
         
         public void Start()
         {
             ResetGame();
+            optionsManager.gameObject.SetActive(true);
             
             // - start background music
             AudioManager.instance.ChooseBackgroundMusic(0);
@@ -49,6 +53,7 @@ namespace UI
 
         public void StartGame()
         {
+            optionsManager.gameObject.SetActive(false);
             LoadLevel();
         }
         public void ReloadLevel()
@@ -58,6 +63,7 @@ namespace UI
         }
         public void RestartGame()
         {
+            optionsManager.gameObject.SetActive(false);
             ReloadLevel();
         }
         
@@ -65,7 +71,7 @@ namespace UI
         {
             ObjectPoolingManager.Instance.ResetPools();
             ClearUI();
-            LevelName = "Level3";
+            LevelName = ChooseLevel(level);
             scoreDisplay.SetLifes(startingLifes);
             scoreDisplay.ResetScore();
         }
@@ -79,6 +85,7 @@ namespace UI
             // - If we want to start from the beginning of the game
             ResetGame();
             StartCoroutine(StartGameOverCoroutine());
+            level = 0;
             // - Background music set to Losing music
             audioManager.StopBackgroundMusic();
             audioManager.PlayGameOver();
@@ -97,6 +104,10 @@ namespace UI
             ResetGame();
             // - activate the start screen
             SceneManager.LoadScene("InitialScreen");
+            // - reset level
+            level = 0;
+            // - reactivate menu
+            optionsManager.gameObject.SetActive(true);
             // - background music set to Main Menu music
             audioManager.ChooseBackgroundMusic(0);
         }
@@ -204,6 +215,19 @@ namespace UI
                 StartGameOver();
             }
         }
+
+        public void PauseGame()
+        {
+            // TODO
+            // commands to pause the game
+        }
+
+        public void UnpauseGame()
+        {
+            // TODO
+            // commands to restart the game from the pause point
+        }
+
 
     }
 }
