@@ -219,13 +219,15 @@ namespace UI
         public void PauseGame()
         {
             // TODO
-            // commands to pause the game
+            // commands to pause the 
+            Time.timeScale = 0;
         }
 
         public void UnpauseGame()
         {
             // TODO
             // commands to restart the game from the pause point
+            Time.timeScale = 1;
         }
 
 
