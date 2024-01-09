@@ -14,13 +14,15 @@ namespace Enemies.Behaviors
     {
         public SpriteRenderer spriteRenderer;
         public GameObject target;
+        public GameObject alternativeTarget;
         public float maxLife = 10;
 
         private EnemyBehavior[] _activeBehaviors;
         private readonly List<int> _currentStates = new List<int>();
         private readonly Dictionary<int, int> _behaviorToIndexMap = new Dictionary<int, int>();
         private int _stateToRestoreAfterAction = -1;
-        private PlayerManager _target;
+        private PlayerManager _target, _alternativeTarget;
+        private Rigidbody2D _targetRB, _alternativeTargetRB, _selfRB;
         private float _life;
         private Coroutine _flashCoroutine;
         private Material _originalMaterial, _flashMaterial;
@@ -68,6 +70,10 @@ namespace Enemies.Behaviors
             }
 
             _target = target.GetComponent<PlayerManager>();
+            _alternativeTarget = target.GetComponent<PlayerManager>();
+            _targetRB = target.GetComponent<Rigidbody2D>();
+            _alternativeTargetRB = target.GetComponent<Rigidbody2D>();
+            _selfRB = GetComponent<Rigidbody2D>();
             String states = "";
             _currentStates.ForEach(s => states += _activeBehaviors[s].Type() + ", ");
             //print("STATE MACHINE INIT: Initial states are " + states);
@@ -78,6 +84,16 @@ namespace Enemies.Behaviors
             //Simulate the state machine, one step at a time
             bool sank = false;
             bool switchedToHammer = false;
+            // Check if we need to switch target since the players swapped sides
+            if (Mathf.Sign(_targetRB.gravityScale) != Mathf.Sign(_selfRB.gravityScale))
+            {
+                PlayerManager tmp = _target;
+                Rigidbody2D tmprb = _targetRB;
+                _target = _alternativeTarget;
+                _targetRB = _alternativeTargetRB;
+                _alternativeTarget = tmp;
+                _alternativeTargetRB = tmprb;
+            }
             for (int i = 0; i < _currentStates.Count; i++)
             {
                 int currentState = _currentStates[i];
