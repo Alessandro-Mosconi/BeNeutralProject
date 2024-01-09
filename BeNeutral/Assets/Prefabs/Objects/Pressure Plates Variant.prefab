@@ -24,6 +24,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pressure plate
       objectReference: {fileID: 0}
+    - target: {fileID: 5809128877512380018, guid: e0b3bc413a1d6cb42ad8598d4bec0ae5, type: 3}
+      propertyPath: m_Size.x
+      value: 3.8456955
+      objectReference: {fileID: 0}
+    - target: {fileID: 5809128877512380018, guid: e0b3bc413a1d6cb42ad8598d4bec0ae5, type: 3}
+      propertyPath: m_Size.y
+      value: 0.61224365
+      objectReference: {fileID: 0}
+    - target: {fileID: 5809128877512380018, guid: e0b3bc413a1d6cb42ad8598d4bec0ae5, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.05456543
+      objectReference: {fileID: 0}
+    - target: {fileID: 5809128877512380018, guid: e0b3bc413a1d6cb42ad8598d4bec0ae5, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.06514597
+      objectReference: {fileID: 0}
     - target: {fileID: 5912426286133923178, guid: e0b3bc413a1d6cb42ad8598d4bec0ae5, type: 3}
       propertyPath: m_Name
       value: Pressure Plates Variant
@@ -101,10 +117,30 @@ PrefabInstance:
     - {fileID: 5863266369138220836, guid: e0b3bc413a1d6cb42ad8598d4bec0ae5, type: 3}
     - {fileID: 490007037714735562, guid: e0b3bc413a1d6cb42ad8598d4bec0ae5, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6303024486043908380, guid: e0b3bc413a1d6cb42ad8598d4bec0ae5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1104284099697340777}
   m_SourcePrefab: {fileID: 100100000, guid: e0b3bc413a1d6cb42ad8598d4bec0ae5, type: 3}
 --- !u!4 &2160264219953291982 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3550253399810179383, guid: e0b3bc413a1d6cb42ad8598d4bec0ae5, type: 3}
   m_PrefabInstance: {fileID: 3224511864960607225}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8919118567681432293 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6303024486043908380, guid: e0b3bc413a1d6cb42ad8598d4bec0ae5, type: 3}
+  m_PrefabInstance: {fileID: 3224511864960607225}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1104284099697340777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8919118567681432293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f46dc0ecd94f1594eb41d0868ac9caab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

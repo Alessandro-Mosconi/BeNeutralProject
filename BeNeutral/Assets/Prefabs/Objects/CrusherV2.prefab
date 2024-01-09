@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 5203178841305123217}
   - component: {fileID: 8109331562391918475}
   - component: {fileID: 5516013640220174584}
+  - component: {fileID: 2806761801356593415}
   m_Layer: 7
   m_Name: Spikes
   m_TagString: Hazards
@@ -376,6 +377,18 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!114 &2806761801356593415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4321323822521499443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f46dc0ecd94f1594eb41d0868ac9caab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6946031840496626126
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,7 +780,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 999
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1

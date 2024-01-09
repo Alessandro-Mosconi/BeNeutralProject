@@ -65,7 +65,7 @@ namespace UI
         {
             ObjectPoolingManager.Instance.ResetPools();
             ClearUI();
-            LevelName = "LevelTutorial";
+            LevelName = "Level3";
             scoreDisplay.SetLifes(startingLifes);
             scoreDisplay.ResetScore();
         }

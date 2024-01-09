@@ -38,7 +38,8 @@ public class RespawnPlayers : MonoBehaviour
             
             pos1 = checkpoint1;
             pos2 = checkpoint1;
-            pos2.y = -checkpoint1.y;
+            pos2.y = player2.gameObject.GetComponent<Rigidbody2D>().gravityScale * checkpoint1.y;
+            pos1.y = player1.gameObject.GetComponent<Rigidbody2D>().gravityScale * checkpoint1.y;
         }
         
         if (pSc1.IsCheckpoint2 || pSc2.IsCheckpoint2)

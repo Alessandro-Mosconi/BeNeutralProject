@@ -21,7 +21,8 @@ public class Spike : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            print("colpito");
+            Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
+            rb.velocity = new Vector2(0, 4);
         }
             
     }
