@@ -15,7 +15,6 @@ namespace UI
         [SerializeField] private ScoreManager scoreDisplay;
         [SerializeField] private AudioManager audioManager;
         [SerializeField] private LoadingManager loadingManager;
-        [SerializeField] private OptionsGroup optionsManager;
         
         [Header("PLAYER")]
         [SerializeField] private  int startingLifes;
@@ -33,7 +32,6 @@ namespace UI
         public void Start()
         {
             ResetGame();
-            optionsManager.gameObject.SetActive(true);
             
             // - start background music
             AudioManager.instance.ChooseBackgroundMusic(0);
@@ -53,7 +51,6 @@ namespace UI
 
         public void StartGame()
         {
-            optionsManager.gameObject.SetActive(false);
             LoadLevel();
         }
         public void ReloadLevel()
@@ -63,7 +60,6 @@ namespace UI
         }
         public void RestartGame()
         {
-            optionsManager.gameObject.SetActive(false);
             ReloadLevel();
         }
         
@@ -74,6 +70,7 @@ namespace UI
             LevelName = ChooseLevel(level);
             scoreDisplay.SetLifes(startingLifes);
             scoreDisplay.ResetScore();
+            UnpauseGame();
         }
         private void ClearUI()
         {
@@ -107,7 +104,7 @@ namespace UI
             // - reset level
             level = 0;
             // - reactivate menu
-            optionsManager.gameObject.SetActive(true);
+            MenuManager.instance.OpenMainMenu();
             // - background music set to Main Menu music
             audioManager.ChooseBackgroundMusic(0);
         }
