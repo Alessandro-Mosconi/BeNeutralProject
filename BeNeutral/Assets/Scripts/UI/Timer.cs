@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Cinemachine;
 using TMPro;
-using TMPro.Examples;
 using UI;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class Timer : MonoBehaviour
 {
@@ -16,6 +14,7 @@ public class Timer : MonoBehaviour
     
     private GameObject cameraObject;
     private CameraAnimator cameraAnimator;
+    
     private void Start()
     {
         // Starts the timer automatically
