@@ -13,13 +13,25 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] public int gravityDirection = 1;
     [SerializeField] public int playerNumber = 1;
 
+    
     private bool isGrounded;
     private float dirX = 0f;
+    private enum MovementState
+    {
+        idle,
+        running,
+        jumping,
+        falling
+    };
 
+    private MovementState state = MovementState.idle;
+    private String animationState;
     public Vector2 movementDirection { get; private set; }
     // Start is called before the first frame update
     void Start()
     {
+        
+        animationState = "state" + playerNumber;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
@@ -42,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
         
         if(Input.GetButton("JumpPlayer" + playerNumber)  && isGrounded)
         {
+            
             rb.velocity = new Vector2(rb.velocity.x, gravityDirection * 8f);
             isGrounded = false;
         }
@@ -69,21 +82,32 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateAnimationUpdate()
     {
-        string varRunning = "runningPlayer" + playerNumber;
-        
+
+        MovementState state;
         if (dirX > 0)
         {
             spriteRenderer.flipX = false;
-            animator.SetBool(varRunning, true);
+            state = MovementState.running;
         } else if (dirX < 0)
         {
             spriteRenderer.flipX = true;
-            animator.SetBool(varRunning, true);
+            state = MovementState.running;
         }
         else
         {
-            animator.SetBool(varRunning, false);
+            state = MovementState.idle;
         }
+
+        if (!isGrounded && gravityDirection * rb.velocity.y > .1f)
+        {
+            state = MovementState.jumping;
+        } 
+        
+        if (!isGrounded && gravityDirection * rb.velocity.y < -.1f)
+        {
+            state = MovementState.falling;
+        } 
+        animator.SetInteger(animationState,(int) state);
     }
     
     public void setParent(Transform newParent)
