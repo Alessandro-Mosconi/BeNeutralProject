@@ -115,6 +115,9 @@ namespace UI
             // - Select the level name corresponding to the level number
             switch (n)
             {
+                case -1:
+                    levelName = "TestCutScene";
+                    break;
                 case 0:
                     levelName = "LevelTutorial";
                     break;

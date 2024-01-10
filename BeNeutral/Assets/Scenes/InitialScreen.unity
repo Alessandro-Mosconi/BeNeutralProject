@@ -7637,7 +7637,7 @@ MonoBehaviour:
   multiplierPoints: 1
   damageLostPoints: 1
   dieLostPoints: 20
-  level: 3
+  level: -1
 --- !u!1 &1564178157
 GameObject:
   m_ObjectHideFlags: 0
