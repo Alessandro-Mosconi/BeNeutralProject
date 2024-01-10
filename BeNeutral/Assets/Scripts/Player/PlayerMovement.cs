@@ -83,7 +83,6 @@ public class PlayerMovement : MonoBehaviour
     private void UpdateAnimationUpdate()
     {
 
-        MovementState state;
         if (dirX > 0)
         {
             spriteRenderer.flipX = false;
