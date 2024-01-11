@@ -1,9 +1,14 @@
 using System;
 using System.Collections;
 using Codice.Client.BaseCommands.CheckIn;
+using TMPro;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 using UnityEngine.Video;
+using Image = UnityEngine.UI.Image;
 
 namespace UI
 {
@@ -15,6 +20,16 @@ namespace UI
         [SerializeField] private ScoreManager scoreDisplay;
         [SerializeField] private AudioManager audioManager;
         [SerializeField] private LoadingManager loadingManager;
+        
+        
+        [Header("INTRO")]
+        [SerializeField] private Canvas introGroup;
+        [SerializeField] private VideoPlayer videoIntro;
+        [SerializeField] private TMP_Text introText;
+        
+        [Header("MENU")]
+        [SerializeField] private MenuManager menuManager;
+        [SerializeField] private CanvasGroup menuManagerGroup;
         
         [Header("PLAYER")]
         [SerializeField] private  int startingLifes;
@@ -32,16 +47,75 @@ namespace UI
         public void Start()
         {
             ResetGame();
-            
+            PlayIntro();
             // - start background music
-            AudioManager.instance.ChooseBackgroundMusic(0);
+            
             
             //TODO
             //start animations on the load screen
             
-            //mychanges
-            Debug.Log("game manager");
+        }
+
+        public void PlayIntro()
+        {
+            Coroutine fadeIn = StartCoroutine(introFadeIn());
+            videoIntro.Play();
+            StartCoroutine(introFadeOut(fadeIn));
+        }
+
+        
+
+        IEnumerator introFadeIn()
+        {
+            float x = 0.0001f;
+            while(videoIntro.targetCameraAlpha < 0.6f)
+            {
+                videoIntro.targetCameraAlpha += x;
+                videoIntro.SetDirectAudioVolume(0,videoIntro.GetDirectAudioVolume(0)+x);
+                x += 0.0001f;
+                yield return new WaitForSeconds(0.05f);
+            }
+        }
+        
+        IEnumerator introFadeOut(Coroutine fadeIn)
+        {
+            yield return new WaitForSeconds(4f);
+            while (videoIntro.isPlaying)
+            {
+                introText.gameObject.SetActive(true);
+                if (Input.GetKeyDown(KeyCode.F))
+                {
+                    StopCoroutine(fadeIn);
+                    break;
+                }
+                yield return null;
+            }
+            StartCoroutine(startMenu());
+            while(videoIntro.targetCameraAlpha > 0)
+            {
+                float x = 0.003f;
+                videoIntro.targetCameraAlpha -= x;
+                videoIntro.SetDirectAudioVolume(0,videoIntro.GetDirectAudioVolume(0)-x);
+                yield return new WaitForSeconds(0.008f);
+            }
+            introGroup.gameObject.SetActive(false);
             
+            
+        }
+
+        IEnumerator startMenu()
+        {
+            menuManager.gameObject.SetActive(true);
+            AudioManager.instance.ChooseBackgroundMusic(0);
+            
+            float y = 0f;
+            
+            while (y <= 1f)
+            {
+                menuManagerGroup.alpha = y;
+                y +=  0.002f;
+                yield return new WaitForSeconds(0.005f);
+            }
         }
         public void LoadLevel()
         {
