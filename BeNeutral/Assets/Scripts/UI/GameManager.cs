@@ -25,7 +25,7 @@ namespace UI
         [Header("INTRO")]
         [SerializeField] private Canvas introGroup;
         [SerializeField] private VideoPlayer videoIntro;
-        [SerializeField] private TMP_Text introText;
+        [SerializeField] private GameObject introText;
         
         [Header("MENU")]
         [SerializeField] private MenuManager menuManager;
