@@ -22,7 +22,13 @@ namespace UI
 
         // - if true mainMenu if false gameMenu
         private bool MenuType = true;
-        
+        private bool gameMenuOpen = false;
+
+
+        public bool gameMenuOpened()
+        {
+            return gameMenuOpen;
+        }
         public void OpenMainMenu()
         {
             MenuType = true;
@@ -38,6 +44,7 @@ namespace UI
         public void OpenGameMenu()
         {
             MenuType = false;
+            gameMenuOpen = true;
             Menu.gameObject.SetActive(true);
             GameMenu.gameObject.SetActive(true);
             MainMenu.gameObject.SetActive(false);
@@ -52,6 +59,7 @@ namespace UI
         public void CloseMenu()
         {
             Menu.gameObject.SetActive(false);
+            gameMenuOpen = false;
         }
 
         public void OpenSingleGroup()
@@ -109,6 +117,7 @@ namespace UI
         public void ConfirmRestartGame()
         {
             OpenMainMenu();
+            gameMenuOpen = false;
             GameManager.instance.ShowStartScreen();
             Restart.gameObject.SetActive(false);
         }

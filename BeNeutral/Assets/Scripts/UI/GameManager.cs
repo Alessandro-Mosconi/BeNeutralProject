@@ -25,7 +25,7 @@ namespace UI
         [Header("INTRO")]
         [SerializeField] private Canvas introGroup;
         [SerializeField] private VideoPlayer videoIntro;
-        [SerializeField] private GameObject introText;
+        [SerializeField] private CanvasGroup introText;
         
         [Header("MENU")]
         [SerializeField] private MenuManager menuManager;
@@ -43,10 +43,12 @@ namespace UI
         [Header("STARTING OPTIONS")]
         [SerializeField] private int level = 0;
         private string LevelName;
+        private bool inGame = false;
         
         public void Start()
         {
             ResetGame();
+            StartCoroutine(updateDuringGame());
             PlayIntro();
             // - start background music
             
@@ -79,15 +81,21 @@ namespace UI
         
         IEnumerator introFadeOut(Coroutine fadeIn)
         {
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(2f);
             while (videoIntro.isPlaying)
             {
                 introText.gameObject.SetActive(true);
+                while (introText.alpha < 1)
+                {
+                    introText.alpha += 0.01f;
+                    yield return new WaitForSeconds(0.02f);
+                }
                 if (Input.GetKeyDown(KeyCode.F))
                 {
                     StopCoroutine(fadeIn);
                     break;
                 }
+
                 yield return null;
             }
             StartCoroutine(startMenu());
@@ -95,6 +103,7 @@ namespace UI
             {
                 float x = 0.003f;
                 videoIntro.targetCameraAlpha -= x;
+                introText.alpha -= x;
                 videoIntro.SetDirectAudioVolume(0,videoIntro.GetDirectAudioVolume(0)-x);
                 yield return new WaitForSeconds(0.008f);
             }
@@ -119,6 +128,7 @@ namespace UI
         }
         public void LoadLevel()
         {
+            inGame = true;
             loadingManager.StartScene(LevelName);
             ObjectPoolingManager.Instance.RegenPools();
         }
@@ -145,6 +155,7 @@ namespace UI
             scoreDisplay.SetLifes(startingLifes);
             scoreDisplay.ResetScore();
             UnpauseGame();
+            inGame = false;
         }
         private void ClearUI()
         {
@@ -304,6 +315,31 @@ namespace UI
             Time.timeScale = 1;
         }
 
+        IEnumerator updateDuringGame()
+        {
+            while (true)
+            {
+                if (inGame)
+                {
+                    if (Input.GetKeyDown(KeyCode.Escape))
+                    {
+                        if (menuManager.gameMenuOpened())
+                        {
+                            menuManager.CloseMenu();
+                            UnpauseGame();
+                        }
+                        else
+                        {
+                            menuManager.OpenGameMenu();
+                            PauseGame();
+                        }
+                    }
+                }
+                yield return null; 
+            }
+            
+        }
+        
 
     }
 }
