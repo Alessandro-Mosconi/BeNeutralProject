@@ -78385,6 +78385,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 519420032}
     m_Modifications:
+    - target: {fileID: 1635438692049280334, guid: b0f7e65b61ce82a4698a453c0f06b5e8, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 519420028}
+    - target: {fileID: 3736041528601504430, guid: b0f7e65b61ce82a4698a453c0f06b5e8, type: 3}
+      propertyPath: m_Name
+      value: Backgrounds_clouds
+      objectReference: {fileID: 0}
+    - target: {fileID: 4780192455172873047, guid: b0f7e65b61ce82a4698a453c0f06b5e8, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 519420028}
+    - target: {fileID: 7898949693040543097, guid: b0f7e65b61ce82a4698a453c0f06b5e8, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 519420028}
     - target: {fileID: 8740809956809116114, guid: b0f7e65b61ce82a4698a453c0f06b5e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.277124
@@ -78424,10 +78440,6 @@ PrefabInstance:
     - target: {fileID: 8740809956809116114, guid: b0f7e65b61ce82a4698a453c0f06b5e8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3736041528601504430, guid: b0f7e65b61ce82a4698a453c0f06b5e8, type: 3}
-      propertyPath: m_Name
-      value: Backgrounds_clouds
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
