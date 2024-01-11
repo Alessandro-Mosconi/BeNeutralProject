@@ -20,6 +20,7 @@ namespace UI
         [SerializeField] private ScoreManager scoreDisplay;
         [SerializeField] private AudioManager audioManager;
         [SerializeField] private LoadingManager loadingManager;
+        [SerializeField] private Animations animator;
         
         
         [Header("INTRO")]
@@ -42,19 +43,17 @@ namespace UI
         
         [Header("STARTING OPTIONS")]
         [SerializeField] private int level = 0;
-        private string LevelName;
-        private bool inGame = false;
+        private string _levelName;
+        private bool _inGame = false;
         
         public void Start()
         {
             ResetGame();
             StartCoroutine(updateDuringGame());
             PlayIntro();
-            // - start background music
-            
             
             //TODO
-            //start animations on the load screen
+            // - start animations on the load screen
             
         }
 
@@ -64,9 +63,7 @@ namespace UI
             videoIntro.Play();
             StartCoroutine(introFadeOut(fadeIn));
         }
-
-        
-
+        // - special fade in for video and music
         IEnumerator introFadeIn()
         {
             float x = 0.0001f;
@@ -84,12 +81,7 @@ namespace UI
             yield return new WaitForSeconds(2f);
             while (videoIntro.isPlaying)
             {
-                introText.gameObject.SetActive(true);
-                while (introText.alpha < 1)
-                {
-                    introText.alpha += 0.01f;
-                    yield return new WaitForSeconds(0.02f);
-                }
+                animator.FadeIn(introText,2f);
                 if (Input.GetKeyDown(KeyCode.F))
                 {
                     StopCoroutine(fadeIn);
@@ -99,11 +91,11 @@ namespace UI
                 yield return null;
             }
             StartCoroutine(startMenu());
+            animator.FadeOut(introText,1f);
             while(videoIntro.targetCameraAlpha > 0)
             {
                 float x = 0.003f;
                 videoIntro.targetCameraAlpha -= x;
-                introText.alpha -= x;
                 videoIntro.SetDirectAudioVolume(0,videoIntro.GetDirectAudioVolume(0)-x);
                 yield return new WaitForSeconds(0.008f);
             }
@@ -128,8 +120,8 @@ namespace UI
         }
         public void LoadLevel()
         {
-            inGame = true;
-            loadingManager.StartScene(LevelName);
+            _inGame = true;
+            loadingManager.StartScene(_levelName);
             ObjectPoolingManager.Instance.RegenPools();
         }
 
@@ -139,7 +131,7 @@ namespace UI
         }
         public void ReloadLevel()
         {
-            loadingManager.RestartScene(LevelName);
+            loadingManager.RestartScene(_levelName);
             ObjectPoolingManager.Instance.RegenPools();
         }
         public void RestartGame()
@@ -151,11 +143,11 @@ namespace UI
         {
             ObjectPoolingManager.Instance.ResetPools();
             ClearUI();
-            LevelName = ChooseLevel(level);
+            _levelName = ChooseLevel(level);
             scoreDisplay.SetLifes(startingLifes);
             scoreDisplay.ResetScore();
             UnpauseGame();
-            inGame = false;
+            _inGame = false;
         }
         private void ClearUI()
         {
@@ -225,7 +217,7 @@ namespace UI
         {
             // - Progress to the next level
             level = level + 1;
-            LevelName = ChooseLevel(level);
+            _levelName = ChooseLevel(level);
             StartGame();
         }
         public void ShowNextLevel()
@@ -243,7 +235,7 @@ namespace UI
         public void RestartThisLevel()
         {
             // - Restart after die from the same level
-            LevelName = ChooseLevel(level);
+            _levelName = ChooseLevel(level);
             RestartGame(); 
         }
 
@@ -319,7 +311,7 @@ namespace UI
         {
             while (true)
             {
-                if (inGame)
+                if (_inGame)
                 {
                     if (Input.GetKeyDown(KeyCode.Escape))
                     {
