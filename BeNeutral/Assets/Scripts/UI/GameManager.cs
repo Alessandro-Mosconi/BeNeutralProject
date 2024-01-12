@@ -277,10 +277,10 @@ namespace UI
             // - audioManager.PlayDiePlayer();
             scoreDisplay.SubToScore(damageLostPoints);
         }
-        public void KillEnemie(int points)
+        public void KillEnemy(int points)
         {
             //TODO
-            // - death sound of the enemie
+            // - death sound of the enemy
             audioManager.PlayDieEnemie();
             scoreDisplay.AddToScore(points);
         }
