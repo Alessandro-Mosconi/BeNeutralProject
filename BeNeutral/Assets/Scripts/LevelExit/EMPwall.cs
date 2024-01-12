@@ -11,8 +11,8 @@ public class EMPwall : MonoBehaviour
     public Vector3 empPos;
     [SerializeField] private float damageValue;
 
-    [SerializeField] private GameObject player1;
-    [SerializeField] private GameObject player2;
+     private GameObject player1;
+     private GameObject player2;
 
     private PlayerManager p1;
     private PlayerManager p2;

@@ -34,6 +34,9 @@ public class ExitPortal : MonoBehaviour
 
     private EMPwall empWall;
 
+
+    private GameObject barrier;
+
     
     
     
@@ -60,7 +63,7 @@ public class ExitPortal : MonoBehaviour
 
         empWall = GameObject.Find("EMP").GetComponent<EMPwall>();
 
-
+        barrier = GameObject.Find("Barrier");
 
 
     }
@@ -104,6 +107,7 @@ public class ExitPortal : MonoBehaviour
         _vcam.Follow = OriginalCameraTarget;
 
         empWall.isActive = false;
+        barrier.SetActive(false);
         pSc1.fallDetector.SetActive(true);
         pSc2.fallDetector.SetActive(true);
         player.GetComponent<PlayerMovement>().enabled = true;
