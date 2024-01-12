@@ -12,6 +12,8 @@ TagManager:
   - checkpoint3
   - RotatingPlatform
   - EMP
+  - SecretLevelCheckpoint1
+  - SecretLevelCheckpoint2
   layers:
   - Default
   - TransparentFX

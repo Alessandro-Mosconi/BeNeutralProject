@@ -39,6 +39,11 @@ public class PlayerManager : MonoBehaviour
      private bool isCheckpoint2;
      private bool isCheckpoint3;
      private bool fell;
+
+
+
+     private bool isSecretCheckpoint1;
+     private bool isSecretCheckpoint2;
      private void Start()
      {
          magneticField = GetComponent<MagneticField>();
@@ -84,10 +89,19 @@ public class PlayerManager : MonoBehaviour
          } else if (other.CompareTag("checkpoint"))
          {
              isCheckpoint = true;
-         }else if (other.CompareTag("checkpoint2"))
+         }else if (other.CompareTag("SecretLevelCheckpoint1"))
+         {
+             isSecretCheckpoint1 = true;
+             isCheckpoint = false;
+         }else if (other.CompareTag("SecretLevelCheckpoint2"))
+         {
+             isSecretCheckpoint2 = true;
+             isSecretCheckpoint1 = false;
+         }
+         else if (other.CompareTag("checkpoint2"))
          {
              isCheckpoint2 = true;
-             isCheckpoint = false;
+             isSecretCheckpoint2 = false;
          } else if (other.CompareTag("checkpoint3"))
          {
              isCheckpoint3 = true;
@@ -197,6 +211,15 @@ public class PlayerManager : MonoBehaviour
      public bool IsCheckpoint3
      {
          get { return isCheckpoint3; }
+     }
+
+     public bool IsSecretCheckpoint1
+     {
+         get { return isSecretCheckpoint1; }
+     }
+     public bool IsSecretCheckpoint2
+     {
+         get { return isSecretCheckpoint2; }
      }
 
      public bool Fell
