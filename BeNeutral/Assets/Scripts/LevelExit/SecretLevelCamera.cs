@@ -37,7 +37,7 @@ public class SecretLevelCamera : MonoBehaviour
          p1Pos = Player1.position;
          p2Pos = Player2.position;
         float middleX = (p1Pos.x + p2Pos.x) * 0.5f;
-        transform.position = new Vector3(middleX +2.5f, ((p1Pos.y + p2Pos.y) * 0.5f) , transform.position.z);
+        transform.position = new Vector3(middleX +2.5f, ((Entrance1.position.y + Entrance2.position.y) * 0.5f) , transform.position.z);
 
         
             if (_vcam == null)
@@ -46,7 +46,7 @@ public class SecretLevelCamera : MonoBehaviour
             }
             else
             {
-                _vcam.m_Lens.OrthographicSize = Math.Min( Math.Abs(p1Pos.y - p2Pos.y), 15f);
+                _vcam.m_Lens.OrthographicSize = Math.Min( Math.Abs(Entrance1.position.y - Entrance2.position.y), 15f);
 
             }
         
