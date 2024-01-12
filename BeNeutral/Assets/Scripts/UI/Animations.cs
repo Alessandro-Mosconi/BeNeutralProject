@@ -16,18 +16,22 @@ namespace UI
 
         IEnumerator FadeInCoroutine(CanvasGroup canvas, float duration)
         {
-            float step = 0.001f;
-            float increment = (1f/duration)*step;
-            float x = 0f;
-            canvas.alpha = x;
-            canvas.gameObject.SetActive(true);
-            while (x < 1f)
+            if (canvas != null)
             {
+                float step = 0.001f;
+                float increment = (1f/duration)*step;
+                float x = 0f;
                 canvas.alpha = x;
-                x += increment;
-                yield return new WaitForSeconds(step);
+                canvas.gameObject.SetActive(true);
+                while (x < 1f && canvas != null)
+                {
+                    canvas.alpha = x;
+                    x += increment;
+                    yield return new WaitForSeconds(step);
+                }
+                canvas.alpha = 1;
             }
-            canvas.alpha = 1;
+            
             yield return null;
         }
         

@@ -153,7 +153,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 108691185}
+  m_Father: {fileID: 223033031}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &349723
 BoxCollider2D:
@@ -502,7 +502,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 108691185}
+  m_Father: {fileID: 223033031}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &101031218
 BoxCollider2D:
@@ -549,39 +549,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 200, y: 0.1}
   m_EdgeRadius: 0
---- !u!1 &108691184
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 108691185}
-  m_Layer: 0
-  m_Name: FallDetector (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &108691185
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 108691184}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.01, z: -0.014165338}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 101031217}
-  - {fileID: 349722}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &120160219
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,7 +1220,7 @@ GameObject:
   - component: {fileID: 223033031}
   m_Layer: 0
   m_Name: FallDetector (2)
-  m_TagString: Untagged
+  m_TagString: FallDetector
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1271,8 +1238,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1681635397}
   - {fileID: 584067722}
+  - {fileID: 349722}
+  - {fileID: 101031217}
+  - {fileID: 1681635397}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &258517094
@@ -4225,6 +4194,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5058395301698506807, guid: ee23ff425764dc342b63a2f795045aae, type: 3}
+      propertyPath: fallDetector
+      value: 
+      objectReference: {fileID: 223033030}
     - target: {fileID: 7717967649379764890, guid: ee23ff425764dc342b63a2f795045aae, type: 3}
       propertyPath: m_Name
       value: Player1
@@ -77080,6 +77053,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2680471199797658782, guid: 750f8c2db392a6040a66d6a60246b91b, type: 3}
+      propertyPath: fallDetector
+      value: 
+      objectReference: {fileID: 223033030}
     - target: {fileID: 4055218379603496199, guid: 750f8c2db392a6040a66d6a60246b91b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.92
@@ -78221,7 +78198,6 @@ SceneRoots:
   - {fileID: 1918323592663945903}
   - {fileID: 1095205796}
   - {fileID: 1103045635}
-  - {fileID: 108691185}
   - {fileID: 223033031}
   - {fileID: 2798175753073770915}
   - {fileID: 4446898655834962533}
