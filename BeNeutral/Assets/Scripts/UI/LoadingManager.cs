@@ -40,7 +40,7 @@ namespace UI
             _advices.Add("No challenge is insurmountable when we work together. The key is collaboration and mutual trust.");
             _advices.Add( "In NeutralVille your team's strength is your most precious resource. Build your success together!\"");
             _advices.Add( "Communication is fundamental. Share ideas, strategies, and information to create a winning synergy");
-            _advices.Add( "Reason together, think outside the box. The brightest solutions emerge when we work as a collective mind.");
+            _advices.Add( "Think together, think outside the box. The brightest solutions emerge when we work as a collective mind.");
             _advices.Add( "Success is not a destination but a journey. Every step taken together brings you closer to the final victory.");
             _advices.Add( "In the team, every victory is a victory for all. Celebrate successes together and learn from the challenges faced.");
 
