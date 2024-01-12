@@ -11,10 +11,10 @@ public class SecretLevelRespawn : MonoBehaviour
     private PlayerManager pSc2;
     private Vector3 pos1;
     private Vector3 pos2;
-    private Vector3 checkpoint1;
-    private Vector3 checkpoint2;
-    private Vector3 checkpoint3;
-    private BoxCollider2D[] checkpoints;
+    public Vector3 checkpoint1;
+    public Vector3 checkpoint2;
+    // private Vector3 checkpoint3;
+    public BoxCollider2D[] checkpoints;
 
 
     private Vector3 ch1p1y;
@@ -22,6 +22,8 @@ public class SecretLevelRespawn : MonoBehaviour
     
     private Vector3 ch2p1y;
     private Vector3 ch2p2y;
+    
+    
     void Start()
     { 
         pSc1 = player1.GetComponent<PlayerManager>();
@@ -38,6 +40,8 @@ public class SecretLevelRespawn : MonoBehaviour
         
         ch2p1y = GameObject.Find("C2respawnYplayer1").GetComponent<Transform>().position;
         ch2p2y = GameObject.Find("C2respawnYplayer2").GetComponent<Transform>().position;
+        
+        
         
 
     }
