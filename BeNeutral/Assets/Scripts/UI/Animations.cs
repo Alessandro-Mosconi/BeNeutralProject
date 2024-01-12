@@ -1,10 +1,14 @@
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace UI
 {
     public class Animations : Singleton<Animations>
     {
+        public bool _typeWriterEnded;
         public void FadeIn(CanvasGroup canvas, float duration)
         {
             StartCoroutine(FadeInCoroutine(canvas, duration));
@@ -52,6 +56,30 @@ namespace UI
             canvas.alpha = 0;
             canvas.gameObject.SetActive(false);
             yield return null;
+        }
+
+        public void TypeWriterText(string text, TMP_Text place, float velocity, bool withSound)
+        {
+            _typeWriterEnded = false;
+            float time = 1f / velocity;
+            StartCoroutine(TypeWriterCoroutine(text, place, time, withSound));
+        }
+
+        IEnumerator TypeWriterCoroutine(string text, TMP_Text place, float time, bool withSound)
+        {
+            int len = text.Length;
+            place.text = "";
+            for (int i = 0; i < len; i++)
+            {
+                place.text += text[i];
+                if (withSound)
+                {
+                    AudioManager.instance.PlayClickKeyboard(); 
+                }
+                yield return new WaitForSeconds(time);
+            }
+
+            _typeWriterEnded = true;
         }
     }
 }

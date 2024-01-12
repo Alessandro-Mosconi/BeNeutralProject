@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Audio;
+using Random = System.Random;
 
 namespace UI
 {
@@ -48,6 +50,9 @@ namespace UI
         [Space(20)]
         [Header("Menu Interactions")]
         [SerializeField] private AudioClip buttonClick;
+        [SerializeField] private AudioClip keyboardClick1;
+        [SerializeField] private AudioClip keyboardClick2;
+        [SerializeField] private AudioClip keyboardClick3;
         
         
         [Space(20)]
@@ -113,7 +118,18 @@ namespace UI
         
         public void PlayClickButton()
         {
-            enemieAudioSource.PlayOneShot(buttonClick);
+            menuInteractionSource.PlayOneShot(buttonClick);
+        }
+        public void PlayClickKeyboard()
+        {
+            int n = RandomNumberGenerator.GetInt32(1, 2);
+            if (n == 1)
+            {
+                menuInteractionSource.PlayOneShot(keyboardClick1);
+            }else if (n == 2)
+            {
+                menuInteractionSource.PlayOneShot(keyboardClick2);
+            }
         }
         
         // - background sounds
