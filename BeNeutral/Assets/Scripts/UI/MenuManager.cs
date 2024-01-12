@@ -23,8 +23,8 @@ namespace UI
         // - if true mainMenu if false gameMenu
         private bool MenuType = true;
         private bool gameMenuOpen = false;
-
-
+        
+        
         public bool gameMenuOpened()
         {
             return gameMenuOpen;

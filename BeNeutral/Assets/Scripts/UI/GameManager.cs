@@ -27,10 +27,12 @@ namespace UI
         [SerializeField] private Canvas introGroup;
         [SerializeField] private VideoPlayer videoIntro;
         [SerializeField] private CanvasGroup introText;
+        [SerializeField] private TMP_Text introTextValue;
         
         [Header("MENU")]
         [SerializeField] private MenuManager menuManager;
         [SerializeField] private CanvasGroup menuManagerGroup;
+        [SerializeField] private TMP_Text titleMainMenu;
         
         [Header("PLAYER")]
         [SerializeField] private  int startingLifes;
@@ -48,13 +50,13 @@ namespace UI
         
         public void Start()
         {
-            ResetGame();
-            StartCoroutine(updateDuringGame());
-            PlayIntro();
-            
+             ResetGame();
+             StartCoroutine(updateDuringGame());
+             PlayIntro();
+             
             //TODO
             // - start animations on the load screen
-            
+
         }
 
         public void PlayIntro()
@@ -78,16 +80,24 @@ namespace UI
         
         IEnumerator introFadeOut(Coroutine fadeIn)
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1.5f);
+            if (videoIntro.isPlaying)
+            {
+                animator.FadeIn(introText,0.5f);
+                animator.TypeWriterText("Press F to skip the intro...",introTextValue,8f, false);
+            }
             while (videoIntro.isPlaying)
             {
-                animator.FadeIn(introText,2f);
                 if (Input.GetKeyDown(KeyCode.F))
                 {
                     StopCoroutine(fadeIn);
                     break;
                 }
 
+                yield return null;
+            }
+            while (!animator._typeWriterEnded)
+            {
                 yield return null;
             }
             StartCoroutine(startMenu());
