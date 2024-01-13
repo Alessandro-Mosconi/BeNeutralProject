@@ -17,6 +17,12 @@ namespace UI
         [SerializeField] private Canvas Commands;
         [SerializeField] private Canvas Restart;
         
+        [Header("MAIN MENU")]
+        [SerializeField] private TMP_Text titleMainMenu1;
+        [SerializeField] private TMP_Text titleMainMenu2;
+        [SerializeField] private TMP_Text titleMainMenu3;
+        
+        
         [Header("BUTTONS")]
         [SerializeField] private  Button CloseButton;
 
@@ -39,6 +45,9 @@ namespace UI
             GameMenu.gameObject.SetActive(false);
             Feedback.gameObject.SetActive(false);
             Commands.gameObject.SetActive(false);
+            Animations.instance.GrowingTextAnimation("Be", titleMainMenu1, 80);
+            Animations.instance.GrowingTextAnimation("Neu", titleMainMenu2, 80);
+            Animations.instance.GrowingTextAnimation("tral", titleMainMenu3, 80);
         }
         
         public void OpenGameMenu()

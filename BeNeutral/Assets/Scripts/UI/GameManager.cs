@@ -32,7 +32,9 @@ namespace UI
         [Header("MENU")]
         [SerializeField] private MenuManager menuManager;
         [SerializeField] private CanvasGroup menuManagerGroup;
-        [SerializeField] private TMP_Text titleMainMenu;
+        [SerializeField] private TMP_Text titleMainMenu1;
+        [SerializeField] private TMP_Text titleMainMenu2;
+        [SerializeField] private TMP_Text titleMainMenu3;
         
         [Header("PLAYER")]
         [SerializeField] private  int startingLifes;
@@ -120,13 +122,16 @@ namespace UI
             AudioManager.instance.ChooseBackgroundMusic(0);
             
             float y = 0f;
-            
+            animator.GrowingTextAnimation("Be", titleMainMenu1, 80);
+            animator.GrowingTextAnimation("Neu", titleMainMenu2, 80);
+            animator.GrowingTextAnimation("tral", titleMainMenu3, 80);
             while (y <= 1f)
             {
                 menuManagerGroup.alpha = y;
                 y +=  0.002f;
                 yield return new WaitForSeconds(0.005f);
             }
+            
         }
         public void LoadLevel()
         {

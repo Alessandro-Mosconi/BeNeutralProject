@@ -60,7 +60,7 @@ namespace UI
 
         public void GrowingTextAnimation(string text, TMP_Text place, int finalSizePixel)
         {
-            
+            StartCoroutine(GrowingTextCoroutine(text, place, finalSizePixel));
         }
 
         IEnumerator GrowingTextCoroutine(string text, TMP_Text place, int size)
@@ -73,13 +73,13 @@ namespace UI
             for (int i = 0; i < len; i++)
             {
                 int x = 0;
-                storingText += text[i];
-                while (x < size)
+                while (x <= size)
                 {
                     place.text = storingText + "<size=" + x + ">" + text[i] + "</size>";
                     x++;
-                    yield return new WaitForSeconds(0.2f); 
+                    yield return new WaitForSeconds(0.0003f); 
                 }
+                storingText += text[i];
             }
         }
         
