@@ -82,7 +82,7 @@ public class RespawnPlayers : MonoBehaviour
     {
 
 
-        if (pSc1.transform.position.y < 0 || pSc2.transform.position.y>0)
+        if (p1Movement.gravityDirection<1 || p2Movement.gravityDirection>-1)
         {
             Vector2 support = player1.transform.position;
             player1.transform.position = player2.transform.position;
