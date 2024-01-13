@@ -14,10 +14,13 @@ public class ScoreManager : Singleton<ScoreManager>
         private int lifes;
         private int checkpointScore = 0;
         [SerializeField] private Image lifeImage;
-            
-       
-        
 
+
+
+        public int GetPoints()
+        {
+            return points;
+        }
         public void UpdateScore(int n)
         {
             points = n;
