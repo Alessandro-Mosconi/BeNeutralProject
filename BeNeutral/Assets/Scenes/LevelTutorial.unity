@@ -455,23 +455,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 36728578}
   m_CullTransparentMesh: 1
---- !u!1 &45136109 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2181109844055574299, guid: 18fa9764f579d4139acd8f3c08110c68, type: 3}
-  m_PrefabInstance: {fileID: 1103045635}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &45136111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 45136109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c6ebbe4ed91e47c38b3cc688272a30c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &72165172
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4771,24 +4754,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0fb09b9ef33c439abaee59608d967af, type: 3}
---- !u!1 &841011395 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4074914144970783302, guid: 18fa9764f579d4139acd8f3c08110c68, type: 3}
-  m_PrefabInstance: {fileID: 1103045635}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &841011399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 841011395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0be62e415d44448aeaaea5d02f43aad4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
 --- !u!1 &880469125
 GameObject:
   m_ObjectHideFlags: 0
@@ -4933,7 +4898,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2375967379628816874, guid: ee23ff425764dc342b63a2f795045aae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -29.14
+      value: 121.17
       objectReference: {fileID: 0}
     - target: {fileID: 2375967379628816874, guid: ee23ff425764dc342b63a2f795045aae, type: 3}
       propertyPath: m_LocalPosition.y
@@ -69600,16 +69565,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2181109844055574299, guid: 18fa9764f579d4139acd8f3c08110c68, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 45136111}
-    - targetCorrespondingSourceObject: {fileID: 4074914144970783302, guid: 18fa9764f579d4139acd8f3c08110c68, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 841011399}
-    - targetCorrespondingSourceObject: {fileID: 3780572096075500243, guid: 18fa9764f579d4139acd8f3c08110c68, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1929293108}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18fa9764f579d4139acd8f3c08110c68, type: 3}
 --- !u!1 &1107303614
 GameObject:
@@ -81422,24 +81378,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1900955101}
   m_CullTransparentMesh: 1
---- !u!1 &1929293104 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3780572096075500243, guid: 18fa9764f579d4139acd8f3c08110c68, type: 3}
-  m_PrefabInstance: {fileID: 1103045635}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1929293108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1929293104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b562ac7077f1b4e7a8db0e2bca5dfbb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
 --- !u!1001 &1964104300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -81454,7 +81392,7 @@ PrefabInstance:
       objectReference: {fileID: 223033030}
     - target: {fileID: 4055218379603496199, guid: 750f8c2db392a6040a66d6a60246b91b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -28.910007
+      value: 121.399994
       objectReference: {fileID: 0}
     - target: {fileID: 4055218379603496199, guid: 750f8c2db392a6040a66d6a60246b91b, type: 3}
       propertyPath: m_LocalPosition.y
