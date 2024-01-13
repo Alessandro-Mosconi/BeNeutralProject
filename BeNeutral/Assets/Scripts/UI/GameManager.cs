@@ -1,14 +1,9 @@
 using System;
 using System.Collections;
-using Codice.Client.BaseCommands.CheckIn;
 using TMPro;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 using UnityEngine.Video;
-using Image = UnityEngine.UI.Image;
 
 namespace UI
 {
@@ -217,7 +212,7 @@ namespace UI
                     levelName = "TestCutScene";
                     break;
                 case 0:
-                    levelName = "Level3";
+                    levelName = "LevelTutorial";
                     break;
                 case 1:
                     levelName = "Level1";

@@ -1,10 +1,7 @@
 using System;
 using System.Collections;
-using CodiceApp;
 using TMPro;
-using UnityEditor.Graphs;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public class SendToGoogle : MonoBehaviour {
