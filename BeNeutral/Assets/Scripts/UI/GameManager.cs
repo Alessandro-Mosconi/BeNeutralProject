@@ -217,7 +217,7 @@ namespace UI
                     levelName = "TestCutScene";
                     break;
                 case 0:
-                    levelName = "LevelTutorial";
+                    levelName = "Level3";
                     break;
                 case 1:
                     levelName = "Level1";

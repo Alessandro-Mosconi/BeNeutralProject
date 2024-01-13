@@ -84,7 +84,6 @@ public class SwitchPortalScript : MonoBehaviour
     {
         if (canSwitch)
         {
-            print("Trigger");
             SwitchPlayer();
         }
     }
