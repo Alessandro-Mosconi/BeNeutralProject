@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class MovingPlatform : MonoBehaviour
 {
@@ -14,13 +15,23 @@ public class MovingPlatform : MonoBehaviour
 
     [SerializeField] private int _currentWaypointIndex = 0;
     [SerializeField] private bool moveWithoutActivator = false;
+
+    [ColorUsage(showAlpha: true, hdr: true)]
+    public Color electricityColor = Color.blue;
     
     [SerializeField] private bool isCrush = false;
     private bool touchGround = false;
+    private Renderer _renderer;
+    private Material _material;
     
     void Start()
     {
         _targetWaypoint = _waypoints[0];
+        _renderer = GetComponent<Renderer>();
+        _material = _renderer.material;
+        
+        _material.SetColor("_Color", electricityColor);
+        _material.SetFloat("_EffectIntensity", 0);
     }
 
     // Update is called once per frame
@@ -47,6 +58,11 @@ public class MovingPlatform : MonoBehaviour
                 _targetWaypoint = GetNextWaypoint();
                 touchGround = false;
             }
+            _material.SetFloat("_EffectIntensity", 1);
+        }
+        else
+        {
+            _material.SetFloat("_EffectIntensity", 0);
         }
         
     }

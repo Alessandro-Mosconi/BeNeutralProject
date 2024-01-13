@@ -54,7 +54,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: fb03a02a3980941ad8dc4c231906135a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -144,4 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   platformCanMove: 0
+  redColor: {r: 23.592157, g: 1.9354961, b: 0, a: 1}
+  blueColor: {r: 0, g: 2.296795, b: 8, a: 1}
   activatorPolarity: 1

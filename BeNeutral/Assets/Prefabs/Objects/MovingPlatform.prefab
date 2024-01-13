@@ -164,6 +164,9 @@ MonoBehaviour:
   activator: {fileID: 0}
   _targetWaypoint: {fileID: 0}
   _currentWaypointIndex: 0
+  moveWithoutActivator: 0
+  electricityColor: {r: 0, g: 2.296795, b: 8, a: 1}
+  isCrush: 0
 --- !u!1839735485 &7390102702102034114
 Tilemap:
   m_ObjectHideFlags: 0
@@ -382,7 +385,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: fb03a02a3980941ad8dc4c231906135a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

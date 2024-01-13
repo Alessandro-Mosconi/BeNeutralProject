@@ -7,20 +7,30 @@ public class PlatformActivator : MonoBehaviour
 {
     private MagneticField _playerMagneticField;
     public bool platformCanMove = false;
+    [ColorUsage(showAlpha: true, hdr: true)]
+    public Color redColor = Color.red;
+    [ColorUsage(showAlpha: true, hdr: true)]
+    public Color blueColor = Color.blue;
 
     [SerializeField] private int activatorPolarity = 1;
+
+    private Material _material;
     
     void Start()
     {
-        var fieldRender = gameObject.GetComponent<Renderer>();
+        _material = gameObject.GetComponent<Renderer>().material;
         if (activatorPolarity > 0)
         {
-            fieldRender.material.SetColor("_Color", Color.red);
+            _material.SetColor("_TintColor", redColor);
+            _material.SetColor("_Color", redColor);
         }
         else
         {
-            fieldRender.material.SetColor("_Color", Color.blue);
+            _material.SetColor("_TintColor", blueColor);
+            _material.SetColor("_Color", blueColor);
         }
+        
+        _material.SetFloat("_EffectIntensity", 0);
     }
 
     // Update is called once per frame
@@ -29,6 +39,7 @@ public class PlatformActivator : MonoBehaviour
         if (_playerMagneticField != null)
         {
             platformCanMove = _playerMagneticField.isActive;
+            _material.SetFloat("_EffectIntensity", 1);
         }
         else
         {
