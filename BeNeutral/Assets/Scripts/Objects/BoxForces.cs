@@ -16,9 +16,9 @@ public class BoxForces : MonoBehaviour
     private Rigidbody2D boxRb;
     private GameObject player1;
     private GameObject player2;
-    private GameObject magneticField1;
-    private GameObject magneticField2;
-    
+    [SerializeField] private GameObject magneticField1;
+    [SerializeField] private GameObject magneticField2;
+
     private Vector3 _originalPos;
 
     // Start is called before the first frame update
@@ -43,19 +43,41 @@ public class BoxForces : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         HandleGravity();
-            
+
         if (magneticField1 != null && magneticField1.activeSelf)
         {
             ApplyForce(magneticField1, positivty);
         }
-        
+        else
+        {
+            if (magneticField1 == null)
+            {
+                if (player1 == null)
+                {
+                    player1 = GameObject.Find("Player1");
+                }
+
+                magneticField1 = GetChildGameObject(player1, "MagneticField");
+            }
+        }
+
         if (magneticField2 != null && magneticField2.activeSelf)
         {
             ApplyForce(magneticField2, -positivty);
         }
-        
+        else
+        {
+            if (magneticField2 == null)
+            {
+                if (player2 == null)
+                {
+                    player2 = GameObject.Find("Player1");
+                }
+
+                magneticField1 = GetChildGameObject(player2, "MagneticField");
+            }
+        }
     }
 
     private void HandleGravity()
@@ -75,15 +97,17 @@ public class BoxForces : MonoBehaviour
             transform.rotation = rotation;
         }
     }
-private void ApplyForce(GameObject magneticField, int playerPositivity)
+
+    private void ApplyForce(GameObject magneticField, int playerPositivity)
     {
         //deltaX positive if box right, field left
 
         float distanceX = GetDistanceXFrom(magneticField);
 
         float directionX = GetDirectionXFrom(magneticField);
+
         float forceX;
-        if (distanceX > 1f)
+        if (distanceX > 0.5f)
         {
             forceX = GetForceFromDistance(distanceX, 1.3f);
         }
@@ -91,13 +115,13 @@ private void ApplyForce(GameObject magneticField, int playerPositivity)
         {
             forceX = boxRb.velocity.x;
         }
-        
+
         float distanceY = GetDistanceYFrom(magneticField);
 
         float directionY = GetDirectionYFrom(magneticField);
-        
+
         float forceY;
-        
+
         if (distanceY > 1.2f)
         {
             forceY = GetForceFromDistance(distanceY, 1.3f);
@@ -107,7 +131,7 @@ private void ApplyForce(GameObject magneticField, int playerPositivity)
             forceY = boxRb.velocity.y;
         }
 
-        if (distanceX * distanceX +  distanceY * distanceY < maxForceDistance * maxForceDistance)
+        if (distanceX * distanceX + distanceY * distanceY < maxForceDistance * maxForceDistance)
         {
             if (playerPositivity * magneticAttraction > 0)
             {
@@ -143,6 +167,7 @@ private void ApplyForce(GameObject magneticField, int playerPositivity)
     {
         return Math.Abs(transform.position.x - otherObject.transform.position.x);
     }
+
     private float GetDirectionXFrom(GameObject otherObject)
     {
         //1 a destra, -1 a sinistra
@@ -155,6 +180,7 @@ private void ApplyForce(GameObject magneticField, int playerPositivity)
             return -1f;
         }
     }
+
     private float GetForceFromDistance(float distance, float increaser)
     {
         //aumenta avvicinandosi
@@ -165,6 +191,7 @@ private void ApplyForce(GameObject magneticField, int playerPositivity)
     {
         return Math.Abs(transform.position.y - otherObject.transform.position.y);
     }
+
     private float GetDirectionYFrom(GameObject otherObject)
     {
         //1 a destra, -1 a sinistra
@@ -184,8 +211,16 @@ private void ApplyForce(GameObject magneticField, int playerPositivity)
         player1 = GameObject.Find("Player1");
         player2 = GameObject.Find("Player2");
 
-        magneticField1 = GetChildGameObject(player1, "MagneticField");
-        magneticField2 = GetChildGameObject(player2, "MagneticField");
+        if (magneticField1 == null)
+        {
+           magneticField1 = GetChildGameObject(player1, "MagneticField");
+        }
+
+        if (magneticField2 == null)
+        {
+            magneticField2 = GetChildGameObject(player2, "MagneticField");
+        }
+        
     }
 
 
@@ -196,38 +231,41 @@ private void ApplyForce(GameObject magneticField, int playerPositivity)
         if (kid == null) return null;
         return kid.gameObject;
     }
-    
+
     public void setParent(Transform newParent)
     {
         _originalParent = transform.parent;
         transform.parent = newParent;
         transform.position = new Vector3(transform.position.x, transform.position.y, 10);
     }
-    
+
     public void resetParent()
     {
         transform.parent = _originalParent;
         transform.position = new Vector3(transform.position.x, transform.position.y, 10);
     }
-    
+
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(!isFloating && other.gameObject.layer == LayerMask.NameToLayer("Damage-dealing"))
+        if (!isFloating && other.gameObject.layer == LayerMask.NameToLayer("Damage-dealing"))
         {
             transform.position = _originalPos;
             return;
         }
+
         var _playerMovement = other.collider.GetComponent<PlayerMovement>();
         if (_playerMovement != null)
         {
             _playerMovement.setParent(transform);
         }
+
         var _boxForces = other.collider.GetComponent<BoxForces>();
         if (_boxForces != null)
         {
             _boxForces.setParent(transform);
         }
     }
+
     private void OnCollisionExit2D(Collision2D other)
     {
         var _playerMovement = other.collider.GetComponent<PlayerMovement>();
@@ -235,6 +273,7 @@ private void ApplyForce(GameObject magneticField, int playerPositivity)
         {
             _playerMovement.resetParent();
         }
+
         var _boxForces = other.collider.GetComponent<BoxForces>();
         if (_boxForces != null)
         {
