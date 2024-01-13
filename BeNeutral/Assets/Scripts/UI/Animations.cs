@@ -77,7 +77,7 @@ namespace UI
                 {
                     place.text = storingText + "<size=" + x + ">" + text[i] + "</size>";
                     x++;
-                    yield return new WaitForSeconds(0.0003f); 
+                    yield return new WaitForSeconds(0.001f); 
                 }
                 storingText += text[i];
             }

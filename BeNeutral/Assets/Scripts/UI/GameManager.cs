@@ -118,15 +118,21 @@ namespace UI
 
         IEnumerator startMenu()
         {
+            bool titleStarted = false;
             menuManager.gameObject.SetActive(true);
             AudioManager.instance.ChooseBackgroundMusic(0);
             
             float y = 0f;
-            animator.GrowingTextAnimation("Be", titleMainMenu1, 80);
-            animator.GrowingTextAnimation("Neu", titleMainMenu2, 80);
-            animator.GrowingTextAnimation("tral", titleMainMenu3, 80);
+            
             while (y <= 1f)
             {
+                if (y > 0.4f && !titleStarted)
+                {
+                    titleStarted = true;
+                    animator.GrowingTextAnimation("Be", titleMainMenu1, 80);
+                    animator.GrowingTextAnimation("Neu", titleMainMenu2, 80);
+                    animator.GrowingTextAnimation("tral", titleMainMenu3, 80);
+                }
                 menuManagerGroup.alpha = y;
                 y +=  0.002f;
                 yield return new WaitForSeconds(0.005f);
