@@ -38,6 +38,12 @@ public class ExitPortal : MonoBehaviour
     private GameObject barrier;
 
     
+    private RespawnPlayers respawn;
+
+
+    private SecretLevelRespawn secretRespawn;
+
+    
     
     
     // Start is called before the first frame update
@@ -64,6 +70,12 @@ public class ExitPortal : MonoBehaviour
         empWall = GameObject.Find("EMP").GetComponent<EMPwall>();
 
         barrier = GameObject.Find("Barrier");
+        
+        
+        respawn = GameObject.Find("Respawn").GetComponent<RespawnPlayers>();
+
+
+        secretRespawn = GameObject.Find("SecretLevelRespawn").GetComponent<SecretLevelRespawn>();
 
 
     }
@@ -96,6 +108,9 @@ public class ExitPortal : MonoBehaviour
     private IEnumerator EnterPortal(Transform player)
     {
         player.GetComponent<PlayerMovement>().enabled = false;
+        
+        secretRespawn.gameObject.SetActive(false);
+        respawn.gameObject.SetActive(true);
         
         yield return EnterPortalEffect(player);
         secretCameraScript.enabled = false;

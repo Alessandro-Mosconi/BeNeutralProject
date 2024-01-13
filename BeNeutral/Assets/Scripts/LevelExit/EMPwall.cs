@@ -39,12 +39,19 @@ public class EMPwall : MonoBehaviour
         if (isActive)
         {
             transform.Translate(Vector3.right * speed * Time.deltaTime);
+            if (speed < 2)
+            {
+                speed = speed + 0.005f;
+            }
+
             if (p1.Fell || p2.Fell)
             {
                 transform.position = empPos;
+                speed = 1;
             }else if ((p1.Fell || p2.Fell) && (p1.IsSecretCheckpoint2 || p2.IsSecretCheckpoint2))
             {
-                transform.position = checkpoints.checkpoint2;
+                transform.position = checkpoints.checkpoint2 - new Vector3(10,0,0);
+                speed = 1;
             }
         }
 

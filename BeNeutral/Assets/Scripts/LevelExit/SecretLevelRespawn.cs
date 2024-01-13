@@ -24,6 +24,8 @@ public class SecretLevelRespawn : MonoBehaviour
     private Vector3 ch2p2y;
     
     
+    
+    
     void Start()
     { 
         pSc1 = player1.GetComponent<PlayerManager>();
@@ -43,6 +45,8 @@ public class SecretLevelRespawn : MonoBehaviour
         
         
         
+        
+        
 
     }
 
@@ -51,7 +55,7 @@ public class SecretLevelRespawn : MonoBehaviour
     {
         if (pSc1.IsSecretCheckpoint1 || pSc2.IsSecretCheckpoint1)
         {
-            
+            // print("secret level checkpoint 1");
             pos1 = checkpoint1;
             pos2 = checkpoint1;
             pos1.y = ch1p1y.y;
@@ -69,21 +73,21 @@ public class SecretLevelRespawn : MonoBehaviour
         if (pSc1.Fell || pSc2.Fell)
         {
             // - falling player audio
-            StartCoroutine(respawnPlayers());
+            SrespawnPlayers();
             AudioManager.instance.PlayFallPlayer();
             
         }
     }
 
 
-    public IEnumerator respawnPlayers()
+    public void SrespawnPlayers()
     {
         
         pSc1.transform.position = pos1;
         pSc2.transform.position = pos2;
-        yield return null;
+        // yield return null;
         pSc1.Fell=false;
-        yield return null;
+        // yield return null;
         pSc2.Fell=false;
 
         //Reset object pools to avoid having past bullets

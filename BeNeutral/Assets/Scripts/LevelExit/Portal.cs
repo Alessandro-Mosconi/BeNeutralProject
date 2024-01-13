@@ -35,6 +35,7 @@ public class Portal : MonoBehaviour
     private EMPwall empWall;
 
 
+    private RespawnPlayers respawn;
     
     
     
@@ -59,7 +60,7 @@ public class Portal : MonoBehaviour
 
         empWall = GameObject.Find("EMP").GetComponent<EMPwall>();
 
-
+        respawn = GameObject.Find("Respawn").GetComponent<RespawnPlayers>();
 
     }
 
@@ -92,6 +93,8 @@ public class Portal : MonoBehaviour
     private IEnumerator EnterPortal(Transform player)
     {
         player.GetComponent<PlayerMovement>().enabled = false;
+        
+        respawn.gameObject.SetActive(false);
         
         yield return EnterPortalEffect(player);
         OriginalCameraTarget.enabled = false;
