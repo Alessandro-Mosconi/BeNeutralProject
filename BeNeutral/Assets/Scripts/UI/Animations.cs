@@ -19,7 +19,7 @@ namespace UI
             if (canvas != null)
             {
                 float step = 0.001f;
-                float increment = (1f/duration)*step;
+                float increment = (10f/duration)*step;
                 float x = 0f;
                 canvas.alpha = x;
                 canvas.gameObject.SetActive(true);
@@ -43,7 +43,7 @@ namespace UI
         IEnumerator FadeOutCoroutine(CanvasGroup canvas, float duration)
         {
             float step = 0.001f;
-            float decrement = (1f/duration)*step;
+            float decrement = (10f/duration)*step;
             float x = 1f;
             canvas.alpha = x;
             
@@ -77,7 +77,7 @@ namespace UI
                 {
                     place.text = storingText + "<size=" + x + ">" + text[i] + "</size>";
                     x++;
-                    yield return new WaitForSeconds(0.001f); 
+                    yield return new WaitForSeconds(0.00005f); 
                 }
                 storingText += text[i];
             }
