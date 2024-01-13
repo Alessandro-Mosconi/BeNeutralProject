@@ -15,8 +15,21 @@ public class RespawnPlayers : MonoBehaviour
     private Vector3 checkpoint2;
     private Vector3 checkpoint3;
     private BoxCollider2D[] checkpoints;
+
+
+    private PlayerMovement p1Movement;
+    private PlayerMovement p2Movement;
+
+    
+    
+    // private SwitchPortalScript switch;
     void Start()
-    { 
+    {
+
+        p1Movement = player1.GetComponent<PlayerMovement>();
+        p2Movement = player2.GetComponent<PlayerMovement>();
+        
+        
         pSc1 = player1.GetComponent<PlayerManager>();
         pos1 = pSc1.transform.position;
         pSc2 = player2.GetComponent<PlayerManager>();
@@ -67,7 +80,18 @@ public class RespawnPlayers : MonoBehaviour
 
     public IEnumerator respawnPlayers()
     {
-        
+
+
+        if (pSc1.transform.position.y < 0 || pSc2.transform.position.y>0)
+        {
+            Vector2 support = player1.transform.position;
+            player1.transform.position = player2.transform.position;
+            player2.transform.position = support;
+            
+            p1Movement.gravityDirection = p1Movement.gravityDirection * -1;
+            p2Movement.gravityDirection = p2Movement.gravityDirection * -1;
+
+        }
         pSc1.transform.position = pos1;
         pSc2.transform.position = pos2;
         yield return null;
