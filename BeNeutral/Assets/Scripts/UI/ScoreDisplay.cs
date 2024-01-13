@@ -11,7 +11,7 @@ namespace UI
         {
             int x = 0;
             x = ScoreManager.Instance.GetPoints();
-            text.text = x.ToString();
+            text.text = string.Format("{0:D6}", x);
         }
     }
 }

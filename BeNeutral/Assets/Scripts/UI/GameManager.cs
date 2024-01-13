@@ -189,7 +189,7 @@ namespace UI
         IEnumerator StartGameOverCoroutine()
         {
             // - show the game over screen
-            SceneManager.LoadScene("DeathScreen");
+            SceneManager.LoadScene("DeathScene");
             yield return null;
         }
         
