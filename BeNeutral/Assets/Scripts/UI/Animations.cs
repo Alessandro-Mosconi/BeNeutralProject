@@ -58,6 +58,31 @@ namespace UI
             yield return null;
         }
 
+        public void GrowingTextAnimation(string text, TMP_Text place, int finalSizePixel)
+        {
+            
+        }
+
+        IEnumerator GrowingTextCoroutine(string text, TMP_Text place, int size)
+        {
+            int len = text.Length;
+            
+            string storingText = "";
+            place.text = "";
+            
+            for (int i = 0; i < len; i++)
+            {
+                int x = 0;
+                storingText += text[i];
+                while (x < size)
+                {
+                    place.text = storingText + "<size=" + x + ">" + text[i] + "</size>";
+                    x++;
+                    yield return new WaitForSeconds(0.2f); 
+                }
+            }
+        }
+        
         public void TypeWriterText(string text, TMP_Text place, float velocity, bool withSound)
         {
             _typeWriterEnded = false;
