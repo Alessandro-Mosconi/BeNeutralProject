@@ -51,8 +51,8 @@ public class RespawnPlayers : MonoBehaviour
             
             pos1 = checkpoint1;
             pos2 = checkpoint1;
-            pos2.y = player2.gameObject.GetComponent<Rigidbody2D>().gravityScale * checkpoint1.y;
-            pos1.y = player1.gameObject.GetComponent<Rigidbody2D>().gravityScale * checkpoint1.y;
+            pos2.y = -checkpoint1.y;
+            // pos1.y = player1.gameObject.GetComponent<Rigidbody2D>().gravityScale * checkpoint1.y;
         }
         
         if (pSc1.IsCheckpoint2 || pSc2.IsCheckpoint2)
@@ -71,14 +71,14 @@ public class RespawnPlayers : MonoBehaviour
         if (pSc1.Fell || pSc2.Fell)
         {
             // - falling player audio
-            StartCoroutine(respawnPlayers());
+            respawnPlayers();
             AudioManager.instance.PlayFallPlayer();
             
         }
     }
 
 
-    public IEnumerator respawnPlayers()
+    public void respawnPlayers()
     {
 
 
@@ -94,9 +94,9 @@ public class RespawnPlayers : MonoBehaviour
         }
         pSc1.transform.position = pos1;
         pSc2.transform.position = pos2;
-        yield return null;
+        // yield return null;
         pSc1.Fell=false;
-        yield return null;
+        // yield return null;
         pSc2.Fell=false;
 
         //Reset object pools to avoid having past bullets
