@@ -23,7 +23,7 @@ public class PlayerManager : MonoBehaviour
      private float fallDamageValue = 3f;
      private float hazardDamageValue = 1f;
 
-     private float continuousDamageValue = 3.5f;
+     private float continuousDamageValue = 2.5f;
      private Coroutine damageCoroutine;
      
     

@@ -19,6 +19,7 @@ public class EMPwall : MonoBehaviour
 
 
     public bool isActive = false;
+    private bool shouldMove=true;
 
 
     private SecretLevelRespawn checkpoints;
@@ -38,7 +39,11 @@ public class EMPwall : MonoBehaviour
     {
         if (isActive)
         {
-            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            if (shouldMove)
+            {
+                transform.Translate(Vector3.right * speed * Time.deltaTime);
+            }
+
             if (speed < 2)
             {
                 speed = speed + 0.005f;
@@ -57,4 +62,18 @@ public class EMPwall : MonoBehaviour
 
     }
 
+    public void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            shouldMove = false;
+        }
+    }
+    public void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            shouldMove = true;
+        }
+    }
 }
