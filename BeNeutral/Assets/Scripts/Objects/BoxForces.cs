@@ -107,7 +107,7 @@ public class BoxForces : MonoBehaviour
         float directionX = GetDirectionXFrom(magneticField);
 
         float forceX;
-        if (distanceX > 0.5f)
+        if (distanceX > 0.85f)
         {
             forceX = GetForceFromDistance(distanceX, 1.3f);
         }
