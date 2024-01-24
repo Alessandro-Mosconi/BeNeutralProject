@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool inputDisabledUntilKeyup = false;
     private float watchedAxisForInputEnable;
-    
+    private Vector2 prevImpulse = Vector2.zero;
     
     // Start is called before the first frame update
     void Start()
@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //HandleGravity();
+        HandleGravity();
 
         if (!inputDisabledUntilKeyup)
         {
@@ -51,19 +51,18 @@ public class PlayerMovement : MonoBehaviour
             {
                 movementDirection =  new Vector2(Input.GetAxis("HorizontalPlayer" + playerNumber), Input.GetAxis("JumpPlayer" + playerNumber)).normalized;
             }
-        
-            rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
-            //Vector2 impulse = new Vector2(dirX * 7f, 0);
+            
+            Vector2 impulse = Vector2.zero;
+            Vector2 translation = new Vector2(dirX * 7f * Time.fixedDeltaTime, 0);
         
             if(Input.GetButton("JumpPlayer" + playerNumber)  && isGrounded)
             {
-            
-                rb.velocity = new Vector2(rb.velocity.x, gravityDirection * 8f);
-                //impulse.y = gravityDirection * 8f;
+                impulse.y = gravityDirection * 5f;
                 isGrounded = false;
             }
             
-            //rb.AddForce(impulse, ForceMode2D.Impulse);
+            transform.Translate(translation);
+            rb.AddForce(impulse, ForceMode2D.Impulse);
         }
         else
         {
