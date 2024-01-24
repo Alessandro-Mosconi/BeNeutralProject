@@ -14,6 +14,7 @@ TagManager:
   - EMP
   - SecretLevelCheckpoint1
   - SecretLevelCheckpoint2
+  - Zapper
   layers:
   - Default
   - TransparentFX

@@ -4,18 +4,6 @@ using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Transform _originalParent;
-    
-    [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private Animator animator;
-    private SpriteRenderer spriteRenderer;
-    
-    [SerializeField] public int gravityDirection = 1;
-    [SerializeField] public int playerNumber = 1;
-
-    
-    private bool isGrounded;
-    private float dirX = 0f;
     private enum MovementState
     {
         idle,
@@ -23,14 +11,26 @@ public class PlayerMovement : MonoBehaviour
         jumping,
         falling
     };
+    
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Animator animator;
+    [SerializeField] public int gravityDirection = 1;
+    [SerializeField] public int playerNumber = 1;
+    public Vector2 movementDirection { get; private set; }
 
+    private Transform _originalParent;
+    private bool isGrounded;
+    private float dirX = 0f;
     private MovementState state = MovementState.idle;
     private String animationState;
-    public Vector2 movementDirection { get; private set; }
+    private SpriteRenderer spriteRenderer;
+    private bool inputDisabledUntilKeyup = false;
+    private float watchedAxisForInputEnable;
+    
+    
     // Start is called before the first frame update
     void Start()
     {
-        
         animationState = "state" + playerNumber;
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -43,20 +43,27 @@ public class PlayerMovement : MonoBehaviour
     {
         HandleGravity();
 
-        dirX = Input.GetAxis("HorizontalPlayer" + playerNumber);
+        if (!inputDisabledUntilKeyup)
+        {
+            dirX = Input.GetAxis("HorizontalPlayer" + playerNumber);
 
-        if (dirX != 0)
-        {
-            movementDirection =  new Vector2(Input.GetAxis("HorizontalPlayer" + playerNumber), Input.GetAxis("JumpPlayer" + playerNumber)).normalized;
-        }
+            if (dirX != 0)
+            {
+                movementDirection =  new Vector2(Input.GetAxis("HorizontalPlayer" + playerNumber), Input.GetAxis("JumpPlayer" + playerNumber)).normalized;
+            }
         
-        rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
+            rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
         
-        if(Input.GetButton("JumpPlayer" + playerNumber)  && isGrounded)
-        {
+            if(Input.GetButton("JumpPlayer" + playerNumber)  && isGrounded)
+            {
             
-            rb.velocity = new Vector2(rb.velocity.x, gravityDirection * 8f);
-            isGrounded = false;
+                rb.velocity = new Vector2(rb.velocity.x, gravityDirection * 8f);
+                isGrounded = false;
+            }
+        }
+        else
+        {
+            CheckEnableInput();
         }
 
         UpdateAnimationUpdate();
@@ -118,6 +125,23 @@ public class PlayerMovement : MonoBehaviour
     public void resetParent()
     {
         transform.parent = _originalParent;
+    }
+
+    public void StopMovementUntilKeyup()
+    {
+        inputDisabledUntilKeyup = true;
+        watchedAxisForInputEnable = Input.GetAxis("HorizontalPlayer" + playerNumber);
+        rb.velocity = new Vector2(0, rb.velocity.y);
+        dirX = 0;
+    }
+
+    private void CheckEnableInput()
+    {
+        if (Math.Abs(Input.GetAxis("HorizontalPlayer" + playerNumber)) <= 0.001f)
+        {
+            inputDisabledUntilKeyup = false;
+            watchedAxisForInputEnable = 0;
+        }
     }
 
     private void OnCollisionStay2D(Collision2D other)

@@ -8,12 +8,16 @@ public class MagneticField : MonoBehaviour
     [SerializeField] private float dimensioneIniziale = 0.01f;
     [SerializeField] private float dimensioneFinale = 10.0f;
     [SerializeField] private float velocitaTransizione = 2.0f;
-    [SerializeField] public int playerPolarity = 1;
+    [SerializeField] public int playerPolarity = 1; //1 = red, -1 = blue
     
     private GameObject magneticFieldInstance;
     private PlayerMovement playerMovementScript;
     public bool isActive = true;
-   
+
+    public float GetCurrentIntensity()
+    {
+        return magneticFieldInstance.transform.localScale.x * 0.3f;
+    }
 
     private void Awake()
     {

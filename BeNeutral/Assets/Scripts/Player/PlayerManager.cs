@@ -26,21 +26,15 @@ public class PlayerManager : MonoBehaviour
      private float continuousDamageValue = 2.5f;
      private Coroutine damageCoroutine;
      
-    
-     
-     
      //fall detection
      // private Vector3 playerPos;
      [SerializeField] public GameObject fallDetector;
-
      
      //
      private bool isCheckpoint;
      private bool isCheckpoint2;
      private bool isCheckpoint3;
      private bool fell;
-
-
 
      private bool isSecretCheckpoint1;
      private bool isSecretCheckpoint2;
@@ -63,6 +57,16 @@ public class PlayerManager : MonoBehaviour
      public float MaxStamina
      {
          get { return maxStamina; }
+     }
+
+     public MagneticField Field
+     {
+         get { return magneticField; }
+     }
+
+     public float HazardDamage
+     {
+         get { return hazardDamageValue; }
      }
 
      private void Update()
@@ -250,6 +254,8 @@ public class PlayerManager : MonoBehaviour
          }
      }
 
-     
-     
+     public void StopMovementUntilKeyup()
+     {
+        GetComponent<PlayerMovement>().StopMovementUntilKeyup();
+     }
 }
