@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        HandleGravity();
+        //HandleGravity();
 
         if (!inputDisabledUntilKeyup)
         {
@@ -53,13 +53,17 @@ public class PlayerMovement : MonoBehaviour
             }
         
             rb.velocity = new Vector2(dirX * 7f, rb.velocity.y);
+            //Vector2 impulse = new Vector2(dirX * 7f, 0);
         
             if(Input.GetButton("JumpPlayer" + playerNumber)  && isGrounded)
             {
             
                 rb.velocity = new Vector2(rb.velocity.x, gravityDirection * 8f);
+                //impulse.y = gravityDirection * 8f;
                 isGrounded = false;
             }
+            
+            //rb.AddForce(impulse, ForceMode2D.Impulse);
         }
         else
         {
