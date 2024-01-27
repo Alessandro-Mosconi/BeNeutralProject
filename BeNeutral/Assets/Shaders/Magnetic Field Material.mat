@@ -53,6 +53,7 @@ Material:
     - _Frequency: 3.5
     - _Magnetic_Field_Intensity: 0.5
     - _Mask_Enable: 0
+    - _Pixelization_Factor: 75
     - _Speed: 1.2
     - _Thickness: 0.123
     - _UV_Scale: 5

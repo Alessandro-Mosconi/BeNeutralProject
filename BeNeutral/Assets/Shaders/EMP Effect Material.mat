@@ -52,6 +52,7 @@ Material:
     m_Floats:
     - _Magnetic_Field_Intensity: 0.5
     - _Mask_Enable: 0
+    - _Pixelization_Factor: 90
     - _Scale: 3
     - _Speed: 8
     - _Thickness: 0.08

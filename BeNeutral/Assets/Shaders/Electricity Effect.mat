@@ -70,9 +70,10 @@ Material:
     - _ElectricityAmount: 4
     - _ElectricityScale: 15
     - _EnableExternalAlpha: 0
+    - _Pixelization_Factor: 32
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Thickness: 0.65
+    - _Thickness: 0.215
     m_Colors:
     - _Color: {r: 23.592157, g: 1.9354961, b: 0, a: 1}
     - _ElectricitySpeed: {r: 0, g: 0.8, b: 0, a: 0}
