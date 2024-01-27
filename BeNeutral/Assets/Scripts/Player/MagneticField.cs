@@ -16,7 +16,7 @@ public class MagneticField : MonoBehaviour
 
     public float GetCurrentIntensity()
     {
-        return magneticFieldInstance.transform.localScale.x * 0.3f;
+        return magneticFieldInstance.transform.localScale.x * 0.5f;
     }
 
     private void Awake()

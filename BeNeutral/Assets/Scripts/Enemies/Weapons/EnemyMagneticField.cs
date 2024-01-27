@@ -113,7 +113,7 @@ namespace Enemies.Weapons
                 {
                     _material.SetFloat("_Mask_Enable", 1);
                     _material.SetVector("_Player_Mask_Position", (Vector2)_targetPm.transform.position);
-                    _material.SetFloat("_Magnetic_Field_Intensity", _targetPm.Field.GetCurrentIntensity() / 3);
+                    _material.SetFloat("_Magnetic_Field_Intensity", _targetPm.Field.GetCurrentIntensity());
                 }
                 else
                 {

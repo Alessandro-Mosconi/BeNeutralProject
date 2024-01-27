@@ -53,17 +53,14 @@ public class PlayerMovement : MonoBehaviour
                 movementDirection =  new Vector2(Input.GetAxis("HorizontalPlayer" + playerNumber), Input.GetAxis("JumpPlayer" + playerNumber)).normalized;
             }
             
-            Vector2 impulse = Vector2.zero;
-            Vector2 translation = new Vector2(dirX * 7f * Time.fixedDeltaTime, 0);
+            rb.velocity = new Vector2(dirX * 7f + _pseudoForce.x, rb.velocity.y);
         
             if(Input.GetButton("JumpPlayer" + playerNumber)  && isGrounded)
             {
-                impulse.y = gravityDirection * 5f;
+            
+                rb.velocity = new Vector2(rb.velocity.x, gravityDirection * 8f);
                 isGrounded = false;
             }
-            
-            transform.Translate(translation + (_pseudoForce * Time.fixedDeltaTime));
-            rb.AddForce(impulse, ForceMode2D.Impulse);
         }
         else
         {

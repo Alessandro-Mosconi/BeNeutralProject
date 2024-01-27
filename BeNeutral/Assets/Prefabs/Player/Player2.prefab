@@ -5123,7 +5123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dimensioneIniziale: 0.01
-  dimensioneFinale: 10
+  dimensioneFinale: 3
   velocitaTransizione: 5
   playerPolarity: -1
   isActive: 0
