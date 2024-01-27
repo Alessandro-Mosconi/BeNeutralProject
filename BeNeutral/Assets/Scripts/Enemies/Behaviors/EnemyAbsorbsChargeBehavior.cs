@@ -9,7 +9,8 @@ namespace Enemies.Behaviors
         public float maxDistance = 2;
         public float maxDamagePerSecond = 1;
         public AnimationCurve damageCurve = new AnimationCurve(new []{new Keyframe(0, 1), new Keyframe(1, 0)});
-
+        [HideInInspector] public bool absorptionEnabled = true;
+        
         private ParticleSystemForceField _particleSystemForceField;
         private ParticleSystem _playerParticleSystem;
         private bool _particleSystemActive = false;
@@ -21,7 +22,9 @@ namespace Enemies.Behaviors
 
         public override void ResetBehavior(Transform self)
         {
-            if (_particleSystemForceField == null)
+            absorptionEnabled = true;
+            
+            if (!_particleSystemForceField)
             {
                 _particleSystemForceField = gameObject.AddComponent<ParticleSystemForceField>();
                 _particleSystemForceField.shape = ParticleSystemForceFieldShape.Sphere;
@@ -34,21 +37,24 @@ namespace Enemies.Behaviors
         {
             if (WeakSelf.TryGetTarget(out Transform self))
             {
-                Vector3 vecToTarget = target.transform.position - self.position;
+                Vector2 vecToTarget = target.transform.position - self.position;
                 float distanceToTarget = Vector3.Magnitude(vecToTarget);
-
-                if (distanceToTarget <= maxDistance)
+                if (distanceToTarget <= maxDistance && absorptionEnabled)
                 {
                     float damageCurveValue = damageCurve.Evaluate(distanceToTarget / maxDistance);
                     float damage = damageCurveValue * maxDamagePerSecond * deltaTime;
                     target.DamagePlayer(damage);
+                    if (_playerParticleSystem)
+                    {
+                        _particleSystemActive = _playerParticleSystem.isPlaying;
+                    }
                     if (!_particleSystemActive)
                     {
                         FindPlayerParticleSystem(target);
                         SetParticleSystemActive(true);
                     }
                     //Direct the particle system towards the enemy
-                    if (_playerParticleSystem != null)
+                    if (_playerParticleSystem)
                     {
                         var particleEmission = _playerParticleSystem.emission;
                         particleEmission.rateOverTime = new ParticleSystem.MinMaxCurve(30 *
@@ -76,7 +82,7 @@ namespace Enemies.Behaviors
 
         private void FindPlayerParticleSystem(PlayerManager target)
         {
-            if (_playerParticleSystem == null)
+            if (!_playerParticleSystem)
             {
                 foreach(Transform child in target.transform)
                 {
@@ -89,19 +95,19 @@ namespace Enemies.Behaviors
             }
         }
 
-        private void SetParticleSystemActive(bool active)
+        public void SetParticleSystemActive(bool active)
         {
-            if (_playerParticleSystem != null)
+            if (_playerParticleSystem)
             {
                 if (active)
                 {
                     _playerParticleSystem.Play();
-                    _particleSystemActive = true;
+                    //_particleSystemActive = true;
                 }
                 else
                 {
                     _playerParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
-                    _particleSystemActive = false;
+                    //_particleSystemActive = false;
                 }
             }
         }

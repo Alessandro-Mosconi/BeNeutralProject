@@ -44,13 +44,18 @@ namespace Enemies.Behaviors
             }
 
             bool addedInitialState = false;
+            bool shouldAddAbsorbChargeToInitialStates = true;
             foreach (EnemyBehaviorType behaviorType in Enum.GetValues(typeof(EnemyBehaviorType)))
             {
                 int index = _behaviorToIndexMap[(int)behaviorType];
-                if (index != -1 && (!addedInitialState || behaviorType == EnemyBehaviorType.AbsorbsCharge))
+                if (index != -1 && (!addedInitialState || (behaviorType == EnemyBehaviorType.AbsorbsCharge && shouldAddAbsorbChargeToInitialStates)))
                 {
                     _currentStates.Add(index);
                     addedInitialState = true;
+                    if (behaviorType == EnemyBehaviorType.MagnetIdle)
+                    {
+                        shouldAddAbsorbChargeToInitialStates = false;
+                    }
                 }
             }
 
@@ -154,6 +159,16 @@ namespace Enemies.Behaviors
                                 //Attempt to move to Patrol
                                 AddActiveStateIfPresent(EnemyBehaviorType.Patrol);
                             }
+                            break;
+                        case EnemyBehaviorType.MagnetIdle:
+                            //Move to MagnetActive + AbsorbsCharge
+                            MoveToState(i, EnemyBehaviorType.MagnetActive, ref sank);
+                            AddActiveStateIfPresent(EnemyBehaviorType.AbsorbsCharge);
+                            break;
+                        case EnemyBehaviorType.MagnetActive:
+                            //Move to MagnetIdle, remove AbsorbsCharge
+                            MoveToState(i, EnemyBehaviorType.MagnetIdle, ref sank);
+                            RemoveStateIfPresent(EnemyBehaviorType.AbsorbsCharge);
                             break;
                     }
                 }

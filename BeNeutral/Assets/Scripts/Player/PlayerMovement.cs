@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private bool inputDisabledUntilKeyup = false;
     private float watchedAxisForInputEnable;
     private Vector2 prevImpulse = Vector2.zero;
+    private Vector2 _pseudoForce = Vector2.zero;
     
     // Start is called before the first frame update
     void Start()
@@ -61,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
                 isGrounded = false;
             }
             
-            transform.Translate(translation);
+            transform.Translate(translation + (_pseudoForce * Time.fixedDeltaTime));
             rb.AddForce(impulse, ForceMode2D.Impulse);
         }
         else
@@ -145,6 +146,11 @@ public class PlayerMovement : MonoBehaviour
             inputDisabledUntilKeyup = false;
             watchedAxisForInputEnable = 0;
         }
+    }
+
+    public void SetForce(Vector2 force) //This is a pseudo-force that makes player input less intense!
+    {
+        _pseudoForce = force;
     }
 
     private void OnCollisionStay2D(Collision2D other)
