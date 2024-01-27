@@ -93,6 +93,7 @@ namespace Enemies.Weapons
         {
             bool effectAppliedToPlayer = false;
             bool updateShaderProps = false;
+            float fieldSign = 1;
             if (_targetPm)
             {
                 if (_targetPm.Field)
@@ -103,12 +104,14 @@ namespace Enemies.Weapons
                     bool fieldAttractive = playerPolarity != polarity;
                     effectAppliedToPlayer = !playerFieldActive || !fieldAttractive;
                     updateShaderProps = true;
+                    fieldSign = fieldAttractive ? 1 : -1;
                 }
             }
             
             if (updateShaderProps)
             {
                 Polarity playerPolarity = _targetPm.Field.playerPolarity > 0 ? Polarity.Red : Polarity.Blue;
+                _material.SetFloat("_Speed", fieldSign * Mathf.Abs(_material.GetFloat("_Speed")));
                 if (playerPolarity != polarity)
                 {
                     _material.SetFloat("_Mask_Enable", 1);
