@@ -51,12 +51,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _Attenuation_Factor: 0.595
-    - _Frequency: 5
+    - _Frequency: 10
     - _Magnetic_Field_Intensity: 0.5
     - _Mask_Enable: 0
+    - _Noisiness: 0.742
     - _Pixelization_Factor: 48
-    - _Speed: -1.5
-    - _Thickness: 0.125
+    - _Speed: -1.2
+    - _Thickness: 0.115
     - _UV_Scale: 3
     m_Colors:
     - _Color: {r: 0, g: 4.905664, b: 11.4717, a: 0}
