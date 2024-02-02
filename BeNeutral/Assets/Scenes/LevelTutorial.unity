@@ -5617,6 +5617,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Coin (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5818281661064642992, guid: 02fbe82f0b5c341a6afc0d4e68c528d9, type: 3}
+      propertyPath: animateUp
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
