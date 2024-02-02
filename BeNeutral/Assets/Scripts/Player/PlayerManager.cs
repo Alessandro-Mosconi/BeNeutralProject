@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
     //Stamina
     [SerializeField] private float maxStamina;
     [SerializeField] private float staminaConsumption;
+    private bool _slowerStaminaRecharge = false;
     private MagneticField magneticField;
     
      public HealthBar healthBarPrefab;
@@ -249,14 +250,16 @@ public class PlayerManager : MonoBehaviour
          {
              magneticField.DisattivaMagneticField();
              hitPoints.StaminaValue = 0;
+             _slowerStaminaRecharge = true;
          }
      }
      private void RegenerateStamina()
      {
-         hitPoints.StaminaValue += staminaConsumption * Time.deltaTime;
+         hitPoints.StaminaValue += staminaConsumption * (_slowerStaminaRecharge ? 0.3f : 1) * Time.deltaTime;
          if (hitPoints.StaminaValue > maxStamina)
          {
              hitPoints.StaminaValue = maxStamina;
+             _slowerStaminaRecharge = false;
          }
      }
 
