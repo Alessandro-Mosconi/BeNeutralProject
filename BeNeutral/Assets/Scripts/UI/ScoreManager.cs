@@ -9,8 +9,10 @@ using UnityEngine.UI;
 public class ScoreManager : Singleton<ScoreManager>
     {
         [SerializeField] private TextMeshProUGUI pointsDisplay;
+        [SerializeField] private TextMeshProUGUI coinsDisplay;
         [SerializeField] private TextMeshProUGUI lifesDisplay;
         private int points = 0;
+        private int coins = 0;
         private int lifes;
         private int checkpointScore = 0;
         [SerializeField] private Image lifeImage;
@@ -31,7 +33,7 @@ public class ScoreManager : Singleton<ScoreManager>
         {
             lifes = n;
             lifesDisplay.text = string.Format("{0:D1}", lifes);
-            lifeImage.fillAmount = (float) lifes / GameManager.instance.GetStartingLifes();
+            lifeImage.fillAmount = Mathf.Clamp((float) lifes / GameManager.instance.GetStartingLifes(), 0, GameManager.instance.GetStartingLifes());
         }
 
         public int GetLifes()
@@ -44,7 +46,7 @@ public class ScoreManager : Singleton<ScoreManager>
         {
             lifes--;
             lifesDisplay.text = string.Format("{0:D1}", lifes);
-            lifeImage.fillAmount = (float) lifes / GameManager.instance.GetStartingLifes();
+            lifeImage.fillAmount = Mathf.Clamp((float) lifes / GameManager.instance.GetStartingLifes(), 0, GameManager.instance.GetStartingLifes());
             return lifes != 0;
         }
 
@@ -52,6 +54,12 @@ public class ScoreManager : Singleton<ScoreManager>
         {
             points += n;
             pointsDisplay.text = string.Format("{0:D6}", points);
+        }
+        
+        public void AddCoins(int n)
+        {
+            coins += n;
+            coinsDisplay.text = $"{coins:D6}";
         }
         
         public void SubToScore(int n)

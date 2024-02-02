@@ -15,6 +15,7 @@ TagManager:
   - SecretLevelCheckpoint1
   - SecretLevelCheckpoint2
   - Zapper
+  - Collectible
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - External-objects
   - MagneticField
   - Enemies
-  - 
+  - Collectible
   - 
   - 
   - 

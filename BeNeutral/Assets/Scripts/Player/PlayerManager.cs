@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Player;
 using UI;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private HitPointsSO hitPoints;
     [SerializeField] private float maxHitPoints;
     [SerializeField] private float startingHitPoints;
+    [SerializeField] private CoinManager coinManager;
 
     //Stamina
     [SerializeField] private float maxStamina;
@@ -110,6 +112,10 @@ public class PlayerManager : MonoBehaviour
          {
              isCheckpoint3 = true;
              isCheckpoint2 = false;
+         } else if (other.CompareTag("Collectible"))
+         {
+             coinManager.CollectedCoins += 1;
+             ScoreManager.instance.SetLifes(ScoreManager.instance.GetLifes() + coinManager.CreditLife());
          }
          
      }
