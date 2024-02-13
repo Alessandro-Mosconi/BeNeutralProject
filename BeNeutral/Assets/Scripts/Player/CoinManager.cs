@@ -6,6 +6,7 @@ namespace Player
     public class CoinManager : ScriptableObject
     {
         [SerializeField] private int collectedCoins;
+        [SerializeField] private int coinsForLife = 50;
         private int creditedLives = 0;
 
         public int CollectedCoins
@@ -21,7 +22,7 @@ namespace Player
 
         public int CreditLife()
         {
-            int lives = (collectedCoins / 20) - creditedLives;
+            int lives = (collectedCoins / coinsForLife) - creditedLives;
             creditedLives += lives;
             return lives;
         }

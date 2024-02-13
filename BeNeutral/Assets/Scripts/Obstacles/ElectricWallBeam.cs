@@ -86,7 +86,7 @@ namespace Obstacles
             
             _targetPosition = target.transform.position;
             _tgtFieldIntensity = target.Field.GetCurrentIntensity();
-            _tgtRepelsField = (target.Field.playerPolarity > 0 && bluePolarity) || (target.Field.playerPolarity < 0 && !bluePolarity);
+            _tgtRepelsField = (target.Field.playerPolarity > 0 && !bluePolarity) || (target.Field.playerPolarity < 0 && bluePolarity);
             
             _wallMaterial.SetFloat("_Magnetic_Field_Intensity", _tgtFieldIntensity);
             _wallMaterial.SetVector("_Player_Mask_Position", _targetPosition);
