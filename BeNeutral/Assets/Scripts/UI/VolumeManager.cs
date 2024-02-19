@@ -7,7 +7,7 @@ namespace UI
     {
         [Header("Volumes")] 
         [SerializeField] private float gameMusicVolume = 0.5f;
-        [SerializeField] private float menuMusicVolume = 0.5f;
+        [SerializeField] private float menuVolume = 0.5f;
         [SerializeField] private float gameSoundsVolume = 0.5f;
         
         [SerializeField] private Slider gameSoundsSlider;
@@ -21,7 +21,7 @@ namespace UI
     
         public float GetMenuMusicVolume()
         {
-            return menuMusicVolume;
+            return menuVolume;
         }
         public float GetGameSoundsVolume()
         {
@@ -31,12 +31,13 @@ namespace UI
         public void SetGameMusicVolume()
         {
             gameMusicVolume = gameMusicSlider.value;
+            AudioManager.Instance.ChangeBackgroundMusicVolume(gameMusicVolume);
         }
     
-        public void SetMenuMusicVolume()
+        public void SetMenuVolume()
         {
-            menuMusicVolume = menuMusicSlider.value;
-            AudioManager.Instance.ChangeMenuMusicVolume(menuMusicVolume);
+            menuVolume = menuMusicSlider.value;
+            AudioManager.Instance.ChangeMenuVolume(menuVolume);
         }
     
         public void SetGameSoundsVolume()

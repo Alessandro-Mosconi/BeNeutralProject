@@ -45,9 +45,9 @@ namespace UI
             GameMenu.gameObject.SetActive(false);
             Feedback.gameObject.SetActive(false);
             Commands.gameObject.SetActive(false);
-            Animations.instance.GrowingTextAnimation("Be", titleMainMenu1, 80);
-            Animations.instance.GrowingTextAnimation("Neu", titleMainMenu2, 80);
-            Animations.instance.GrowingTextAnimation("tral", titleMainMenu3, 80);
+            Animations.instance.GrowingTextAnimation("Be", titleMainMenu1, 80, 3);
+            Animations.instance.GrowingTextAnimation("Neu", titleMainMenu2, 80, 3);
+            Animations.instance.GrowingTextAnimation("tral", titleMainMenu3, 80, 3);
         }
         
         public void OpenGameMenu()

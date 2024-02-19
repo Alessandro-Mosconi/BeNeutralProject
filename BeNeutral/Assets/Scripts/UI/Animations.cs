@@ -58,12 +58,12 @@ namespace UI
             yield return null;
         }
 
-        public void GrowingTextAnimation(string text, TMP_Text place, int finalSizePixel)
+        public void GrowingTextAnimation(string text, TMP_Text place, int finalSizePixel, int speed)
         {
-            StartCoroutine(GrowingTextCoroutine(text, place, finalSizePixel));
+            StartCoroutine(GrowingTextCoroutine(text, place, finalSizePixel, speed));
         }
 
-        IEnumerator GrowingTextCoroutine(string text, TMP_Text place, int size)
+        IEnumerator GrowingTextCoroutine(string text, TMP_Text place, int size, int speed)
         {
             int len = text.Length;
             
@@ -76,8 +76,8 @@ namespace UI
                 while (x <= size)
                 {
                     place.text = storingText + "<size=" + x + ">" + text[i] + "</size>";
-                    x++;
-                    yield return new WaitForSeconds(0.00005f); 
+                    x = x+speed;
+                    yield return new WaitForSeconds(0.000001f); 
                 }
                 storingText += text[i];
             }

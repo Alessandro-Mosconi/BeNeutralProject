@@ -1,4 +1,5 @@
 using Enemies.Weapons;
+using UI;
 using UnityEngine;
 
 namespace Enemies.Behaviors

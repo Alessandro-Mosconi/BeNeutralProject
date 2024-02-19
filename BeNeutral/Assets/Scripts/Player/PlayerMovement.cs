@@ -1,4 +1,5 @@
 using System;
+using UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -57,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
         
             if(Input.GetButton("JumpPlayer" + playerNumber)  && isGrounded)
             {
-            
+                AudioManager.Instance.PlayJumpPlayer();
                 rb.velocity = new Vector2(rb.velocity.x, gravityDirection * 8f);
                 isGrounded = false;
             }
@@ -95,14 +96,19 @@ public class PlayerMovement : MonoBehaviour
         {
             spriteRenderer.flipX = false;
             state = MovementState.running;
+            if(isGrounded)
+                AudioManager.Instance.PlayWalkingPlayer();
         } else if (dirX < 0)
         {
             spriteRenderer.flipX = true;
             state = MovementState.running;
+            if(isGrounded)
+                AudioManager.Instance.PlayWalkingPlayer();
         }
         else
         {
             state = MovementState.idle;
+            AudioManager.Instance.StopWalkingPlayerSound();
         }
 
         if (!isGrounded && gravityDirection * rb.velocity.y > .1f)
@@ -114,6 +120,7 @@ public class PlayerMovement : MonoBehaviour
         {
             state = MovementState.falling;
         } 
+        
         animator.SetInteger(animationState,(int) state);
     }
     

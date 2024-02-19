@@ -23,6 +23,10 @@ public class ScoreManager : Singleton<ScoreManager>
         {
             return points;
         }
+        public int GetCoins()
+        {
+            return coins;
+        }
         public void UpdateScore(int n)
         {
             points = n;
@@ -87,6 +91,7 @@ public class ScoreManager : Singleton<ScoreManager>
         {
             points = 0;
             checkpointScore = 0;
+            coins = 0;
             pointsDisplay.text = string.Format("{0:D6}", points);
         }
         

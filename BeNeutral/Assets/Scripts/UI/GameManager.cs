@@ -3,6 +3,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.Video;
 
 namespace UI
@@ -44,6 +45,15 @@ namespace UI
         [SerializeField] private int level = 0;
         private string _levelName;
         private bool _inGame = false;
+
+        [FormerlySerializedAs("animationTimeIntroFadeIn")]
+        [Header("ANIMATIONS")]
+        [SerializeField] private float animationSpeedIntroFadeIn;
+        [SerializeField] private float animationSpeedIntroFadeOut;
+        [SerializeField] private float animationSpeedMenuFadeIn;
+        [SerializeField] private int animationSpeedMenuTitle;
+
+        private float standardAnimationYieldTime = 0.0001f;
         
         public void Start()
         {
@@ -65,13 +75,13 @@ namespace UI
         // - special fade in for video and music
         IEnumerator introFadeIn()
         {
-            float x = 0.0001f;
+            float x = animationSpeedIntroFadeIn/10000;
             while(videoIntro.targetCameraAlpha < 0.6f)
             {
                 videoIntro.targetCameraAlpha += x;
                 videoIntro.SetDirectAudioVolume(0,videoIntro.GetDirectAudioVolume(0)+x);
-                x += 0.0001f;
-                yield return new WaitForSeconds(0.05f);
+                x += animationSpeedIntroFadeIn/10000;
+                yield return new WaitForSeconds(standardAnimationYieldTime);
             }
         }
         
@@ -101,10 +111,10 @@ namespace UI
             animator.FadeOut(introText,1f);
             while(videoIntro.targetCameraAlpha > 0)
             {
-                float x = 0.003f;
+                float x = animationSpeedIntroFadeOut/100;
                 videoIntro.targetCameraAlpha -= x;
                 videoIntro.SetDirectAudioVolume(0,videoIntro.GetDirectAudioVolume(0)-x);
-                yield return new WaitForSeconds(0.008f);
+                yield return new WaitForSeconds(standardAnimationYieldTime);
             }
             introGroup.gameObject.SetActive(false);
             
@@ -121,16 +131,16 @@ namespace UI
             
             while (y <= 1f)
             {
-                if (y > 0.4f && !titleStarted)
+                if (y > 0.2f && !titleStarted)
                 {
                     titleStarted = true;
-                    animator.GrowingTextAnimation("Be", titleMainMenu1, 80);
-                    animator.GrowingTextAnimation("Neu", titleMainMenu2, 80);
-                    animator.GrowingTextAnimation("tral", titleMainMenu3, 80);
+                    animator.GrowingTextAnimation("Be", titleMainMenu1, 80, animationSpeedMenuTitle);
+                    animator.GrowingTextAnimation("Neu", titleMainMenu2, 80, animationSpeedMenuTitle);
+                    animator.GrowingTextAnimation("tral", titleMainMenu3, 80, animationSpeedMenuTitle);
                 }
                 menuManagerGroup.alpha = y;
-                y +=  0.002f;
-                yield return new WaitForSeconds(0.005f);
+                y +=  animationSpeedMenuFadeIn/1000;
+                yield return new WaitForSeconds(standardAnimationYieldTime);
             }
             
         }
@@ -259,22 +269,6 @@ namespace UI
         {
             return startingLifes;
         }
-        
-
-        //public void SetupScene()
-        //{
-         //   SpawnPlayer();
-        //}
-        
-        
-        //myChanges
-        //public void SpawnPlayer()
-        //{
-        //    if (playerSpawnPoint != null)
-        //    {
-        //        GameObject player = playerSpawnPoint.SpawnObject();
-        //    }
-        //}
 
         public void TakeDamage()
         {
@@ -282,10 +276,10 @@ namespace UI
             // - death sound of player
             // - audioManager.PlayDiePlayer();
             scoreDisplay.SubToScore(damageLostPoints);
+            
         }
         public void KillEnemy(int points)
         {
-            //TODO
             // - death sound of the enemy
             audioManager.PlayDieEnemie();
             scoreDisplay.AddToScore(points);

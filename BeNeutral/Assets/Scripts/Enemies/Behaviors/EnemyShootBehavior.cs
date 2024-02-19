@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using Enemies.Weapons;
+using UI;
 using Random = UnityEngine.Random;
 
 namespace Enemies.Behaviors
@@ -72,6 +73,7 @@ namespace Enemies.Behaviors
 
         private void ShootTarget(PlayerManager target, float deltaTime)
         {
+            
             if (WeakSelf.TryGetTarget(out Transform self))
             {
                 _cumulatedShootingDelay += deltaTime;

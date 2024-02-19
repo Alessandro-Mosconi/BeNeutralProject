@@ -17,6 +17,7 @@ namespace Enemies.Behaviors
         public GameObject alternativeTarget;
         public float maxLife = 10;
 
+        
         private EnemyBehavior[] _activeBehaviors;
         private readonly List<int> _currentStates = new List<int>();
         private readonly Dictionary<int, int> _behaviorToIndexMap = new Dictionary<int, int>();
@@ -248,7 +249,7 @@ namespace Enemies.Behaviors
             if (_life - damage <= 0)
             {
                 // - enemy destroyed audio
-                AudioManager.instance.PlayDieEnemie();
+                GameManager.instance.KillEnemy(10);
                 
                 //Despawn
                 Destroy(gameObject);

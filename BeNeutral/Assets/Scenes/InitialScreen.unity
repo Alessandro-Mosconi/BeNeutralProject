@@ -1089,6 +1089,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 963321819}
+        m_TargetAssemblyTypeName: UI.AudioManager, UI
+        m_MethodName: PlayClickButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &116096024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1878,6 +1890,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1682946959}
         m_TargetAssemblyTypeName: UI.MenuManager, UI
         m_MethodName: CloseSingleGroup
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 963321819}
+        m_TargetAssemblyTypeName: UI.AudioManager, UI
+        m_MethodName: PlayClickButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3670,6 +3694,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 963321819}
+        m_TargetAssemblyTypeName: UI.AudioManager, UI
+        m_MethodName: PlayClickButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5529,6 +5565,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 963321819}
+        m_TargetAssemblyTypeName: UI.AudioManager, UI
+        m_MethodName: PlayClickButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &751414164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6432,7 +6480,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Main Menu Music
+  m_text: Menu Sounds Volume
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 08ea7f6a24724c7438ca53bae7f7b25c, type: 2}
   m_sharedMaterial: {fileID: 2330990957351601974, guid: 08ea7f6a24724c7438ca53bae7f7b25c, type: 2}
@@ -7030,17 +7078,18 @@ MonoBehaviour:
   enemieAudioSource: {fileID: 1564178158}
   menuInteractionSource: {fileID: 915010494}
   fireAudioClipPlayer: {fileID: 8300000, guid: dcf1a5931478f35469f022f17439f2f6, type: 3}
-  walkingAudioClipPlayer: {fileID: 0}
+  walkingAudioClipPlayer: {fileID: 8300000, guid: f8a82444ca7095e40aa06014640d40d3, type: 3}
   dieAudioClipPlayer: {fileID: 8300000, guid: 2d75adc0318d59c43b8bd2dd6a12c0fb, type: 3}
   forceFieldAudioClipPlayer: {fileID: 8300000, guid: 91abb36a0be1e1c45947534cfc9b64b2, type: 3}
   fallAudioClipPlayer: {fileID: 8300000, guid: 33c541bdc6239c64593846cfa4a906f6, type: 3}
-  fireAudioClipEnemie: {fileID: 0}
-  walkingAudioClipEnemie: {fileID: 0}
+  jumpAudioClipPlayer: {fileID: 8300000, guid: 247b367e137ee24438205a3cf1aecd4a, type: 3}
+  fireAudioClipEnemie: {fileID: 8300000, guid: 66c681a719940ad4583ed14be1a568e0, type: 3}
+  walkingAudioClipEnemie: {fileID: 8300000, guid: 8c550e4963c46d24aa9aabff03f4c634, type: 3}
   dieAudioClipEnemie: {fileID: 8300000, guid: 31b17dcf4e9d8b649a5f8791dcc299ab, type: 3}
   backgroundMenuAudioClip: {fileID: 8300000, guid: 8af89456b83b2e64ebdf31d92615604a, type: 3}
   backgroundGameAudioClip: {fileID: 8300000, guid: f318aa704bcc58e4cb2407f2a9beeeb7, type: 3}
   backgroundNextLevelAudioClip: {fileID: 8300000, guid: 7f63903c90de7284faa604c1b915eac8, type: 3}
-  gameOverAudioClip: {fileID: 0}
+  gameOverAudioClip: {fileID: 8300000, guid: a48c48a16c53065429045f3178410da5, type: 3}
   backgroundVolume: 0.1
   fadeInTime: 20
   buttonClick: {fileID: 8300000, guid: 5ce5946188767cf45b10f15e2479f3f8, type: 3}
@@ -7566,6 +7615,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 963321819}
+        m_TargetAssemblyTypeName: UI.AudioManager, UI
+        m_MethodName: PlayClickButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1020778359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7954,6 +8015,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1134875855}
         m_TargetAssemblyTypeName: SendToGoogle, UI
         m_MethodName: Send
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 963321819}
+        m_TargetAssemblyTypeName: UI.AudioManager, UI
+        m_MethodName: PlayClickButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8595,7 +8668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameMusicVolume: 0.5
-  menuMusicVolume: 0.5
+  menuVolume: 0.5
   gameSoundsVolume: 0.5
   gameSoundsSlider: {fileID: 188848305}
   gameMusicSlider: {fileID: 1622297774}
@@ -9625,6 +9698,10 @@ MonoBehaviour:
   damageLostPoints: 1
   dieLostPoints: 20
   level: 0
+  animationSpeedIntroFadeIn: 1
+  animationSpeedIntroFadeOut: 2
+  animationSpeedMenuFadeIn: 6
+  animationSpeedMenuTitle: 5
 --- !u!1 &1564178157
 GameObject:
   m_ObjectHideFlags: 0
@@ -10080,6 +10157,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1682946959}
         m_TargetAssemblyTypeName: UI.MenuManager, UI
         m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 963321819}
+        m_TargetAssemblyTypeName: UI.AudioManager, UI
+        m_MethodName: PlayClickButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11212,7 +11301,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1247813105}
         m_TargetAssemblyTypeName: UI.VolumeManager, UI
-        m_MethodName: SetMenuMusicVolume
+        m_MethodName: SetMenuVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11321,6 +11410,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1682946959}
         m_TargetAssemblyTypeName: UI.MenuManager, UI
         m_MethodName: OpenOptions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 963321819}
+        m_TargetAssemblyTypeName: UI.AudioManager, UI
+        m_MethodName: PlayClickButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12163,6 +12264,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 963321819}
+        m_TargetAssemblyTypeName: UI.AudioManager, UI
+        m_MethodName: PlayClickButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2030681966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12619,6 +12732,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 963321819}
+        m_TargetAssemblyTypeName: UI.AudioManager, UI
+        m_MethodName: PlayClickButton
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

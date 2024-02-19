@@ -26,6 +26,7 @@ namespace UI
         [SerializeField] private AudioClip dieAudioClipPlayer;
         [SerializeField] private AudioClip forceFieldAudioClipPlayer;
         [SerializeField] private AudioClip fallAudioClipPlayer;
+        [SerializeField] private AudioClip jumpAudioClipPlayer;
 
         [Space(30)] [Header("Enemies sounds")] [SerializeField]
         private AudioClip fireAudioClipEnemie;
@@ -62,6 +63,7 @@ namespace UI
         private Coroutine backgroundMusicCoroutine;
         private Coroutine fadeInCoroutine;
         private AudioClip currentBackgroundMusic;
+        private bool isWalking = false;
         
         // change volumes
         public void ChangeSoundsVolume(float newVolume)
@@ -70,10 +72,15 @@ namespace UI
             enemieAudioSource.volume = newVolume;
         }
         
-        public void ChangeMenuMusicVolume(float newVolume)
+        public void ChangeBackgroundMusicVolume(float newVolume)
         {
             backgroundMusicAudioSource.volume = newVolume;
             backgroundVolume = newVolume;
+        }
+        
+        public void ChangeMenuVolume(float newVolume)
+        {
+            menuInteractionSource.volume = newVolume;
         }
         
         // - player sounds
@@ -82,10 +89,27 @@ namespace UI
         {
             playerAudioSource.PlayOneShot(fireAudioClipPlayer);
         }
+        public void PlayJumpPlayer()
+        {
+            playerAudioSource.PlayOneShot(jumpAudioClipPlayer);
+        }
+    
         public void PlayWalkingPlayer()
         {
-            playerAudioSource.PlayOneShot(walkingAudioClipPlayer);
+            if (!isWalking)
+            {
+                isWalking = true;
+                if(!playerAudioSource.isPlaying)
+                    playerAudioSource.PlayOneShot(walkingAudioClipPlayer);
+            }
+                
         }
+        
+        public void StopWalkingPlayerSound()
+        {
+            isWalking = false;
+        }
+
         public void PlayDiePlayer()
         {
             playerAudioSource.PlayOneShot(dieAudioClipPlayer);
