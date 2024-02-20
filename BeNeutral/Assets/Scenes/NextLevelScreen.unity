@@ -1010,7 +1010,6 @@ GameObject:
   - component: {fileID: 1112785126}
   - component: {fileID: 1112785125}
   - component: {fileID: 1112785123}
-  - component: {fileID: 1112785124}
   m_Layer: 5
   m_Name: Time
   m_TagString: Untagged
@@ -1107,21 +1106,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1112785124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1112785122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a77ed19da0546c4c8cd2698031c16ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  points: {fileID: 0}
-  coins: {fileID: 0}
-  time: {fileID: 0}
 --- !u!222 &1112785125
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1235,7 +1219,6 @@ GameObject:
   - component: {fileID: 1340304533}
   - component: {fileID: 1340304532}
   - component: {fileID: 1340304530}
-  - component: {fileID: 1340304531}
   m_Layer: 5
   m_Name: Coin
   m_TagString: Untagged
@@ -1332,21 +1315,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1340304531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1340304529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a77ed19da0546c4c8cd2698031c16ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  points: {fileID: 0}
-  coins: {fileID: 0}
-  time: {fileID: 0}
 --- !u!222 &1340304532
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1477,7 +1445,6 @@ GameObject:
   - component: {fileID: 1455901654}
   - component: {fileID: 1455901656}
   - component: {fileID: 1455901655}
-  - component: {fileID: 1455901657}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -1601,21 +1568,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1455901653}
   m_CullTransparentMesh: 1
---- !u!114 &1455901657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1455901653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a77ed19da0546c4c8cd2698031c16ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  points: {fileID: 1455901655}
-  coins: {fileID: 0}
-  time: {fileID: 0}
 --- !u!1 &1878803966
 GameObject:
   m_ObjectHideFlags: 0

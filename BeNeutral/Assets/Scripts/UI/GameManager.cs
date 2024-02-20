@@ -186,7 +186,7 @@ namespace UI
         public void StartGameOver()
         {
             // - If we want to start from the beginning of the game
-            ResetGame();
+            
             StartCoroutine(StartGameOverCoroutine());
             level = 0;
             // - Background music set to Losing music
@@ -303,6 +303,7 @@ namespace UI
             }else{
                 // - If not
                 scoreDisplay.ResetScore();
+                endingTimeLevel = Time.time;
                 StartGameOver();
             }
         }
