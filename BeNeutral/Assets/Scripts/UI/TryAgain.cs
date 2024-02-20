@@ -9,7 +9,7 @@ namespace UI
             GameManager.instance.RestartThisLevel();
         }
 
-        public void goBackToMainMenu()
+        public void GoBackToMainMenu()
         {
             GameManager.instance.ShowStartScreen();
         }

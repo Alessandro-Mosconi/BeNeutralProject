@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Serialization;
 using Random = System.Random;
 
 namespace UI
@@ -31,8 +32,8 @@ namespace UI
         [Space(30)] [Header("Enemies sounds")] [SerializeField]
         private AudioClip fireAudioClipEnemie;
 
-        [SerializeField] private AudioClip walkingAudioClipEnemie;
-        [SerializeField] private AudioClip dieAudioClipEnemie;
+        [SerializeField] private AudioClip walkingAudioClipEnemy;
+        [SerializeField] private AudioClip dieAudioClipEnemy;
 
 
         [Space(5)]
@@ -53,17 +54,16 @@ namespace UI
         [SerializeField] private AudioClip buttonClick;
         [SerializeField] private AudioClip keyboardClick1;
         [SerializeField] private AudioClip keyboardClick2;
-        [SerializeField] private AudioClip keyboardClick3;
-        
-        
+
+
         [Space(20)]
         [Header("Audio Mixer")]
         [SerializeField] private VolumeManager mixer;
         
-        private Coroutine backgroundMusicCoroutine;
-        private Coroutine fadeInCoroutine;
-        private AudioClip currentBackgroundMusic;
-        private bool isWalking = false;
+        private Coroutine _backgroundMusicCoroutine;
+        private Coroutine _fadeInCoroutine;
+        private AudioClip _currentBackgroundMusic;
+        private bool _isWalking;
         
         // change volumes
         public void ChangeSoundsVolume(float newVolume)
@@ -96,9 +96,9 @@ namespace UI
     
         public void PlayWalkingPlayer()
         {
-            if (!isWalking)
+            if (!_isWalking)
             {
-                isWalking = true;
+                _isWalking = true;
                 if(!playerAudioSource.isPlaying)
                     playerAudioSource.PlayOneShot(walkingAudioClipPlayer);
             }
@@ -107,7 +107,7 @@ namespace UI
         
         public void StopWalkingPlayerSound()
         {
-            isWalking = false;
+            _isWalking = false;
         }
 
         public void PlayDiePlayer()
@@ -131,11 +131,11 @@ namespace UI
         }
         public void PlayWalkingEnemie()
         {
-            enemieAudioSource.PlayOneShot(walkingAudioClipEnemie);
+            enemieAudioSource.PlayOneShot(walkingAudioClipEnemy);
         }
         public void PlayDieEnemie()
         {
-            enemieAudioSource.PlayOneShot(dieAudioClipEnemie);
+            enemieAudioSource.PlayOneShot(dieAudioClipEnemy);
         }
 
         // - menu interactions
@@ -174,19 +174,19 @@ namespace UI
             switch (musicChoice)
             {
                 case 0:
-                    currentBackgroundMusic = backgroundMenuAudioClip;
+                    _currentBackgroundMusic = backgroundMenuAudioClip;
                     backgroundVolume = mixer.GetMenuMusicVolume();
                     break;
                 case 1:
-                    currentBackgroundMusic = backgroundGameAudioClip;
+                    _currentBackgroundMusic = backgroundGameAudioClip;
                     backgroundVolume = mixer.GetGameMusicVolume();
                     break;
                 case 2:
-                    currentBackgroundMusic = backgroundNextLevelAudioClip;
+                    _currentBackgroundMusic = backgroundNextLevelAudioClip;
                     backgroundVolume = mixer.GetGameMusicVolume();
                     break;
                 default:
-                    currentBackgroundMusic = backgroundMenuAudioClip;
+                    _currentBackgroundMusic = backgroundMenuAudioClip;
                     backgroundVolume = mixer.GetMenuMusicVolume();
                     break;
             }
@@ -196,13 +196,13 @@ namespace UI
         private void StartBackgroundMusic()
         {
             StopBackgroundMusic();
-            if (backgroundMusicCoroutine != null)
+            if (_backgroundMusicCoroutine != null)
                 return;
-            if(fadeInCoroutine != null)
-                StopCoroutine(fadeInCoroutine);
+            if(_fadeInCoroutine != null)
+                StopCoroutine(_fadeInCoroutine);
             FadeInMusic(backgroundMusicAudioSource, fadeInTime);
-            backgroundMusicAudioSource.PlayOneShot(currentBackgroundMusic);
-            backgroundMusicCoroutine = StartCoroutine(PlayBackgroundMusicRoutine());
+            backgroundMusicAudioSource.PlayOneShot(_currentBackgroundMusic);
+            _backgroundMusicCoroutine = StartCoroutine(PlayBackgroundMusicRoutine());
         }
         
         private IEnumerator PlayBackgroundMusicRoutine()
@@ -213,23 +213,23 @@ namespace UI
             }
 
             yield return new WaitForSeconds(1f);
-            backgroundMusicCoroutine = null;
+            _backgroundMusicCoroutine = null;
             StartBackgroundMusic();
         }
 
         public void StopBackgroundMusic()
         {
             backgroundMusicAudioSource.Stop();
-            if (backgroundMusicCoroutine == null) return;
-            StopCoroutine(backgroundMusicCoroutine);
-            backgroundMusicCoroutine = null;
+            if (_backgroundMusicCoroutine == null) return;
+            StopCoroutine(_backgroundMusicCoroutine);
+            _backgroundMusicCoroutine = null;
         }
 
         // - effects 
         private void FadeInMusic(AudioSource audioS, float time)
         {
             audioS.volume = 0;
-            fadeInCoroutine = StartCoroutine(FadeInRoutine(audioS, time));
+            _fadeInCoroutine = StartCoroutine(FadeInRoutine(audioS, time));
         }
 
         private IEnumerator FadeInRoutine(AudioSource audioS, float time)

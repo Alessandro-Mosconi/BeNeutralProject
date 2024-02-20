@@ -65,14 +65,14 @@ public class ScoreManager : Singleton<ScoreManager>
            }
         }
 
-        public void SetLifes(int n)
+        public void SetLives(int n)
         {
             lifes = n;
             lifesDisplay.text = string.Format("{0:D1}", lifes);
-            lifeImage.fillAmount = Mathf.Clamp((float) lifes / GameManager.instance.GetStartingLifes(), 0, GameManager.instance.GetStartingLifes());
+            lifeImage.fillAmount = Mathf.Clamp((float) lifes / GameManager.instance.GetStartingLives(), 0, GameManager.instance.GetStartingLives());
         }
 
-        public int GetLifes()
+        public int GetLives()
         {
             return lifes;
         }
@@ -82,7 +82,7 @@ public class ScoreManager : Singleton<ScoreManager>
         {
             lifes--;
             lifesDisplay.text = string.Format("{0:D1}", lifes);
-            lifeImage.fillAmount = Mathf.Clamp((float) lifes / GameManager.instance.GetStartingLifes(), 0, GameManager.instance.GetStartingLifes());
+            lifeImage.fillAmount = Mathf.Clamp((float) lifes / GameManager.instance.GetStartingLives(), 0, GameManager.instance.GetStartingLives());
             return lifes != 0;
         }
 

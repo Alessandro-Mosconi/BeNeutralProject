@@ -880,7 +880,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 923892651}
         m_TargetAssemblyTypeName: UI.TryAgain, UI
-        m_MethodName: goBackToMainMenu
+        m_MethodName: GoBackToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

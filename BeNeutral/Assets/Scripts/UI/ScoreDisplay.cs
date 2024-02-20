@@ -22,7 +22,7 @@ namespace UI
             FinalTimeCalculation();
         }
 
-        public void FinalTimeCalculation()
+        private void FinalTimeCalculation()
         {
             float t = GameManager.instance.FinalTimeLevel();
             float min = MathF.Floor(t / 60) ;

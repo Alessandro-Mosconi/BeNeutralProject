@@ -116,7 +116,7 @@ public class PlayerManager : MonoBehaviour
          } else if (other.CompareTag("Collectible"))
          {
              coinManager.CollectedCoins += 1;
-             ScoreManager.instance.SetLifes(ScoreManager.instance.GetLifes() + coinManager.CreditLife());
+             ScoreManager.instance.SetLives(ScoreManager.instance.GetLives() + coinManager.CreditLife());
          }
          
      }

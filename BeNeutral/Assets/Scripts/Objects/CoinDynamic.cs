@@ -12,7 +12,7 @@ namespace Objects
         public bool animateUp = true;
         public Animator animator;
 
-        private bool _isAnimatingDestroy = false;
+        private bool _isAnimatingDestroy;
 
         private void OnEnable()
         {

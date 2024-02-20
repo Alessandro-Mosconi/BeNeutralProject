@@ -24,7 +24,7 @@ namespace UI
         // - advices for the loading screen
         private List<string> _advices = new List<string>();
 
-        public string GetRandomAdvice()
+        private string GetRandomAdvice()
         {
             string advice;
             int len = _advices.Count;
@@ -58,7 +58,7 @@ namespace UI
         {
             loadBar.fillAmount = 0;
             Animations.instance.TypeWriterText(GetRandomAdvice(), adviceText, 15f, true);
-            StartCoroutine(fadeInLoadingScreen(timeFadeIn));
+            StartCoroutine(FadeInLoadingScreen(timeFadeIn));
             yield return new WaitForSeconds(timeFadeIn);
             ScoreManager.instance.Open();
             AsyncOperation loading = SceneManager.LoadSceneAsync(sceneName);
@@ -73,11 +73,11 @@ namespace UI
                 yield return null;
             }
             yield return new WaitForSeconds(1f);
-            StartCoroutine(fadeOutLoadingScreen(timeFadeOut));
+            StartCoroutine(FadeOutLoadingScreen(timeFadeOut));
             AudioManager.Instance.ChooseBackgroundMusic(1);
         }
 
-        IEnumerator fadeOutLoadingScreen(float time)
+        IEnumerator FadeOutLoadingScreen(float time)
         {
             float timePassed = 0f;
             loadingScreenGroup.alpha = 1;
@@ -90,7 +90,7 @@ namespace UI
             loadingScreenGroup.alpha = 0;
             loadingScreen.SetActive(false);
         }
-        IEnumerator fadeInLoadingScreen(float time)
+        IEnumerator FadeInLoadingScreen(float time)
         {
             float timePassed = 0f;
             loadingScreenGroup.alpha = 0;
