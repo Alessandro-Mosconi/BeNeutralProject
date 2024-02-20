@@ -249,7 +249,7 @@ namespace Enemies.Behaviors
             if (_life - damage <= 0)
             {
                 // - enemy destroyed audio
-                GameManager.instance.KillEnemy(10);
+                GameManager.instance.KillEnemy(10, gameObject.transform.position);
                 
                 //Despawn
                 Destroy(gameObject);

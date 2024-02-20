@@ -1,10 +1,13 @@
 using System;
 using System.Collections;
+using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 using UnityEngine.Video;
+using Random = System.Random;
 
 namespace UI
 {
@@ -56,10 +59,14 @@ namespace UI
         private float standardAnimationYieldTime = 0.0001f;
         private float initialTimeLevel;
         private float endingTimeLevel;
+
+        private GameObject coinPrefab;
         
         public void Start()
         {
              ResetGame();
+             coinPrefab = Resources.Load<GameObject>("Coin Variant");
+             ObjectPoolingManager.Instance.CreatePool (coinPrefab, 50, 100);
              StartCoroutine(updateDuringGame());
              PlayIntro();
              
@@ -282,11 +289,62 @@ namespace UI
             scoreDisplay.SubToScore(damageLostPoints);
             
         }
-        public void KillEnemy(int points)
+        public void KillEnemy(int points, Vector3 positionEnemie)
         {
+            // - reward spawn
+            spawnCoins(positionEnemie);
             // - death sound of the enemy
             audioManager.PlayDieEnemie();
             scoreDisplay.AddToScore(points);
+        }
+
+        public void spawnCoins(Vector3 position)
+        {
+            Random random = new Random();
+            int num = random.Next(1, 5);
+            
+            
+            for (int i = 0; i < num; i++)
+            {
+                GameObject spawn = ObjectPoolingManager.Instance.GetObject (coinPrefab.name);
+                StartCoroutine(EntranceAnimationCoroutine(position, spawn));
+                Component[] components = spawn.GetComponents(typeof(Component));
+                foreach (Component component in components)
+                {
+                    if (component is Behaviour)
+                    {
+                        ((Behaviour)component).enabled = true;
+                    }
+                }
+            }
+            
+        }
+        IEnumerator EntranceAnimationCoroutine(Vector3 position, GameObject obj)
+        {
+            bool notFinished = true;
+            Random random = new Random();
+            int x;
+            int sign = random.Next(-1, 1);
+            int moveTime = random.Next(100, 200);
+            int time = 0;
+            
+            float incrementx;
+            
+            
+            
+            obj.gameObject.transform.position = position;
+            
+            while (notFinished)
+            {
+                x = random.Next(1, 10);
+                incrementx = 0.01f * x * sign;
+                time++;
+                obj.gameObject.transform.position += new Vector3(incrementx,0,0);
+                if (time > moveTime){
+                    notFinished = false;
+                }
+                yield return null;  
+            }
         }
         public void KillPlayer()
         {
