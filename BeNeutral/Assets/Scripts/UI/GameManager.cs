@@ -301,7 +301,7 @@ namespace UI
         public void spawnCoins(Vector3 position)
         {
             Random random = new Random();
-            int num = random.Next(1, 5);
+            int num = random.Next(2, 6);
             
             
             for (int i = 0; i < num; i++)
@@ -329,15 +329,17 @@ namespace UI
             int time = 0;
             
             float incrementx;
-            
-            
-            
+            obj.gameObject.transform.localScale = new Vector3(0, 0, 0);
             obj.gameObject.transform.position = position;
             
             while (notFinished)
             {
-                x = random.Next(1, 10);
+                x = random.Next(2, 4);
                 incrementx = 0.01f * x * sign;
+                if (obj.gameObject.transform.localScale.x < 1f)
+                {
+                    obj.gameObject.transform.localScale += new Vector3(5f / moveTime, 5f / moveTime,5f / moveTime) ;
+                }
                 time++;
                 obj.gameObject.transform.position += new Vector3(incrementx,0,0);
                 if (time > moveTime){
@@ -360,7 +362,6 @@ namespace UI
                 RestartThisLevel(); 
             }else{
                 // - If not
-                scoreDisplay.ResetScore();
                 endingTimeLevel = Time.time;
                 StartGameOver();
             }
