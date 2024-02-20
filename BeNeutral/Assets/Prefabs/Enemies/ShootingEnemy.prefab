@@ -53,7 +53,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 6132128481055832304}
   target: {fileID: 0}
+  alternativeTarget: {fileID: 0}
   maxLife: 10
+  coinPrefab: {fileID: 5818281661064642992, guid: 02fbe82f0b5c341a6afc0d4e68c528d9, type: 3}
 --- !u!114 &7884259635676807323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,6 +134,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  absorptionEnabled: 1
 --- !u!212 &6132128481055832304
 SpriteRenderer:
   m_ObjectHideFlags: 0
