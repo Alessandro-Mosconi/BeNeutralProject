@@ -54,8 +54,6 @@ namespace UI
         [SerializeField] private int animationSpeedMenuTitle;
 
         private float standardAnimationYieldTime = 0.0001f;
-        private float initialTimeLevel;
-        private float endingTimeLevel;
         
         public void Start()
         {
@@ -150,7 +148,6 @@ namespace UI
         {
             _inGame = true;
             loadingManager.StartScene(_levelName);
-            initialTimeLevel = Time.time;
             ObjectPoolingManager.Instance.RegenPools();
         }
 
@@ -251,7 +248,6 @@ namespace UI
         }
         public void ShowNextLevel()
         {
-            endingTimeLevel = Time.time;
             // - Show next level scene with button to proceed in the next game level
             SceneManager.LoadScene("NextLevelScreen");
             // - set music to Next level screen music
@@ -307,15 +303,6 @@ namespace UI
             }
         }
 
-        public float ActualTimeLevel()
-        {
-            return Time.time - initialTimeLevel;
-        }
-        public float FinalTimeLevel()
-        {
-            return endingTimeLevel - initialTimeLevel;
-        }
-        
         public void PauseGame()
         {
             // TODO
@@ -334,7 +321,6 @@ namespace UI
         {
             while (true)
             {
-                ScoreManager.instance.UpdateTime();
                 if (_inGame)
                 {
                     if (Input.GetKeyDown(KeyCode.Escape))

@@ -11,7 +11,6 @@ public class ScoreManager : Singleton<ScoreManager>
         [SerializeField] private TextMeshProUGUI pointsDisplay;
         [SerializeField] private TextMeshProUGUI coinsDisplay;
         [SerializeField] private TextMeshProUGUI lifesDisplay;
-        [SerializeField] private TextMeshProUGUI timeDisplay;
         private int points = 0;
         private int coins = 0;
         private int lifes;
@@ -31,38 +30,7 @@ public class ScoreManager : Singleton<ScoreManager>
         public void UpdateScore(int n)
         {
             points = n;
-            pointsDisplay.text = string.Format("{0:D5}", n);
-        }
-
-        public void UpdateTime()
-        {
-           float t = GameManager.instance.ActualTimeLevel();
-           float min = MathF.Floor(t / 60) ;
-           float sec = MathF.Round(t-(min*60), 0);
-           
-           if (sec < 10)
-           {
-               if (min < 10)
-               {
-                   timeDisplay.text = "0" + min + ".0" + sec; 
-               }
-               else
-               {
-                   timeDisplay.text = min + ".0" + sec;
-               }
-               
-           }
-           else
-           {
-               if (min < 10)
-               {
-                   timeDisplay.text = "0" + min + "." + sec; 
-               }
-               else
-               {
-                   timeDisplay.text = min + "." + sec;
-               }
-           }
+            pointsDisplay.text = string.Format("{0:D6}", n);
         }
 
         public void SetLifes(int n)
@@ -89,13 +57,13 @@ public class ScoreManager : Singleton<ScoreManager>
         public void AddToScore(int n)
         {
             points += n;
-            pointsDisplay.text = string.Format("{0:D5}", points);
+            pointsDisplay.text = string.Format("{0:D6}", points);
         }
         
         public void AddCoins(int n)
         {
             coins += n;
-            coinsDisplay.text = $"{coins:D5}";
+            coinsDisplay.text = $"{coins:D6}";
         }
         
         public void SubToScore(int n)
@@ -105,7 +73,7 @@ public class ScoreManager : Singleton<ScoreManager>
             {
                 points = 0;
             }
-            pointsDisplay.text = string.Format("{0:D5}", points);
+            pointsDisplay.text = string.Format("{0:D6}", points);
         }
 
         public void SaveLastScore()
@@ -116,7 +84,7 @@ public class ScoreManager : Singleton<ScoreManager>
         public void RestoreScore()
         {
             points = checkpointScore;
-            pointsDisplay.text = string.Format("{0:D5}", points);
+            pointsDisplay.text = string.Format("{0:D6}", points);
         }
 
         public void ResetScore()
@@ -124,7 +92,7 @@ public class ScoreManager : Singleton<ScoreManager>
             points = 0;
             checkpointScore = 0;
             coins = 0;
-            pointsDisplay.text = string.Format("{0:D5}", points);
+            pointsDisplay.text = string.Format("{0:D6}", points);
         }
         
         public void Open()
