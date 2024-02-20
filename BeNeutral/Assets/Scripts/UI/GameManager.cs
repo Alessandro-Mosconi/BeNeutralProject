@@ -58,6 +58,14 @@ namespace UI
         private float _endingTimeLevel;
 
         private GameObject _coinPrefab;
+
+        public void SetParameters(int lives, int levelPoint, int damageLostPoint, int dieLostPoint)
+        {
+            startingLives = lives;
+            levelPassedPoints = levelPoint;
+            damageLostPoints = damageLostPoint;
+            dieLostPoints = dieLostPoint;
+        }
         
         public void Start()
         {
@@ -204,6 +212,7 @@ namespace UI
         // - start the game selecting the current level
         public void StartGame()
         {
+            scoreDisplay.SetLives(startingLives);
             LoadLevel();
         }
         
@@ -458,7 +467,7 @@ namespace UI
                 {
                     if (Input.GetKeyDown(KeyCode.Escape))
                     {
-                        if (menuManager.gameMenuOpened())
+                        if (menuManager.GameMenuOpened())
                         {
                             menuManager.CloseMenu();
                             UnpauseGame();

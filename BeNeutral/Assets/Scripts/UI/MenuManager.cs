@@ -16,6 +16,7 @@ namespace UI
         [SerializeField] private Canvas Feedback;
         [SerializeField] private Canvas Commands;
         [SerializeField] private Canvas Restart;
+        [SerializeField] private Canvas Difficulty;
         
         [Header("MAIN MENU")]
         [SerializeField] private TMP_Text titleMainMenu1;
@@ -27,21 +28,28 @@ namespace UI
         [SerializeField] private  Button CloseButton;
 
         // - if true mainMenu if false gameMenu
-        private bool MenuType = true;
-        private bool gameMenuOpen = false;
-        
-        
-        public bool gameMenuOpened()
+        private bool _menuType = true;
+        private bool _gameMenuOpen = false;
+
+        public void ChooseDifficulty()
         {
-            return gameMenuOpen;
+            CloseSingleGroup();
+            MainMenu.gameObject.SetActive(false);
+            GameMenu.gameObject.SetActive(false);
+            Difficulty.gameObject.SetActive(true);
+        }
+        public bool GameMenuOpened()
+        {
+            return _gameMenuOpen;
         }
         public void OpenMainMenu()
         {
-            MenuType = true;
+            _menuType = true;
             Menu.gameObject.SetActive(true);
             MainMenu.gameObject.SetActive(true);
             
             Options.gameObject.SetActive(false);
+            Difficulty.gameObject.SetActive(false);
             GameMenu.gameObject.SetActive(false);
             Feedback.gameObject.SetActive(false);
             Commands.gameObject.SetActive(false);
@@ -52,13 +60,14 @@ namespace UI
         
         public void OpenGameMenu()
         {
-            MenuType = false;
-            gameMenuOpen = true;
+            _menuType = false;
+            _gameMenuOpen = true;
             Menu.gameObject.SetActive(true);
             GameMenu.gameObject.SetActive(true);
             MainMenu.gameObject.SetActive(false);
             
             Options.gameObject.SetActive(false);
+            Difficulty.gameObject.SetActive(false);
             Feedback.gameObject.SetActive(false);
             Commands.gameObject.SetActive(false);
             
@@ -68,12 +77,12 @@ namespace UI
         public void CloseMenu()
         {
             Menu.gameObject.SetActive(false);
-            gameMenuOpen = false;
+            _gameMenuOpen = false;
         }
 
         public void OpenSingleGroup()
         {
-            if (MenuType)
+            if (_menuType)
             {
                 MainMenu.gameObject.SetActive(false);
             }
@@ -86,7 +95,7 @@ namespace UI
         
         public void CloseSingleGroup()
         {
-            if (MenuType)
+            if (_menuType)
             {
                 MainMenu.gameObject.SetActive(true);
             }
@@ -94,6 +103,7 @@ namespace UI
             {
                 GameMenu.gameObject.SetActive(true);
             }
+            Difficulty.gameObject.SetActive(false);
             CloseButton.gameObject.SetActive(false);
             Options.gameObject.SetActive(false);
             Feedback.gameObject.SetActive(false);
@@ -126,7 +136,7 @@ namespace UI
         public void ConfirmRestartGame()
         {
             OpenMainMenu();
-            gameMenuOpen = false;
+            _gameMenuOpen = false;
             GameManager.instance.ShowStartScreen();
             Restart.gameObject.SetActive(false);
         }
