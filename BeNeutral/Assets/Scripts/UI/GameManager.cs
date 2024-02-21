@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -359,25 +360,25 @@ namespace UI
             scoreDisplay.SubToScore(damageLostPoints);
             
         }
-        public void KillEnemy(int points, Vector3 positionEnemy)
+        public void KillEnemy(int points, Vector3 positionEnemy, Quaternion rotation)
         {
             // - reward spawn
-            SpawnCoins(positionEnemy);
+            SpawnCoins(positionEnemy, rotation);
             // - death sound of the enemy
             audioManager.PlayDieEnemie();
             scoreDisplay.AddToScore(points);
         }
 
-        private void SpawnCoins(Vector3 position)
+        private void SpawnCoins(Vector3 position, Quaternion rotation)
         {
             Random random = new Random();
-            int num = random.Next(2, 6);
+            int num = random.Next(3, 6);
             
             
             for (int i = 0; i < num; i++)
             {
                 GameObject spawn = ObjectPoolingManager.Instance.GetObject (_coinPrefab.name);
-                StartCoroutine(EntranceAnimationCoroutine(position, spawn));
+                StartCoroutine(EntranceAnimationCoroutine(position, rotation, spawn));
                 Component[] components = spawn.GetComponents(typeof(Component));
                 foreach (Component component in components)
                 {
@@ -389,29 +390,46 @@ namespace UI
             }
             
         }
-        IEnumerator EntranceAnimationCoroutine(Vector3 position, GameObject obj)
+        IEnumerator EntranceAnimationCoroutine(Vector3 position, Quaternion rotation, GameObject obj)
         {
             bool notFinished = true;
             Random random = new Random();
             int x;
+            int y;
             int sign = random.Next(-1, 1);
             int moveTime = random.Next(100, 200);
             int time = 0;
             
             float incrementx;
+            float incrementy;
+            float var = 0;
             obj.gameObject.transform.localScale = new Vector3(0, 0, 0);
             obj.gameObject.transform.position = position;
             
+            // - if the enemy is upperside or not
+            if (rotation.x == 0)
+            {
+                y = 1;
+            }
+            else
+            {
+                y = -1;
+            }
+            x = random.Next(7, 12);
             while (notFinished)
             {
-                x = random.Next(2, 4);
-                incrementx = 0.01f * x * sign;
-                if (obj.gameObject.transform.localScale.x < 1f)
+                var += 0.20f;
+                incrementx = var * sign / x;
+                
+                // - function for the bounce
+                
+                incrementy = (float) (y * (Math.Exp(-0.5f * var) * Math.Abs((x/3) * Math.Sin(var))));
+                if (obj.gameObject.transform.localScale.x < 0.7f)
                 {
-                    obj.gameObject.transform.localScale += new Vector3(5f / moveTime, 5f / moveTime,5f / moveTime) ;
+                    obj.gameObject.transform.localScale += new Vector3(8f / moveTime, 8f / moveTime,8f / moveTime) ;
                 }
                 time++;
-                obj.gameObject.transform.position += new Vector3(incrementx,0,0);
+                obj.gameObject.transform.position = new Vector3(position.x + incrementx, position.y + incrementy, obj.gameObject.transform.position.z);
                 if (time > moveTime){
                     notFinished = false;
                 }
