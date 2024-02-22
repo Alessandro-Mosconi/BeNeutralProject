@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using Unity.Plastic.Newtonsoft.Json.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -25,6 +26,8 @@ namespace UI
         [SerializeField] private VideoPlayer videoIntro;
         [SerializeField] private CanvasGroup introText;
         [SerializeField] private TMP_Text introTextValue;
+        [SerializeField] private CanvasGroup introImage;
+        private bool _endIntroImage = false;
         
         [Header("MENU")]
         [SerializeField] private MenuManager menuManager;
@@ -59,6 +62,7 @@ namespace UI
         private float _endingTimeLevel;
 
         private GameObject _coinPrefab;
+        
 
         public void SetParameters(int lives, int levelPoint, int damageLostPoint, int dieLostPoint)
         {
@@ -89,6 +93,39 @@ namespace UI
 
         private void PlayIntro()
         {
+            // - play Polimi Game Collective introduction
+
+            StartCoroutine(IntroImage());
+            
+            // - play game intro
+
+            StartCoroutine(Intro());
+            
+        }
+        // - Polimi game collective image
+        IEnumerator IntroImage()
+        {
+            _endIntroImage = false;
+            animator.FadeIn(introImage, 3f);
+            while (introImage.alpha < 1f)
+            {
+                yield return null;
+            }
+            animator.FadeOut(introImage, 0.6f);
+            while (introImage.alpha > 0.1f)
+            {
+                yield return null;
+            }
+            _endIntroImage = true;
+            yield return null;
+        }
+
+        IEnumerator Intro()
+        {
+            while (!_endIntroImage)
+            {
+                yield return null;
+            }
             // - fade in for the intro video
             
             Coroutine fadeIn = StartCoroutine(IntroFadeIn());
@@ -100,8 +137,8 @@ namespace UI
             // - fade out when the video ended or when skipped
             
             StartCoroutine(IntroFadeOut(fadeIn));
+            yield return null;
         }
-        
         // - fade in for video and music
         IEnumerator IntroFadeIn()
         {
