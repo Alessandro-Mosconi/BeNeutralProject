@@ -43,6 +43,16 @@ public class PlayerManager : MonoBehaviour
      private bool isSecretCheckpoint2;
      private void Start()
      {
+         // - initialize player mode
+
+         maxHitPoints = GameManager.instance.GetMaxHitPoints();
+         startingHitPoints = GameManager.instance.GetStartingHitPoints();
+         fallDamageValue = GameManager.instance.GetFallDamageValue();
+         hazardDamageValue = GameManager.instance.GetHazardDamageValue();
+         continuousDamageValue = GameManager.instance.GetContinuousDamageValue();
+         
+         
+         
          magneticField = GetComponent<MagneticField>();
          hitPoints.HitPointValue = startingHitPoints;
          hitPoints.StaminaValue = maxStamina;

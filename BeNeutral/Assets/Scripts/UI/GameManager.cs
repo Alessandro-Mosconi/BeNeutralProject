@@ -39,6 +39,15 @@ namespace UI
         [Header("PLAYER")]
         [SerializeField] private  int startingLives;
         
+        // - general stats player
+        
+        private float _maxHitPoints;
+        private float _startingHitPoints;
+        private float _fallDamageValue;
+        private float _hazardDamageValue;
+        private float _continuousDamageValue;
+        private float _playerDamage;
+        
         [Header("SCORES")]
         [SerializeField] private int levelPassedPoints;
         [SerializeField] private int multiplierPoints;
@@ -63,13 +72,45 @@ namespace UI
 
         private GameObject _coinPrefab;
         
+        // - getter for parameters
 
-        public void SetParameters(int lives, int levelPoint, int damageLostPoint, int dieLostPoint)
+        public float GetMaxHitPoints()
+        {
+            return _maxHitPoints;
+        }
+        public float GetStartingHitPoints()
+        {
+            return _startingHitPoints;
+        }
+        public float GetFallDamageValue()
+        {
+            return _fallDamageValue;
+        }
+        public float GetHazardDamageValue()
+        {
+            return _hazardDamageValue;
+        }
+        public float GetContinuousDamageValue()
+        {
+            return _continuousDamageValue;
+        }
+        public float GetPlayerDamage()
+        {
+            return _playerDamage;
+        }
+        
+        public void SetParameters(int lives, int levelPoint, int damageLostPoint, int dieLostPoint, float maxHitPoints, float startingHitPoints, float fallDamageValue, float hazardDamageValue, float continuousDamageValue, float playerDamage)
         {
             startingLives = lives;
             levelPassedPoints = levelPoint;
             damageLostPoints = damageLostPoint;
             dieLostPoints = dieLostPoint;
+            _maxHitPoints = maxHitPoints;
+            _startingHitPoints = startingHitPoints;
+            _fallDamageValue = fallDamageValue;
+            _hazardDamageValue = hazardDamageValue; 
+            _continuousDamageValue = continuousDamageValue;
+            _playerDamage = playerDamage;
         }
         
         public void Start()
