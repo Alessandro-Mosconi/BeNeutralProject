@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 
 namespace Objects
@@ -38,6 +39,7 @@ namespace Objects
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            AudioManager.instance.PlayTakeCoinPlayer();
             _isAnimatingDestroy = true;
             gameObject.SetActive(false);
         }

@@ -433,11 +433,10 @@ namespace UI
 
         public void TakeDamage()
         {
-            // - death sound of player
-            audioManager.PlayDiePlayer();
             scoreDisplay.SubToScore(damageLostPoints);
-            
         }
+
+        
         public void KillEnemy(int points, Vector3 positionEnemy, Quaternion rotation)
         {
             // - reward spawn

@@ -311,6 +311,7 @@ GameObject:
   - component: {fileID: 1181695}
   - component: {fileID: 1181697}
   - component: {fileID: 1181696}
+  - component: {fileID: 1181698}
   m_Layer: 5
   m_Name: PolimiIntro
   m_TagString: Untagged
@@ -325,7 +326,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181694}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -350,7 +351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6156863}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -375,6 +376,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181694}
   m_CullTransparentMesh: 1
+--- !u!225 &1181698
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1181694}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &22426954
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,14 +1125,32 @@ MonoBehaviour:
   levelPointE: 0
   damageLostPointE: 0
   dieLostPointE: 0
+  maxHitPointsE: 0
+  startingHitPointsE: 0
+  fallDamageValueE: 0
+  hazardDamageValueE: 0
+  continuousDamageValueE: 0
+  playerDamageE: 0
   initialLivesM: 0
   levelPointM: 0
   damageLostPointM: 0
   dieLostPointM: 0
+  maxHitPointsM: 0
+  startingHitPointsM: 0
+  fallDamageValueM: 0
+  hazardDamageValueM: 0
+  continuousDamageValueM: 0
+  playerDamageM: 0
   initialLivesH: 0
   levelPointH: 0
   damageLostPointH: 0
   dieLostPointH: 0
+  maxHitPointsH: 0
+  startingHitPointsH: 0
+  fallDamageValueH: 0
+  hazardDamageValueH: 0
+  continuousDamageValueH: 0
+  playerDamageH: 0
 --- !u!114 &116096023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2031,14 +2062,32 @@ MonoBehaviour:
   levelPointE: 0
   damageLostPointE: 0
   dieLostPointE: 0
+  maxHitPointsE: 0
+  startingHitPointsE: 0
+  fallDamageValueE: 0
+  hazardDamageValueE: 0
+  continuousDamageValueE: 0
+  playerDamageE: 0
   initialLivesM: 0
   levelPointM: 0
   damageLostPointM: 0
   dieLostPointM: 0
+  maxHitPointsM: 0
+  startingHitPointsM: 0
+  fallDamageValueM: 0
+  hazardDamageValueM: 0
+  continuousDamageValueM: 0
+  playerDamageM: 0
   initialLivesH: 0
   levelPointH: 0
   damageLostPointH: 0
   dieLostPointH: 0
+  maxHitPointsH: 0
+  startingHitPointsH: 0
+  fallDamageValueH: 0
+  hazardDamageValueH: 0
+  continuousDamageValueH: 0
+  playerDamageH: 0
 --- !u!114 &209737055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3629,14 +3678,32 @@ MonoBehaviour:
   levelPointE: 0
   damageLostPointE: 0
   dieLostPointE: 0
+  maxHitPointsE: 0
+  startingHitPointsE: 0
+  fallDamageValueE: 0
+  hazardDamageValueE: 0
+  continuousDamageValueE: 0
+  playerDamageE: 0
   initialLivesM: 0
   levelPointM: 0
   damageLostPointM: 0
   dieLostPointM: 0
+  maxHitPointsM: 0
+  startingHitPointsM: 0
+  fallDamageValueM: 0
+  hazardDamageValueM: 0
+  continuousDamageValueM: 0
+  playerDamageM: 0
   initialLivesH: 0
   levelPointH: 0
   damageLostPointH: 0
   dieLostPointH: 0
+  maxHitPointsH: 0
+  startingHitPointsH: 0
+  fallDamageValueH: 0
+  hazardDamageValueH: 0
+  continuousDamageValueH: 0
+  playerDamageH: 0
 --- !u!1 &404500609
 GameObject:
   m_ObjectHideFlags: 0
@@ -3968,14 +4035,32 @@ MonoBehaviour:
   levelPointE: 0
   damageLostPointE: 0
   dieLostPointE: 0
+  maxHitPointsE: 0
+  startingHitPointsE: 0
+  fallDamageValueE: 0
+  hazardDamageValueE: 0
+  continuousDamageValueE: 0
+  playerDamageE: 0
   initialLivesM: 0
   levelPointM: 0
   damageLostPointM: 0
   dieLostPointM: 0
+  maxHitPointsM: 0
+  startingHitPointsM: 0
+  fallDamageValueM: 0
+  hazardDamageValueM: 0
+  continuousDamageValueM: 0
+  playerDamageM: 0
   initialLivesH: 0
   levelPointH: 0
   damageLostPointH: 0
   dieLostPointH: 0
+  maxHitPointsH: 0
+  startingHitPointsH: 0
+  fallDamageValueH: 0
+  hazardDamageValueH: 0
+  continuousDamageValueH: 0
+  playerDamageH: 0
 --- !u!114 &433996229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6174,14 +6259,32 @@ MonoBehaviour:
   levelPointE: 0
   damageLostPointE: 0
   dieLostPointE: 0
+  maxHitPointsE: 0
+  startingHitPointsE: 0
+  fallDamageValueE: 0
+  hazardDamageValueE: 0
+  continuousDamageValueE: 0
+  playerDamageE: 0
   initialLivesM: 0
   levelPointM: 0
   damageLostPointM: 0
   dieLostPointM: 0
+  maxHitPointsM: 0
+  startingHitPointsM: 0
+  fallDamageValueM: 0
+  hazardDamageValueM: 0
+  continuousDamageValueM: 0
+  playerDamageM: 0
   initialLivesH: 0
   levelPointH: 0
   damageLostPointH: 0
   dieLostPointH: 0
+  maxHitPointsH: 0
+  startingHitPointsH: 0
+  fallDamageValueH: 0
+  hazardDamageValueH: 0
+  continuousDamageValueH: 0
+  playerDamageH: 0
 --- !u!114 &751414163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7779,9 +7882,13 @@ MonoBehaviour:
   forceFieldAudioClipPlayer: {fileID: 8300000, guid: 91abb36a0be1e1c45947534cfc9b64b2, type: 3}
   fallAudioClipPlayer: {fileID: 8300000, guid: 33c541bdc6239c64593846cfa4a906f6, type: 3}
   jumpAudioClipPlayer: {fileID: 8300000, guid: 247b367e137ee24438205a3cf1aecd4a, type: 3}
+  takeCoinAudioClipPlayer: {fileID: 8300000, guid: 7a68d30d58fabb945b63afb5cd929545, type: 3}
+  takeDamageAudioClipPlayer: {fileID: 8300000, guid: 66c681a719940ad4583ed14be1a568e0, type: 3}
+  switchAudioClipPlayer: {fileID: 8300000, guid: b516766567313144c909b372e865f4b3, type: 3}
+  alertDistanceAudioClipPlayer: {fileID: 0}
   fireAudioClipEnemie: {fileID: 8300000, guid: 66c681a719940ad4583ed14be1a568e0, type: 3}
   walkingAudioClipEnemy: {fileID: 0}
-  dieAudioClipEnemy: {fileID: 0}
+  dieAudioClipEnemy: {fileID: 8300000, guid: 27c27a374911b71499e298cdbdd5b45a, type: 3}
   backgroundMenuAudioClip: {fileID: 8300000, guid: 8af89456b83b2e64ebdf31d92615604a, type: 3}
   backgroundGameAudioClip: {fileID: 8300000, guid: f318aa704bcc58e4cb2407f2a9beeeb7, type: 3}
   backgroundNextLevelAudioClip: {fileID: 8300000, guid: 7f63903c90de7284faa604c1b915eac8, type: 3}
@@ -7791,6 +7898,8 @@ MonoBehaviour:
   buttonClick: {fileID: 8300000, guid: 5ce5946188767cf45b10f15e2479f3f8, type: 3}
   keyboardClick1: {fileID: 8300000, guid: 5177e2bf8784053438d4b42d76aa4ee9, type: 3}
   keyboardClick2: {fileID: 8300000, guid: 9acb402ee9d824d498e2c069d902cd6e, type: 3}
+  error: {fileID: 8300000, guid: e336bd09b5bb7374286841893fa2f029, type: 3}
+  alert: {fileID: 8300000, guid: c23a13b41345af345a5ea3a96a100714, type: 3}
   mixer: {fileID: 1247813105}
 --- !u!1 &963879807
 GameObject:
@@ -8234,14 +8343,32 @@ MonoBehaviour:
   levelPointE: 0
   damageLostPointE: 0
   dieLostPointE: 0
+  maxHitPointsE: 0
+  startingHitPointsE: 0
+  fallDamageValueE: 0
+  hazardDamageValueE: 0
+  continuousDamageValueE: 0
+  playerDamageE: 0
   initialLivesM: 0
   levelPointM: 0
   damageLostPointM: 0
   dieLostPointM: 0
+  maxHitPointsM: 0
+  startingHitPointsM: 0
+  fallDamageValueM: 0
+  hazardDamageValueM: 0
+  continuousDamageValueM: 0
+  playerDamageM: 0
   initialLivesH: 0
   levelPointH: 0
   damageLostPointH: 0
   dieLostPointH: 0
+  maxHitPointsH: 0
+  startingHitPointsH: 0
+  fallDamageValueH: 0
+  hazardDamageValueH: 0
+  continuousDamageValueH: 0
+  playerDamageH: 0
 --- !u!114 &1020778358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10896,6 +11023,7 @@ MonoBehaviour:
   videoIntro: {fileID: 1158628407}
   introText: {fileID: 1453805311}
   introTextValue: {fileID: 527014330}
+  introImage: {fileID: 1181698}
   menuManager: {fileID: 1682946959}
   menuManagerGroup: {fileID: 1682946960}
   titleMainMenu1: {fileID: 598370825}
@@ -10927,14 +11055,32 @@ MonoBehaviour:
   levelPointE: 100
   damageLostPointE: 1
   dieLostPointE: 10
+  maxHitPointsE: 10
+  startingHitPointsE: 10
+  fallDamageValueE: 3
+  hazardDamageValueE: 1
+  continuousDamageValueE: 2.5
+  playerDamageE: 2
   initialLivesM: 2
   levelPointM: 80
   damageLostPointM: 2
   dieLostPointM: 20
+  maxHitPointsM: 6
+  startingHitPointsM: 6
+  fallDamageValueM: 3
+  hazardDamageValueM: 1
+  continuousDamageValueM: 3
+  playerDamageM: 1.5
   initialLivesH: 1
   levelPointH: 60
   damageLostPointH: 3
   dieLostPointH: 40
+  maxHitPointsH: 4
+  startingHitPointsH: 4
+  fallDamageValueH: 4
+  hazardDamageValueH: 2
+  continuousDamageValueH: 3.5
+  playerDamageH: 1
 --- !u!1 &1564178157
 GameObject:
   m_ObjectHideFlags: 0
@@ -11451,14 +11597,32 @@ MonoBehaviour:
   levelPointE: 0
   damageLostPointE: 0
   dieLostPointE: 0
+  maxHitPointsE: 0
+  startingHitPointsE: 0
+  fallDamageValueE: 0
+  hazardDamageValueE: 0
+  continuousDamageValueE: 0
+  playerDamageE: 0
   initialLivesM: 0
   levelPointM: 0
   damageLostPointM: 0
   dieLostPointM: 0
+  maxHitPointsM: 0
+  startingHitPointsM: 0
+  fallDamageValueM: 0
+  hazardDamageValueM: 0
+  continuousDamageValueM: 0
+  playerDamageM: 0
   initialLivesH: 0
   levelPointH: 0
   damageLostPointH: 0
   dieLostPointH: 0
+  maxHitPointsH: 0
+  startingHitPointsH: 0
+  fallDamageValueH: 0
+  hazardDamageValueH: 0
+  continuousDamageValueH: 0
+  playerDamageH: 0
 --- !u!114 &1645095532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11506,6 +11670,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1682946959}
         m_TargetAssemblyTypeName: UI.MenuManager, UI
         m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 963321819}
+        m_TargetAssemblyTypeName: UI.AudioManager, UI
+        m_MethodName: PlayAlert
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12718,14 +12894,32 @@ MonoBehaviour:
   levelPointE: 0
   damageLostPointE: 0
   dieLostPointE: 0
+  maxHitPointsE: 0
+  startingHitPointsE: 0
+  fallDamageValueE: 0
+  hazardDamageValueE: 0
+  continuousDamageValueE: 0
+  playerDamageE: 0
   initialLivesM: 0
   levelPointM: 0
   damageLostPointM: 0
   dieLostPointM: 0
+  maxHitPointsM: 0
+  startingHitPointsM: 0
+  fallDamageValueM: 0
+  hazardDamageValueM: 0
+  continuousDamageValueM: 0
+  playerDamageM: 0
   initialLivesH: 0
   levelPointH: 0
   damageLostPointH: 0
   dieLostPointH: 0
+  maxHitPointsH: 0
+  startingHitPointsH: 0
+  fallDamageValueH: 0
+  hazardDamageValueH: 0
+  continuousDamageValueH: 0
+  playerDamageH: 0
 --- !u!114 &1870675869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13651,14 +13845,32 @@ MonoBehaviour:
   levelPointE: 0
   damageLostPointE: 0
   dieLostPointE: 0
+  maxHitPointsE: 0
+  startingHitPointsE: 0
+  fallDamageValueE: 0
+  hazardDamageValueE: 0
+  continuousDamageValueE: 0
+  playerDamageE: 0
   initialLivesM: 0
   levelPointM: 0
   damageLostPointM: 0
   dieLostPointM: 0
+  maxHitPointsM: 0
+  startingHitPointsM: 0
+  fallDamageValueM: 0
+  hazardDamageValueM: 0
+  continuousDamageValueM: 0
+  playerDamageM: 0
   initialLivesH: 0
   levelPointH: 0
   damageLostPointH: 0
   dieLostPointH: 0
+  maxHitPointsH: 0
+  startingHitPointsH: 0
+  fallDamageValueH: 0
+  hazardDamageValueH: 0
+  continuousDamageValueH: 0
+  playerDamageH: 0
 --- !u!114 &2030681965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14224,14 +14436,32 @@ MonoBehaviour:
   levelPointE: 0
   damageLostPointE: 0
   dieLostPointE: 0
+  maxHitPointsE: 0
+  startingHitPointsE: 0
+  fallDamageValueE: 0
+  hazardDamageValueE: 0
+  continuousDamageValueE: 0
+  playerDamageE: 0
   initialLivesM: 0
   levelPointM: 0
   damageLostPointM: 0
   dieLostPointM: 0
+  maxHitPointsM: 0
+  startingHitPointsM: 0
+  fallDamageValueM: 0
+  hazardDamageValueM: 0
+  continuousDamageValueM: 0
+  playerDamageM: 0
   initialLivesH: 0
   levelPointH: 0
   damageLostPointH: 0
   dieLostPointH: 0
+  maxHitPointsH: 0
+  startingHitPointsH: 0
+  fallDamageValueH: 0
+  hazardDamageValueH: 0
+  continuousDamageValueH: 0
+  playerDamageH: 0
 --- !u!114 &2104386931
 MonoBehaviour:
   m_ObjectHideFlags: 0

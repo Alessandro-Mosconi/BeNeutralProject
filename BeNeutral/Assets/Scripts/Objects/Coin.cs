@@ -1,4 +1,5 @@
 using System;
+using UI;
 using UnityEngine;
 
 namespace Objects
@@ -39,6 +40,7 @@ namespace Objects
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            AudioManager.instance.PlayTakeCoinPlayer();
             _isAnimatingDestroy = true;
             _collected = true;
         }

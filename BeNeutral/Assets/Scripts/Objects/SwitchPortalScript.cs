@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using UI;
 using UnityEngine;
 
 public class SwitchPortalScript : MonoBehaviour
@@ -39,6 +40,7 @@ public class SwitchPortalScript : MonoBehaviour
 
     public void SwitchPlayer()
     {
+        AudioManager.instance.PlaySwitchPlayer();
         Vector2 support = Player1.transform.position;
         Player1.transform.position = Player2.transform.position;
         Player2.transform.position = support;

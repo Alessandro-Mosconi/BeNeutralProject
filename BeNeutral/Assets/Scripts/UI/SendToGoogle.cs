@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using UI;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -83,6 +84,7 @@ public class SendToGoogle : MonoBehaviour {
         
         if (Feedback.text.Length == 0)
         {
+            AudioManager.instance.PlayError();
             Outcome.text = "YOU CANT SEND AN EMPTY FEEDBACK!\nTry again!";
             Outcome.color = Color.HSVToRGB(0, 100, 100);
         }

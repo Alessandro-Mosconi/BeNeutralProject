@@ -28,6 +28,10 @@ namespace UI
         [SerializeField] private AudioClip forceFieldAudioClipPlayer;
         [SerializeField] private AudioClip fallAudioClipPlayer;
         [SerializeField] private AudioClip jumpAudioClipPlayer;
+        [SerializeField] private AudioClip takeCoinAudioClipPlayer;
+        [SerializeField] private AudioClip takeDamageAudioClipPlayer;
+        [SerializeField] private AudioClip switchAudioClipPlayer;
+        [SerializeField] private AudioClip alertDistanceAudioClipPlayer;
 
         [Space(30)] [Header("Enemies sounds")] [SerializeField]
         private AudioClip fireAudioClipEnemie;
@@ -54,6 +58,8 @@ namespace UI
         [SerializeField] private AudioClip buttonClick;
         [SerializeField] private AudioClip keyboardClick1;
         [SerializeField] private AudioClip keyboardClick2;
+        [SerializeField] private AudioClip error;
+        [SerializeField] private AudioClip alert;
 
 
         [Space(20)]
@@ -93,6 +99,19 @@ namespace UI
         {
             playerAudioSource.PlayOneShot(jumpAudioClipPlayer);
         }
+        public void PlayTakeCoinPlayer()
+        {
+            playerAudioSource.PlayOneShot(takeCoinAudioClipPlayer);
+        }
+        public void PlaySwitchPlayer()
+        {
+            playerAudioSource.PlayOneShot(switchAudioClipPlayer);
+        }
+        
+        public void PlayAlertDistancePlayer()
+        {
+            playerAudioSource.PlayOneShot(alertDistanceAudioClipPlayer);
+        }
     
         public void PlayWalkingPlayer()
         {
@@ -122,6 +141,10 @@ namespace UI
         {
             playerAudioSource.PlayOneShot(fallAudioClipPlayer);
         }
+        public void PlayTakeDamagePlayer() 
+        {
+            playerAudioSource.PlayOneShot(takeDamageAudioClipPlayer);
+        }
         
         
         // - enemies sounds
@@ -143,6 +166,15 @@ namespace UI
         public void PlayClickButton()
         {
             menuInteractionSource.PlayOneShot(buttonClick);
+        }
+        
+        public void PlayError()
+        {
+            menuInteractionSource.PlayOneShot(error);
+        }
+        public void PlayAlert()
+        {
+            menuInteractionSource.PlayOneShot(alert);
         }
         public void PlayClickKeyboard()
         {
