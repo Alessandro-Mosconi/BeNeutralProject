@@ -6,6 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 namespace UI
 {
@@ -14,6 +15,8 @@ namespace UI
         [SerializeField] private GameObject loadingScreen;
         [SerializeField] private CanvasGroup loadingScreenGroup;
         [SerializeField] private TMP_Text adviceText;
+        [SerializeField] private VideoPlayer videoBackground;
+        [SerializeField] private LoadingCamera camera;
         
         [Header("Animations")]
         [SerializeField] private float timeFadeOut;
@@ -21,9 +24,15 @@ namespace UI
         
         [SerializeField] private Image loadBar;
 
+        private bool _loading;
+
         // - advices for the loading screen
         private List<string> _advices = new List<string>();
 
+        public bool GetLoadingStatus()
+        {
+            return _loading;
+        }
         private string GetRandomAdvice()
         {
             string advice;
@@ -36,6 +45,8 @@ namespace UI
         // ReSharper disable Unity.PerformanceAnalysis
         public void StartScene(string sceneName)
         {
+            _loading = true;
+            ScoreManager.instance.Close();
             loadingScreen.SetActive(true);
             _advices.Add("No challenge is insurmountable when we work together. The key is collaboration and mutual trust.");
             _advices.Add( "In NeutralVille your team's strength is your most precious resource. Build your success together!\"");
@@ -56,12 +67,14 @@ namespace UI
 
         IEnumerator LoadScene(string sceneName)
         {
+            camera.gameObject.SetActive(true);
+            videoBackground.Play();
             loadBar.fillAmount = 0;
+            AsyncOperation loading = SceneManager.LoadSceneAsync(sceneName);
             Animations.instance.TypeWriterText(GetRandomAdvice(), adviceText, 15f, true);
             StartCoroutine(FadeInLoadingScreen(timeFadeIn));
             yield return new WaitForSeconds(timeFadeIn);
-            ScoreManager.instance.Open();
-            AsyncOperation loading = SceneManager.LoadSceneAsync(sceneName);
+            
             while (!loading.isDone)
             {
                 loadBar.fillAmount = loading.progress;
@@ -88,7 +101,14 @@ namespace UI
                 yield return null;
             }
             loadingScreenGroup.alpha = 0;
+            camera.gameObject.SetActive(false);
+            videoBackground.Stop();
             loadingScreen.SetActive(false);
+            _loading = false;
+            ScoreManager.instance.Open();
+            // - initial time of the level, to calculate the time necessary to complete it
+            
+            GameManager.instance.SetInitialTimeLevel(Time.time);
         }
         IEnumerator FadeInLoadingScreen(float time)
         {

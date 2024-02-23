@@ -279,10 +279,6 @@ namespace UI
             _inGame = true;
             loadingManager.StartScene(_levelName);
             
-            // - initial time of the level, to calculate the time necessary to complete it
-            
-            _initialTimeLevel = Time.time;
-            
             // - regen of all the pools used in the game in precedent levels
             
             ObjectPoolingManager.Instance.RegenPools();
@@ -532,6 +528,10 @@ namespace UI
             }
         }
 
+        public void SetInitialTimeLevel(float time)
+        {
+            _initialTimeLevel = time;
+        }
         public float ActualTimeLevel()
         {
             return Time.time - _initialTimeLevel;

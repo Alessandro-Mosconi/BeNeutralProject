@@ -58,11 +58,12 @@ public class PlayerManager : MonoBehaviour
          hitPoints.StaminaValue = maxStamina;
          healthBar = Instantiate(healthBarPrefab);
          healthBar.player = this;
-         //
          
-
+         healthBar.gameObject.SetActive(false);
+         StartCoroutine(WaitLoad());
      }
 
+     
      public float MaxHitPoints
      {
          get { return maxHitPoints; }
@@ -84,6 +85,7 @@ public class PlayerManager : MonoBehaviour
 
      private void Update()
      {
+         StartCoroutine(WaitLoad());
          fallDetector.transform.position = new Vector2(transform.position.x, fallDetector.transform.position.y);
          if (magneticField.isActive)
          {
@@ -93,7 +95,15 @@ public class PlayerManager : MonoBehaviour
          {
              RegenerateStamina();
          }
-         
+     }
+     IEnumerator WaitLoad()
+     {
+         while (LoadingManager.instance.GetLoadingStatus())
+         {
+             healthBar.gameObject.SetActive(false);
+             yield return null;
+         }
+         healthBar.gameObject.SetActive(true);
      }
 
      private void OnTriggerEnter2D(Collider2D other)

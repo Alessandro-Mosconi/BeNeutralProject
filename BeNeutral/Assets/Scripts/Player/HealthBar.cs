@@ -18,7 +18,7 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
-
+        
         maxHitPoints = player.MaxHitPoints;
         maxStamina = player.MaxStamina;
 

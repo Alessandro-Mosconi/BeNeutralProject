@@ -118,6 +118,7 @@ MonoBehaviour:
   hitPoints: {fileID: 11400000, guid: 7aee6ed7db967428c9bb4cc677b6d78e, type: 2}
   player: {fileID: 0}
   meterImage: {fileID: 1703558418303922334}
+  staminaImage: {fileID: 0}
 --- !u!1 &3150459806682709740
 GameObject:
   m_ObjectHideFlags: 0
