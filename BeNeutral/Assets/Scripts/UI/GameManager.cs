@@ -71,6 +71,7 @@ namespace UI
         private float _endingTimeLevel;
 
         private GameObject _coinPrefab;
+        private bool _isPlayerDead = false;
         
         // - getter for parameters
 
@@ -97,6 +98,15 @@ namespace UI
         public float GetPlayerDamage()
         {
             return _playerDamage;
+        }
+        public bool GetIsPlayerDead()
+        {
+            return _isPlayerDead;
+        }
+        public void SetIsPlayerDead(bool value)
+        {
+            print("setto a " + value);
+            _isPlayerDead = value;
         }
         
         public void SetParameters(int lives, int levelPoint, int damageLostPoint, int dieLostPoint, float maxHitPoints, float startingHitPoints, float fallDamageValue, float hazardDamageValue, float continuousDamageValue, float playerDamage)
@@ -152,6 +162,9 @@ namespace UI
             {
                 yield return null;
             }
+            
+            yield return new WaitForSeconds(2f);
+            
             animator.FadeOut(introImage, 0.6f);
             while (introImage.alpha > 0.1f)
             {
@@ -194,58 +207,64 @@ namespace UI
         }
         
         // - fade out for video and music
+        bool skipIntroText = false;
+
         IEnumerator IntroFadeOut(Coroutine fadeIn)
         {
-            // - necessary time to load a bit the video and load the text
-            
-            yield return new WaitForSeconds(1.5f);
+            while (!videoIntro.isPlaying)
+            {
+                yield return null;
+            }
             
             if (videoIntro.isPlaying)
             {
-                animator.FadeIn(introText,0.5f);
-                animator.TypeWriterText("Press F to skip the intro...",introTextValue,8f, false);
-            }
-            
-            // - check if the user want to skip the video
-            
-            while (videoIntro.isPlaying)
-            {
+                animator.FadeIn(introText, 0.5f);
+                animator.TypeWriterText("Press F to skip the intro...", introTextValue, 8f, false);
+        
+                // Check for skip input while typing
+                while (!Input.GetKeyDown(KeyCode.F))
+                {
+                    if (!videoIntro.isPlaying)
+                        break;
+                
+                    yield return null;
+                }
+        
+                // If F is pressed, set skipIntroText to true
                 if (Input.GetKeyDown(KeyCode.F))
                 {
-                    StopCoroutine(fadeIn);
-                    break;
+                    skipIntroText = true;
                 }
+            }
 
-                yield return null;
-            }
-            
-            // - check if the text is ended 
-            
-            while (!animator._typeWriterEnded)
-            {
-                yield return null;
-            }
-            
             // - start the menuScreen with the buttons 
-            
             StartCoroutine(StartMenu());
-            
+    
             // - fade out of the text
-            
-            animator.FadeOut(introText,1f);
-            
+            animator.FadeOut(introText, 1f);
+    
             // - fade out of the video and music
-            while(videoIntro.targetCameraAlpha > 0)
+            while (videoIntro.targetCameraAlpha > 0)
             {
-                float x = animationSpeedIntroFadeOut/100;
+                float x = animationSpeedIntroFadeOut / 100;
                 videoIntro.targetCameraAlpha -= x;
-                videoIntro.SetDirectAudioVolume(0,videoIntro.GetDirectAudioVolume(0)-x);
+                videoIntro.SetDirectAudioVolume(0, videoIntro.GetDirectAudioVolume(0) - x);
                 yield return new WaitForSeconds(standardAnimationYieldTime);
             }
             introGroup.gameObject.SetActive(false);
-            
-            
         }
+
+        void Update()
+        {
+            // If skipIntroText is true, stop the text typing immediately
+            if (skipIntroText)
+            {
+                // Implement logic to stop the text typing immediately
+                // For example, you can set introTextValue.text to the full text
+                introTextValue.text = "Press F to skip the intro...";
+            }
+        }
+
 
         IEnumerator StartMenu()
         {
@@ -511,6 +530,7 @@ namespace UI
         }
         public void KillPlayer()
         {
+            SetIsPlayerDead(true);
             // - death sound of the player
             audioManager.PlayDiePlayer();
             // - Check if has more life
@@ -526,6 +546,7 @@ namespace UI
                 _endingTimeLevel = Time.time;
                 StartGameOver();
             }
+            SetIsPlayerDead(false);
         }
 
         public void SetInitialTimeLevel(float time)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -23,9 +24,12 @@ public class MovingPlatform : MonoBehaviour
     private bool touchGround = false;
     private Renderer _renderer;
     private Material _material;
+
+    private Vector2 _initialPos;
     
     void Start()
     {
+        _initialPos = transform.position;
         _targetWaypoint = _waypoints[0];
         _renderer = GetComponent<Renderer>();
         _material = _renderer.material;
@@ -63,6 +67,11 @@ public class MovingPlatform : MonoBehaviour
         else
         {
             _material.SetFloat("_EffectIntensity", 0);
+        }
+
+        if (GameManager.instance.GetIsPlayerDead())
+        {
+            ResetPlatform();
         }
         
     }
@@ -110,5 +119,13 @@ public class MovingPlatform : MonoBehaviour
         {
             _boxForces.resetParent();
         }
+    }
+
+    public void ResetPlatform()
+    {
+        _targetWaypoint = _waypoints[0];
+        _currentWaypointIndex = 0;
+        transform.position = _initialPos;
+
     }
 }

@@ -41,6 +41,7 @@ public class PlayerManager : MonoBehaviour
 
      private bool isSecretCheckpoint1;
      private bool isSecretCheckpoint2;
+
      private void Start()
      {
          // - initialize player mode
