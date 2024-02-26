@@ -103,7 +103,6 @@ namespace Enemies.Behaviors
                 _alternativeTarget = tmp;
                 _alternativeTargetRB = tmprb;
             }
-            print("Enemy " + this.gameObject + " Target " + _target + " (scale " + mySign + ")");
             for (int i = 0; i < _currentStates.Count; i++)
             {
                 int currentState = _currentStates[i];
