@@ -76,9 +76,9 @@ namespace Enemies.Behaviors
             }
 
             _target = target.GetComponent<PlayerManager>();
-            _alternativeTarget = target.GetComponent<PlayerManager>();
+            _alternativeTarget = alternativeTarget.GetComponent<PlayerManager>();
             _targetRB = target.GetComponent<Rigidbody2D>();
-            _alternativeTargetRB = target.GetComponent<Rigidbody2D>();
+            _alternativeTargetRB = alternativeTarget.GetComponent<Rigidbody2D>();
             _selfRB = GetComponent<Rigidbody2D>();
             String states = "";
             _currentStates.ForEach(s => states += _activeBehaviors[s].Type() + ", ");
@@ -91,7 +91,10 @@ namespace Enemies.Behaviors
             bool sank = false;
             bool switchedToHammer = false;
             // Check if we need to switch target since the players swapped sides
-            if (Mathf.Sign(_targetRB.gravityScale) != Mathf.Sign(_selfRB.gravityScale))
+            float targetSign = Mathf.Sign(_targetRB.gravityScale);
+            float target2Sign = Mathf.Sign(_alternativeTargetRB.gravityScale);
+            float mySign = Mathf.Sign(_selfRB.gravityScale);
+            if (Math.Abs(target2Sign - mySign) < Mathf.Epsilon)
             {
                 PlayerManager tmp = _target;
                 Rigidbody2D tmprb = _targetRB;
@@ -100,6 +103,7 @@ namespace Enemies.Behaviors
                 _alternativeTarget = tmp;
                 _alternativeTargetRB = tmprb;
             }
+            print("Enemy " + this.gameObject + " Target " + _target + " (scale " + mySign + ")");
             for (int i = 0; i < _currentStates.Count; i++)
             {
                 int currentState = _currentStates[i];
