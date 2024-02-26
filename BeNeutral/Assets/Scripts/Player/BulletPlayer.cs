@@ -41,4 +41,9 @@ public class BulletPlayer : BasePlayerWeapon
         //Collided with enemy -> hide (not destroy) since we are in a pool!
         gameObject.SetActive(false);
     }
+
+    private void OnBecameInvisible()
+    {
+        gameObject.SetActive(false);
+    }
 }

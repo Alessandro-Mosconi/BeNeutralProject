@@ -40,5 +40,10 @@ namespace Enemies.Weapons
                 gameObject.SetActive(false);
             }
         }
+
+        private void OnBecameInvisible()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
