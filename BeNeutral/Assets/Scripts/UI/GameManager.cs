@@ -256,7 +256,7 @@ namespace UI
         void Update()
         {
             // If skipIntroText is true, stop the text typing immediately
-            if (skipIntroText)
+            if (introTextValue!= null && skipIntroText)
             {
                 // Implement logic to stop the text typing immediately
                 // For example, you can set introTextValue.text to the full text
