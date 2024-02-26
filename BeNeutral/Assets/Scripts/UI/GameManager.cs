@@ -37,6 +37,9 @@ namespace UI
 
         [Header("PLAYER")]
         [SerializeField] private  int startingLives;
+
+        [Header("World")]
+        [SerializeField] private GameObject _coinPrefab;
         
         // - general stats player
         
@@ -68,8 +71,7 @@ namespace UI
         private float standardAnimationYieldTime = 0.0001f;
         private float _initialTimeLevel;
         private float _endingTimeLevel;
-
-        private GameObject _coinPrefab;
+        
         private bool _isPlayerDead = false;
         
         // - getter for parameters
@@ -127,8 +129,6 @@ namespace UI
              ResetGame();
             
              // - coin prefab initialization for spawning points during the game
-             
-             _coinPrefab = Resources.Load<GameObject>("Coin Variant");
              ObjectPoolingManager.Instance.CreatePool (_coinPrefab, 50, 100);
              
              // - update during the all game

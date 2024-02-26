@@ -11214,6 +11214,7 @@ MonoBehaviour:
   titleMainMenu2: {fileID: 287559592}
   titleMainMenu3: {fileID: 1531590368}
   startingLives: 3
+  _coinPrefab: {fileID: 6991189780615091974, guid: aff850323de3d18419d56b139a9568f5, type: 3}
   levelPassedPoints: 100
   multiplierPoints: 1
   damageLostPoints: 1
