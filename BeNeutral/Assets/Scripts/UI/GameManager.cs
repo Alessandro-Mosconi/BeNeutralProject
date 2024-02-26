@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using TMPro;
-using Unity.Plastic.Newtonsoft.Json.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
