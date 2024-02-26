@@ -117,6 +117,7 @@ public class ScoreManager : Singleton<ScoreManager>
         {
             points = checkpointScore;
             pointsDisplay.text = string.Format("{0:D5}", points);
+            coinsDisplay.text = $"{coins:D5}";
         }
 
         public void ResetScore()
