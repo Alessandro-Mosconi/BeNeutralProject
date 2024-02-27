@@ -92,18 +92,18 @@ When it came time to test his invention, he realized he had made an error, but i
 In his last attempt to save everyone, the young scientist decided to contain the explosion in another dimension using a device he had built a while ago but had never been able to test it as he never knew what the consequences would be. In this desperate moment, he activated the device, and just as the device started to work, the explosion happened. In the aftermath of this horrific accident, the scientist found himself severed from another part of himself, and his mind and soul were split into two. And thus, the journey of our protagonist begins.
 
 
-# World (Rui)
+# World
 In the peaceful town of NeutralVille, where citizens coexisted harmoniously, embracing their neutral charges and stability, life unfolded like scenes from a Medieval European town, but with a touch of high-tech marvels. As the citizens peacefully slumbered, they charged themselves, preparing for another day of routine activities. They went about their days, buying groceries, attending school, engaging in lively conversations, and dancing in the town square. Amid this serene setting, a brilliant yet eccentric scientist embarked on an experiment within the confines of a state-of-the-art laboratory. The purpose of this experiment remained a mystery, shrouded in the scientist's ingenious mind.
 
-![02!](/Documents/02.jpg)
+![02!](../Images//02.jpg)
 
-![01!](/Documents/01.jpg)
+![01!](../Images/01.jpg)
 
-![03!](/Documents/03.jpg)
+![03!](../Images/03.jpg)
 
 However, fate took an unexpected turn one fateful day when the lab, engulfed in a blinding explosion, tore the fabric of their peaceful existence asunder. The world was abruptly split into two distinct realms: the positive world and the negative world. Amidst the chaos, the scientist miraculously survived, but their being was divided into two entities – the optimistic and positive-minded Andy, and the cunning and resourceful Caty, embodying the negative polarity. Now separated, the duo found themselves in parallel worlds, each facing unique challenges and obstacles.
 
-![04!](/Documents/04.jpg)
+![04!](../Images/04.jpg)
 
 Bound by a powerful connection, positive Andy and negative Caty embarked on separate journeys, determined to reunite with one another. Their paths were laden with hurdles, requiring wit, courage, and ingenuity to overcome. With each level they traversed, they inched closer to the moment when their positivity and negativity would harmonize once more, bridging the gap between their worlds and restoring the balance that had been disrupted. Little did they know, their adventure would not only test their individual strengths but also teach them valuable lessons about the power of unity, resilience, and the unwavering spirit of hope in the face of adversity.
 
@@ -118,7 +118,7 @@ In Magnetic Mayhem, the landscape becomes more complex. Moving platforms and dyn
 As they delve deeper, they come across an EMP Wall, activated as they enter a specific section of the level. The Wall chases them, gradually gaining speed, urging them to complete the section swiftly. Andy and Cathy's magnetic synergy becomes crucial as they work together to outmaneuver the chasing wall, ensuring their survival.
 
 ## Level 3
-At Equilibrium's End, the final showdown awaits. The level is split into two chambers, each housing a half of the Boss Enemy. Andy and Cathy must confront the synchronized halves simultaneously, requiring impeccable teamwork and coordination.
+At Equilibrium's End, the final showdown awaits. . Andy and Cathy must confront the synchronized halves simultaneously, requiring impeccable teamwork and coordination.
 
 With their mission accomplished, Andy and Cathy stand side by side, their magnetic charges perfectly balanced once more, symbolizing the restoration of harmony and unity in NeutralVille.
 
@@ -161,13 +161,42 @@ With their mission accomplished, Andy and Cathy stand side by side, their magnet
 
 ## Game Shell
 ### Starting screen
-  Where you can start a new game, load a game you saved before
-### New game screen
-  Where you can choose the character you will use during the game
-### Load game screen
-  Where you can choose the saved game from a list
-### Main play screen
+  Where you can start a new game, load a game you saved before## Game Shell
+### Starting screen
+Where you can start a new game, change the options or give a feedback of the game
+
+![Starting Screen](../Images/Screenshots/InitialScreen.png)
+
+### Loading screen
+ Where you can chose game difficulty
+  ![Difficulty Screen](../Images/Screenshots/DifficultyScreen.png)
+
+### Loading screen
+  Animated screen for loading of the levels
+  ![Loading Screen](../Images/Screenshots/LoadingScreen.png)
+
+### Pause screen
+  Screen of the pause menu during game
+  ![Pause Screen](../Images/Screenshots/PauseScreen.png)
+  
+### Score screen
+  Where you can see the points you achived during the level
+  ![Score Screen](../Images/Screenshots/ScoreScreen.png)
+
+## Main play screen
   Gameplay screen, with a camera that follows your movements.
+### Game start screen
+  ![Game Start Screen](../Images/Screenshots/GameStartScreen.png)
+### Game platform screen
+  ![Game Platform Screen](../Images/Screenshots/GamePlatformScreen.png)
+### Game enemies screen
+  ![Game Enemies Screen](../Images/Screenshots/GameEnemiesScreen.png)
+### Game obstacles screen
+  ![Game Obstacles Screen](../Images/Screenshots/GameObstaclesScreen.png)
+### Game coin screen
+  ![Game Coin Screen](../Images/Screenshots/GameCoinScreen.png)
+### End game screen
+  ![End Game Screen](../Images/Screenshots/EndGameScreen.png)
 
 
 

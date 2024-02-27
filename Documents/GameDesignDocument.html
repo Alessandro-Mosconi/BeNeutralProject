@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GameDesignDocument.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="be-neutral">Be Neutral</h1>
+<h1 id="overview-and-vision-statement">Overview and vision statement</h1>
+<p>An immersive game that throws you into the heart of NeutralVille, a world with perfect balance and neutrality. But the equilibrium once defined has been destroyed by a scientific accident. As a player you will deal with enemies and obstacles, the concept of balance isn't just a theme, but a gameplay mechanic. As you traverse through NeutralVille's levels you will have to solve intricate puzzles and face formidable challenges, you'll need to make choices that will also influence your teammate game.</p>
+<h1 id="gameplay">Gameplay</h1>
+<h3 id="core-gameplay-aspects">Core Gameplay Aspects</h3>
+<p>BeNeutral at its core is developed as a 2D side-scrolling platformer divided into 3 main levels, where the two main playable characters, Andy and Cathy, find themselves separated on the opposite sides of the screen. The main goal of the game is to progress through each level, collaborating to defeat the many enemies and overcoming the obstacles obstructing the way to the end.</p>
+<p>The game revolves around the idea of &quot;reconciling the opposites&quot; with a focus on magnetism. The two characters progress through the levels on the two opposite sides of the platform and level terrain (i.e. one character is above, the other one below), with such levels developing on both sides of the screen even in different ways, which sometimes oblige the two players to collaborate towards the final goal.</p>
+<p>As the two characters want to be reconciled, they are sensible to being separated too much. Thus, if their relative distance exceeds a certain threshold for too much time (for example, 3 seconds), the two playable characters will start losing their magnetic charge. After some time their charge will deplete to zero, leading to a game over.</p>
+<p>Each character is able to use their magnetic charge abilities to overcome obstacles and progress towards the end, and are able to shoot magnetic bullets to defeat enemies on their way.</p>
+<p>Each level (described in detail in the <a href="#world-rui">World section</a>) is themed around a specific area of the world, and has a checkpoint in the middle to let the players restart from there instead of the beginning of the world in case of game over.</p>
+<h3 id="units-and-traps">Units and Traps</h3>
+<p>Each level also contains multiple enemies and environmental traps, among which we have:</p>
+<ul>
+<li><strong>Enemies</strong>:
+<ul>
+<li><strong>Magneblocks</strong>: small, cubic, walking robots with a cute but dangerous appearance, trying to get as close as possible to steal charge from the player. These are the most common and weakest enemy class</li>
+<li><strong>Gaussguards</strong>: Giant, slow-moving golems, with a rarer, higher-level variant equipped with a magnetic shield. When destroyed, they release a burst of magnetic energy that damages the player if too close</li>
+<li><strong>Magnemortars</strong>: stationary turrets shooting projectiles in the direction of the player</li>
+</ul>
+</li>
+<li><strong>Environmental Traps</strong>:
+<ul>
+<li><strong>Magnetized Spikes</strong>: spikes that are magnetized to kill players, so players must time their movements to avoid getting pulled into the spikes or pushed into dangerous areas.</li>
+<li><strong>Rotating Spikes</strong> placed in areas of levels to encourage players to make longer jumps, find alternative paths or just make it more difficult to progress</li>
+<li><strong>EMP Wall</strong>: when the player enters a specific section of a level, this trap is activated and starts chasing after players. The two players will need to reach the end of this section before the timer expires. The Wall speeds up gradually over time, getting closer and closer to players, so they have to complete the section fast enough to avoid game over.</li>
+<li><strong>Magnetic Vortex</strong>: A magnetic sphere that creates a powerful magnetic field that attracts or repels players, depending on the relative charge</li>
+</ul>
+</li>
+</ul>
+<h3 id="gameplay-elements">Gameplay Elements</h3>
+<p>Levels contain some small environmental puzzles to encourage collaboration between players. To progress in levels, some parts are locked behind <strong>magnetic barriers</strong> which damage players that attempt to pass, but let through the player with the opposite polarity when their magnetic field is active. In addition, <strong>magnetic platforms</strong> can be activated by the player with matching polarity to make them move and help the other player progress.</p>
+<p><strong>Life tokens</strong> (used to resume from the latest checkpoint) can be obtained after collecting a set amount of <strong>coins</strong> (50 coins total, summing both players' coins). Coins can be obtained by collecting the ones spread across levels or by defeating enemies, and the total number of earned coins is always shared between players.</p>
+<p>Players can also gain stamina, which is restored over time after using it to activate the magnetic field.</p>
+<h3 id="game-physics-and-stats">Game Physics and Stats</h3>
+<h4 id="player-stats">Player Stats</h4>
+<p>Characters also have two main statistics: <strong>magnetic charge</strong> and <strong>stamina</strong>.</p>
+<p>The <strong>magnetic charge</strong> level acts as the characters' health. Players can lose their charge in multiple ways, for example by being hit by enemy attacks or due to it being stolen by oppositely-charged enemies (which, as a result, increase their health), and need to keep it above zero in order to avoid game over.
+When the game starts, a set number of <strong>life tokens</strong> are given to players, and whenever one of the two characters dies a life token is consumed and the game is restarted (for both players) from the latest checkpoint, but if no tokens are available the players will need to restart from the beginning of the first level.</p>
+<p>The <strong>stamina</strong> level is used to let players strategically take advantage of some of their abilities without using them too much repetitively. Each ability use will cost some predefined amount of stamina, and if its level is not enough the ability cannot be activated. Stamina is then regained gradually over time using a linear time-dependent law, in the form of <code>∂Stamina = K * ∂T</code> with <code>K</code> being the stamina points per second to be awarded and <code>∂T</code> the delta time (in seconds).</p>
+<h4 id="physics">Physics</h4>
+<p>Players are subject to gravity which has different directions depending on the side of the screen the player is located (downward gravity for the player at top, upward for the one at the bottom). Movement is horizontal with some acceleration/deceleration being present when starting/stopping to walk or run, but players can also jump to reach higher platforms.</p>
+<h4 id="combat">Combat</h4>
+<p>Combat is both close-range and at a distance using ranged weapons or ranged abilities.
+When using ranged attacks, each attack has a maximum range of effect, after which it decays, the bullet disappears and the attack has no effect.
+Abilities (e.g. magnetic field) can be used by players to deal additional damage or defend from specific attacks, but consume stamina, so they cannot be used continuously.</p>
+<h3 id="enemy-ai">Enemy AI</h3>
+<p>Enemies are controlled by an internal game &quot;AI&quot;, which takes into account the aim of the enemy and tries to reach such goal.</p>
+<ul>
+<li><em>Magneblocks</em>, which aim at stealing the player's charge, attempt to move towards the player using their (limited) moveset, which in this case is restricted only to horizontal movement. Their &quot;intelligence&quot; may be parametrized as the frequency at which they update their movement target.</li>
+<li><em>Gaussguards</em> will have a more &quot;patrol&quot;-style behavior: when idle they move back and forth slowly, but if they spot the player they try to get closer to them and start attacking if at close range.</li>
+<li><em>Fluxbombers</em> behave similarly to <em>Gaussguards</em> but when the player is spotted they start throwing bombs towards the player at regular time intervals:</li>
+<li><em>Magnemortars</em> are stationary turrets with a limited-range laser radar used to identify enemies. When they spot the player, they start tracking it and shoot projectiles in their direction. Here &quot;intelligence&quot; can be parametrized as the delay/damp of the bullet direction with respect to the actual player direction, as well as the &quot;error rate&quot; in such direction.</li>
+</ul>
+<h1 id="characters">Characters</h1>
+<h2 id="relationship-and-characters-mechanics">Relationship and Characters Mechanics:</h2>
+<ul>
+<li>Andy and Caty are the game's two main characters, each having a distinct electrical charge (positive and negative) represented by their respective colors (red and blue).</li>
+<li>The attraction between their opposite electrical charges allows them to stay anchored to the ground, preventing them from floating away.</li>
+<li>Both characters have a life bar, denoted by the amount of electrical charge they possess. This charge can be stolen by enemies with the opposite electrical charge.</li>
+<li>To maintain their connection, Andy and Caty need to stay within one screen's distance of each other. If they move too far apart, the force anchoring them to the ground weakens, leading to a game over.</li>
+<li>The two characters are typically positioned on opposite sides of the screen, but they can swap positions using a special in-game item.</li>
+<li>Their primary means of offense are their charge-based projectiles, making it crucial for them to cooperate in battling enemies and solving puzzles in the game world.</li>
+</ul>
+<h3 id="andy">Andy</h3>
+<ul>
+<li><strong>Description</strong>: Andy is a young boy characterized by his positive electrical charge, represented by the color red.</li>
+<li><strong>Abilities</strong>:
+<ul>
+<li><em>Projectile Attacks</em>: Andy can shoot positively charged projectiles, colored in red, to eliminate enemies with a negative electrical charge.</li>
+<li><em>Positive Force Field</em>: Andy has the ability to create a positive force field that can repel objects with a negative electrical charge in the environment. However, using this ability consumes his energy.</li>
+</ul>
+</li>
+</ul>
+<h3 id="caty">Caty</h3>
+<ul>
+<li><strong>Description</strong>: Caty is a young girl characterized by her negative electrical charge, represented by the color blue.</li>
+<li><strong>Abilities</strong>:
+<ul>
+<li><em>Projectile Attacks</em>: Caty can shoot negatively charged projectiles, colored in blue, to defeat enemies with a positive electrical charge.</li>
+<li><em>Negative Force Field</em>: Caty possesses the ability to create a negative force field that can push away objects with a positive electrical charge in the environment. Using this ability drains her energy.</li>
+</ul>
+</li>
+</ul>
+<h1 id="story">Story</h1>
+<p>NeutralVille wasn't always a place full of harmony and equilibrium. After decades of struggles and conflicts, the townspeople finally managed to isolate themselves from the rest of the world. With the help of a brilliant scientist, they built a forcefield around the town to protect it from outside danger and allow the citizens of NeutralVille to live in this utopia. However, this forcefield required a lot to maintain, and the scientists had to continuously enforce it using advanced technologies to prevent it from weakening.</p>
+<p>After years of peacefulness, the grandson of the genius scientist who helped erect the barrier was born. He was smart, and hardworking, but also mischievous at times. He aspired to be a great scientist, just like his grandfather. So, he joined the scientists who worked in the energy laboratory, and he was on the cusp of making a grand discovery that would help the force shield last forever without the need for constant reinforcement. However, this discovery would require the collective power of every person in town.</p>
+<p>At first, the other scientists were skeptical about this, as it would drain every ounce of power from the town and make it vulnerable if something went wrong. But eventually, everyone became excited about the prospect, wholeheartedly believing in this young scientist just as the older generation believed in his grandfather. All the scientists came together and decided to help the young scientist achieve this goal. They invested all their resources, efforts, and time into it.</p>
+<p>When it came time to test his invention, he realized he had made an error, but it was too late to fix it as the experiment had already begun. Not knowing what to do, he told everyone to evacuate and stayed in the lab, hoping that he could somehow stop the experiment or at least limit the catastrophe that would happen. Everyone else ran out of the lab, horrified, as it looked like the lab was about to explode.</p>
+<p>In his last attempt to save everyone, the young scientist decided to contain the explosion in another dimension using a device he had built a while ago but had never been able to test it as he never knew what the consequences would be. In this desperate moment, he activated the device, and just as the device started to work, the explosion happened. In the aftermath of this horrific accident, the scientist found himself severed from another part of himself, and his mind and soul were split into two. And thus, the journey of our protagonist begins.</p>
+<h1 id="world">World</h1>
+<p>In the peaceful town of NeutralVille, where citizens coexisted harmoniously, embracing their neutral charges and stability, life unfolded like scenes from a Medieval European town, but with a touch of high-tech marvels. As the citizens peacefully slumbered, they charged themselves, preparing for another day of routine activities. They went about their days, buying groceries, attending school, engaging in lively conversations, and dancing in the town square. Amid this serene setting, a brilliant yet eccentric scientist embarked on an experiment within the confines of a state-of-the-art laboratory. The purpose of this experiment remained a mystery, shrouded in the scientist's ingenious mind.</p>
+<p><img src="../Images//02.jpg" alt="02!"></p>
+<p><img src="../Images/01.jpg" alt="01!"></p>
+<p><img src="../Images/03.jpg" alt="03!"></p>
+<p>However, fate took an unexpected turn one fateful day when the lab, engulfed in a blinding explosion, tore the fabric of their peaceful existence asunder. The world was abruptly split into two distinct realms: the positive world and the negative world. Amidst the chaos, the scientist miraculously survived, but their being was divided into two entities – the optimistic and positive-minded Andy, and the cunning and resourceful Caty, embodying the negative polarity. Now separated, the duo found themselves in parallel worlds, each facing unique challenges and obstacles.</p>
+<p><img src="../Images/04.jpg" alt="04!"></p>
+<p>Bound by a powerful connection, positive Andy and negative Caty embarked on separate journeys, determined to reunite with one another. Their paths were laden with hurdles, requiring wit, courage, and ingenuity to overcome. With each level they traversed, they inched closer to the moment when their positivity and negativity would harmonize once more, bridging the gap between their worlds and restoring the balance that had been disrupted. Little did they know, their adventure would not only test their individual strengths but also teach them valuable lessons about the power of unity, resilience, and the unwavering spirit of hope in the face of adversity.</p>
+<h2 id="level-1">Level 1</h2>
+<p>In the serene surroundings of Harmony Heights, Andy and Cathy find themselves standing on opposite sides of a series of simple platforms. The level begins with easy steps, encouraging players to coordinate their movements and magnetic charges. As they progress, they encounter the first challenge: a magnetic barrier blocking their path. To deactivate it, they must work together, standing on two connected pressure plates simultaneously. By doing so, they gain access to a treasure chest, revealing the Magmallet for Andy and the Fluxblade for Cathy.</p>
+<p>With their new weapons in hand, they continue their journey, facing Magneblocks - small, cubic robots attempting to steal their magnetic charge. Andy and Cathy collaborate, using their unique abilities and newfound weapons to defeat these enemies. They collect coins along the way, which can be useful for future levels.</p>
+<h2 id="level-2">Level 2</h2>
+<p>In Magnetic Mayhem, the landscape becomes more complex. Moving platforms and dynamic obstacles present a challenge as Andy and Cathy navigate through this level. They encounter Gaussguards, slow-moving golems with magnetic shields, requiring strategic coordination to defeat. The level also introduces rotating spikes, forcing the players to make precise jumps and find alternative paths.</p>
+<p>As they delve deeper, they come across an EMP Wall, activated as they enter a specific section of the level. The Wall chases them, gradually gaining speed, urging them to complete the section swiftly. Andy and Cathy's magnetic synergy becomes crucial as they work together to outmaneuver the chasing wall, ensuring their survival.</p>
+<h2 id="level-3">Level 3</h2>
+<p>At Equilibrium's End, the final showdown awaits. . Andy and Cathy must confront the synchronized halves simultaneously, requiring impeccable teamwork and coordination.</p>
+<p>With their mission accomplished, Andy and Cathy stand side by side, their magnetic charges perfectly balanced once more, symbolizing the restoration of harmony and unity in NeutralVille.</p>
+<h1 id="media-list">Media list</h1>
+<h1 id="technical-specification-matteo">Technical specification (Matteo)</h1>
+<h2 id="genre">Genre</h2>
+<p>Puzzle game, 2D</p>
+<h2 id="platform">Platform</h2>
+<p>PC game.</p>
+<h2 id="multiplayer">Multiplayer</h2>
+<p>The game is based on cooperation and collaboration with your teammate. The necessary number of player it's 2, that represents the two main characters of the game.</p>
+<h2 id="game-mechanics">Game Mechanics</h2>
+<ol>
+<li>Character Proximity Alarm:
+Notify players if characters become too distant, leading to a game-over scenario if not addressed.
+Important to track the position of the two players to calculate the distance.</li>
+<li>Character Switching:
+Allow players to switch between characters/sides for puzzle-solving and progression.
+Important to temporary save both players' positions to switch them.</li>
+<li>Shared and Unique Abilities:
+Characters has both shared abilities and unique abilites. The unique ones are linked to the characters' powers.
+Important to implement some variables to identify which character is playing and so which abilitie you need to use</li>
+</ol>
+<h2 id="game-elements">Game Elements</h2>
+<ol>
+<li>Positive and Negative Interactions:
+Objects and enemies divided into positive (red) and negative (blue) categories, each with unique interactions.</li>
+<li>Life and Charge System:
+Player life is represented by a charge system, and enemies aim to steal this charge.</li>
+<li>Cooperative and Exclusive Sections:
+Design levels where players generally progress together but include exclusive sections for each character, encouraging cooperation.
+Important to create separate levels remembering that the other player has to do something while his teammate is playing</li>
+</ol>
+<h2 id="game-physics">Game physics</h2>
+<p>The two players will walk on the two sides of the same level, one on the opposite side of the other.</p>
+<h2 id="data-flow">Data flow</h2>
+<h2 id="game-shell">Game Shell</h2>
+<h3 id="starting-screen">Starting screen</h3>
+<p>Where you can start a new game, load a game you saved before## Game Shell</p>
+<h3 id="starting-screen">Starting screen</h3>
+<p>Where you can start a new game, change the options or give a feedback of the game</p>
+<p><img src="../Images/Screenshots/InitialScreen.png" alt="Starting Screen"></p>
+<h3 id="loading-screen">Loading screen</h3>
+<p>Where you can chose game difficulty
+<img src="../Images/Screenshots/DifficultyScreen.png" alt="Difficulty Screen"></p>
+<h3 id="loading-screen">Loading screen</h3>
+<p>Animated screen for loading of the levels
+<img src="../Images/Screenshots/LoadingScreen.png" alt="Loading Screen"></p>
+<h3 id="pause-screen">Pause screen</h3>
+<p>Screen of the pause menu during game
+<img src="../Images/Screenshots/PauseScreen.png" alt="Pause Screen"></p>
+<h3 id="score-screen">Score screen</h3>
+<p>Where you can see the points you achived during the level
+<img src="../Images/Screenshots/ScoreScreen.png" alt="Score Screen"></p>
+<h2 id="main-play-screen">Main play screen</h2>
+<p>Gameplay screen, with a camera that follows your movements.</p>
+<h3 id="game-start-screen">Game start screen</h3>
+<p><img src="../Images/Screenshots/GameStartScreen.png" alt="Game Start Screen"></p>
+<h3 id="game-platform-screen">Game platform screen</h3>
+<p><img src="../Images/Screenshots/GamePlatformScreen.png" alt="Game Platform Screen"></p>
+<h3 id="game-enemies-screen">Game enemies screen</h3>
+<p><img src="../Images/Screenshots/GameEnemiesScreen.png" alt="Game Enemies Screen"></p>
+<h3 id="game-obstacles-screen">Game obstacles screen</h3>
+<p><img src="../Images/Screenshots/GameObstaclesScreen.png" alt="Game Obstacles Screen"></p>
+<h3 id="game-coin-screen">Game coin screen</h3>
+<p><img src="../Images/Screenshots/GameCoinScreen.png" alt="Game Coin Screen"></p>
+<h3 id="end-game-screen">End game screen</h3>
+<p><img src="../Images/Screenshots/EndGameScreen.png" alt="End Game Screen"></p>
+<h1 id="team">Team</h1>
+<ol>
+<li>Chen Rui (Art)</li>
+<li>Mahadi Salah (Developer)</li>
+<li>Melchiorre Matteo (Developer)</li>
+<li>Mosconi Alessandro (Developer)</li>
+<li>Sassi Alessandro (Developer)</li>
+</ol>
+<h1 id="deadlines">Deadlines</h1>
+<h3 id="week-1-november-6-deadline">Week 1 (November 6 deadline)</h3>
+<ul>
+<li>First meeting and brainstorming on figma platform</li>
+<li>Github repository (Alessandro Mosconi)</li>
+<li>First art prototype (Rui Chen)</li>
+<li>GameDesignDocument draft - Gameplay (Alessandro Sassi)</li>
+<li>GameDesignDocument draft - Characters (Alessandro Mosconi)</li>
+<li>GameDesignDocument draft - Story (Salah Mahadi)</li>
+<li>GameDesignDocument draft - World (Rui Chen)</li>
+<li>GameDesignDocument draft - Technical specification (Matteo Melchiorre)</li>
+</ul>
+<h3 id="team-meeting-november-5">Team meeting (November 5)</h3>
+<ul>
+<li>Github repository created and shared</li>
+<li>Game design document draft completed</li>
+<li>First art prototype finished</li>
+</ul>
+
+</body>
+</html>
