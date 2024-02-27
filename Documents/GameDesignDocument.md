@@ -209,7 +209,7 @@ Where you can start a new game, change the options or give a feedback of the gam
 
 # Deadlines
 
-### Week 1 (November 6 deadline) 
+### Game design document and repo github link submition (November 6) 
 - First meeting and brainstorming on figma platform
 - Github repository (Alessandro Mosconi)
 - First art prototype (Rui Chen)
@@ -219,7 +219,26 @@ Where you can start a new game, change the options or give a feedback of the gam
 - GameDesignDocument draft - World (Rui Chen)
 - GameDesignDocument draft - Technical specification (Matteo Melchiorre)
 
-### Team meeting (November 5) 
-- Github repository created and shared
-- Game design document draft completed
-- First art prototype finished
+
+### Prototype submition (December 10) 
+- First level design and developing (Salah Mahadi)
+_ Player prototype (Alessandro Mosconi)
+- Enemies Prototype (Alessandro Sassi)
+- Managers organizations (Matteo Melchiorre)
+- UI prototype (Rui Chen)
+
+### Prototype evaluation ends (December 20) 
+
+### Beta submition (January 13) 
+- Tutorial Level, Level 3, Video intro (Alessandro Mosconi)
+- Level 2 and added obstacles (Salah Mahadi)
+- Player animation (Rui Chen)
+- UI (Matteo Melchiorre)
+- Ultimated Enemies (Alessandro Sassi)
+
+### Beta evaluation ends (February 23) 
+
+### Final project submition (January 27) 
+- Project structures fix (Alessandro Mosconi)
+- Coins, GamePlay video (Matteo Melchiorre)
+- Particles, Other obstacles  (Alessandro Sassi)
