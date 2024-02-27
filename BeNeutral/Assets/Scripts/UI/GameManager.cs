@@ -26,7 +26,9 @@ namespace UI
         [SerializeField] private CanvasGroup introText;
         [SerializeField] private TMP_Text introTextValue;
         [SerializeField] private CanvasGroup introImage;
+        [SerializeField] private CanvasGroup creditImage;
         private bool _endIntroImage = false;
+        private bool _endCreditImage = false;
         
         [Header("MENU")]
         [SerializeField] private MenuManager menuManager;
@@ -147,6 +149,10 @@ namespace UI
 
             StartCoroutine(IntroImage());
             
+            // - Credit introduction
+
+            StartCoroutine(IntroCreditImage());
+            
             // - play game intro
 
             StartCoroutine(Intro());
@@ -156,7 +162,7 @@ namespace UI
         IEnumerator IntroImage()
         {
             _endIntroImage = false;
-            animator.FadeIn(introImage, 3f);
+            animator.FadeIn(introImage, 2f);
             while (introImage.alpha < 1f)
             {
                 yield return null;
@@ -173,9 +179,35 @@ namespace UI
             yield return null;
         }
 
+        // - Credit game collective image
+        IEnumerator IntroCreditImage()
+        {
+            
+            _endCreditImage = false;
+            while (!_endIntroImage)
+            {
+                yield return null;
+            }
+            animator.FadeIn(creditImage, 2f);
+            while (creditImage.alpha < 1f)
+            {
+                yield return null;
+            }
+            
+            yield return new WaitForSeconds(2f);
+            
+            animator.FadeOut(creditImage, 0.6f);
+            while (creditImage.alpha > 0.1f)
+            {
+                yield return null;
+            }
+            _endCreditImage = true;
+            yield return null;
+        }
+
         IEnumerator Intro()
         {
-            while (!_endIntroImage)
+            while (!_endCreditImage)
             {
                 yield return null;
             }
